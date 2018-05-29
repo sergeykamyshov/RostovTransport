@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">RostovTransport</string>
+
+    <!--Выдвижная панель-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="nav_item_news">News</string>
+    <string name="nav_item_routes">Routes</string>
+    <string name="nav_item_schedule">Schedule</string>
+    <string name="nav_item_transport_online">Transport Online</string>
+    <string name="nav_item_help">Help</string>
+    <string name="nav_item_transport_card">Transport Card</string>
+    <string name="nav_item_complain">Complain</string>
+    <string name="nav_item_about_project">About Project</string>
 </resources>
