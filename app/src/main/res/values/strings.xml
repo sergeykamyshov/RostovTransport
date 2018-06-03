@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">RostovTransport</string>
 
+    <!--Заголовки-->
+    <string name="title_news">News</string>
+
     <!--Выдвижная панель-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
@@ -12,4 +15,7 @@
     <string name="nav_item_transport_card">Transport Card</string>
     <string name="nav_item_complain">Complain</string>
     <string name="nav_item_about_project">About Project</string>
+
+    <!--TODO: удалить после тестирования-->
+    <string name="test_news_title">В маршрутках АТП-5 скоро заработает безналичная оплата проезда</string>
 </resources>
