@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/nav_background</color>
+    <color name="colorPrimaryDark">@color/nav_background</color>
+    <color name="colorAccent">@color/nav_accent_color</color>
+
+    <!--Общее-->
+    <color name="nav_accent_color">@android:color/holo_green_light</color>
+    <color name="nav_background">@android:color/black</color>
+    <color name="nav_text">@android:color/white</color>
+
+    <!--Логотип-->
+    <color name="nav_logo_text">@color/nav_text</color>
+    <color name="nav_logo_second_text">@color/nav_accent_color</color>
+    <color name="nav_logo_background">@color/nav_background</color>
+
+    <!--Выдвижная панель-->
+    <color name="nav_item_icon">@color/nav_accent_color</color>
+    <color name="nav_item_text">@color/nav_text</color>
+    <color name="nav_item_background">@color/nav_background</color>
 </resources>

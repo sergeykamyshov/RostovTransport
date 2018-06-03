@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">RostovTransport</string>
+    <string name="app_name">Rostov-Transport</string>
+
+    <!--Панель навигации-->
+    <string name="logo_subtitle">Весь транспорт Южной столицы</string>
 
     <!--Заголовки-->
     <string name="title_news">News</string>
