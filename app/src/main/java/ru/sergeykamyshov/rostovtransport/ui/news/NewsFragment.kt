@@ -30,7 +30,7 @@ class NewsFragment : Fragment(), MvpView {
 
         val recycler = view.findViewById<RecyclerView>(R.id.news_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)
-        recycler.adapter = NewsAdapter(activity, getNews())
+        recycler.adapter = NewsAdapter(activity, getTestNews())
         recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         recycler.setHasFixedSize(true)
 
@@ -43,7 +43,7 @@ class NewsFragment : Fragment(), MvpView {
     }
 
     // TODO: удалить после тестирования
-    private fun getNews(): List<String> {
+    private fun getTestNews(): List<String> {
         val news = mutableListOf<String>()
         val testTitle = activity?.resources?.getString(R.string.test_news_title)
         for (i in 1..100) {
