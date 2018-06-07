@@ -9,15 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.schedule.city.CityScheduleActivity"/>
-        <activity android:name=".ui.news.news.SpecificNews"/>
+        <activity
+            android:name=".ui.schedule.city.CityScheduleActivity"
+            android:label="@string/title_schedule"/>
+        <activity
+            android:name=".ui.news.news.SpecificNews"
+            android:label="@string/title_news"/>
     </application>
 
 </manifest>

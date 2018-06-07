@@ -2,7 +2,6 @@ package ru.sergeykamyshov.rostovtransport.ui.schedule
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,10 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.ui.schedule.city.CityScheduleActivity
 
-class ScheduleFragment : Fragment(), OnItemClickListener {
+class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
     companion object {
         fun newInstance() = ScheduleFragment()
@@ -21,6 +21,8 @@ class ScheduleFragment : Fragment(), OnItemClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, container, false)
+
+        setActionBarTitle(R.string.title_schedule)
 
         val recycler = view.findViewById<RecyclerView>(R.id.schedule_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)

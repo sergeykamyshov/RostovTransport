@@ -2,7 +2,6 @@ package ru.sergeykamyshov.rostovtransport.ui.news
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,11 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.ui.news.NewsContract.MvpView
 import ru.sergeykamyshov.rostovtransport.ui.news.news.SpecificNews
 
-class NewsFragment : Fragment(), MvpView, OnItemClickListener {
+class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
 
     private lateinit var mPresenter: NewsContract.MvpPresenter
 
@@ -25,8 +25,7 @@ class NewsFragment : Fragment(), MvpView, OnItemClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
 
-        // TODO: понять почему не меняется заголовок
-        activity?.actionBar?.title = activity?.resources?.getString(R.string.title_news)
+        setActionBarTitle(R.string.title_news)
 
         mPresenter = NewsPresenter()
         mPresenter.onAttach(this)
