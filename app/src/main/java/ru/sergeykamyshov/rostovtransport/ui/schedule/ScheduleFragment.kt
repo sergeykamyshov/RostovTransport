@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
@@ -23,6 +21,7 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         val view = inflater.inflate(R.layout.fragment_schedule, container, false)
 
         setActionBarTitle(R.string.title_schedule)
+        setHasOptionsMenu(true)
 
         val recycler = view.findViewById<RecyclerView>(R.id.schedule_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)
@@ -31,6 +30,11 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         recycler.setHasFixedSize(true)
 
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_schedule, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onItemClick(cityName: String) {
