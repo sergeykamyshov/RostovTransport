@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.schedule.city.CityScheduleActivity"/>
+        <activity android:name=".ui.news.news.SpecificNews"/>
     </application>
 
 </manifest>
