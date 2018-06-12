@@ -5,10 +5,16 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.data.network.news.News
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.ui.news.NewsContract.MvpView
@@ -32,9 +38,26 @@ class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
 
         val recycler = view.findViewById<RecyclerView>(R.id.news_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)
-        recycler.adapter = NewsAdapter(activity, getTestNews(), this)
+        val adapter = NewsAdapter(activity, ArrayList(), this)
+        recycler.adapter = adapter
         recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         recycler.setHasFixedSize(true)
+
+        val call = (activity as MainActivity).restService.getRecentNews()
+        call.enqueue(object : Callback<News> {
+            override fun onFailure(call: Call<News>?, t: Throwable?) {
+                Log.i("NewsFragment", "Failed to get recent posts: $t")
+            }
+
+            override fun onResponse(call: Call<News>?, response: Response<News>?) {
+                Log.i("NewsFragment", "Response successfull = ${response?.isSuccessful}")
+                val news = response?.body()
+                if (news?.posts != null) {
+                    Log.i("NewsFragment", "Posts not null")
+                    adapter.updateData(news.posts)
+                }
+            }
+        })
 
         return view
     }
@@ -42,16 +65,6 @@ class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
     override fun onDestroyView() {
         mPresenter.onDetach()
         super.onDestroyView()
-    }
-
-    // TODO: удалить после тестирования
-    private fun getTestNews(): List<String> {
-        val news = mutableListOf<String>()
-        val testTitle = activity?.resources?.getString(R.string.test_news_title)
-        for (i in 1..100) {
-            news.add("Новость $i. $testTitle")
-        }
-        return news
     }
 
     override fun onItemClick(news: String) {

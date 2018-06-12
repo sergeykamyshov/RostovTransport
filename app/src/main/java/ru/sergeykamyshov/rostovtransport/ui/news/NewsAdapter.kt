@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.data.network.news.Post
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsAdapter(var mContext: FragmentActivity?,
-                  var mData: List<String>,
+                  var mData: List<Post>,
                   var mListener: OnItemClickListener) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,15 +27,39 @@ class NewsAdapter(var mContext: FragmentActivity?,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.newsThumbnail?.setImageResource(R.drawable.img_test_thumbnail)
-        holder.newsTitle?.text = mData.get(position)
+        val post = mData.get(position)
+        // Объект Attachments может оказаться пуст
+        if (post.attachments.isNotEmpty()) {
+            val attachment = post.attachments.get(0)
+            // Объект Images может отсутствовать во вложениях, поэтому сделал его Nullable
+            val thumbnail = attachment.images?.thumbnail?.url
+            Picasso.get()
+                    .load(thumbnail)
+                    .resize(100, 100)
+                    .centerCrop()
+                    .into(holder.newsThumbnail)
+        }
+
+        holder.newsTitle?.text = post.title
+        holder.newsAuthor?.text = post.author.name
+        // Приводим дату к формат "dd.MM.yyyy"
+        val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
+        holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
+
         holder.bind(mListener)
+    }
+
+    fun updateData(data: List<Post>) {
+        mData = data
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         val container: ViewGroup? = itemView?.findViewById(R.id.container_item_news)
         val newsThumbnail: ImageView? = itemView?.findViewById(R.id.img_news_thumbnail)
         val newsTitle: TextView? = itemView?.findViewById(R.id.tv_news_title)
+        val newsDate: TextView? = itemView?.findViewById(R.id.tv_news_date)
+        val newsAuthor: TextView? = itemView?.findViewById(R.id.tv_news_author)
 
         fun bind(listener: OnItemClickListener) {
             container?.setOnClickListener({

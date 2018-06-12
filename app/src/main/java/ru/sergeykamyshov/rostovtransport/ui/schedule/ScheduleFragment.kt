@@ -43,14 +43,8 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         call.enqueue(object : Callback<Directions> {
             override fun onResponse(call: Call<Directions>?, response: Response<Directions>?) {
                 Log.i("ScheduleNetworkTest", "Responce ${response?.isSuccessful}")
-
                 val body = response?.body()
-
                 val directions = body?.directions
-                directions?.forEach {
-                    Log.i("ScheduleNetworkTest", "${it.city}, ${it.id}")
-                }
-
                 if (directions != null) adapter.updateData(directions)
             }
 
@@ -72,18 +66,5 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         intent.putExtra(CityScheduleActivity.city, cityName)
         startActivity(intent)
     }
-
-    // TODO: удалить после тестирования
-//    private fun getTestCities(): List<String> {
-//        val cities = mutableListOf<String>()
-//        for (x in 1..100) {
-//            if (x % 2 == 0) {
-//                cities.add("Краснодар $x")
-//            } else {
-//                cities.add("Москва $x")
-//            }
-//        }
-//        return cities
-//    }
 
 }

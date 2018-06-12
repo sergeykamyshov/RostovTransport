@@ -24,7 +24,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    public lateinit var restService: RestService
+    lateinit var restService: RestService
 
     private lateinit var mDrawer: DrawerLayout
     private lateinit var mToggle: ActionBarDrawerToggle
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // Dagger
         App.daggerComponent.inject(this)
 
         // Экран по умолчанию - Новости

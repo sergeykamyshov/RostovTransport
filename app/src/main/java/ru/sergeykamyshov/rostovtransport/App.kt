@@ -20,6 +20,7 @@ class App : Application() {
         // Retrofit
         val gson = GsonBuilder().setDateFormat("dd.MM.yyyy").create()
         retrofit = Retrofit.Builder()
+//                .baseUrl("https://phiffer.org")
                 .baseUrl("http://howtoandroid.ru")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
