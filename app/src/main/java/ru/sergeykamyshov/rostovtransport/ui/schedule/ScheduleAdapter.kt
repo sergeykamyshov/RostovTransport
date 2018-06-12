@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.data.network.schedule.Direction
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 
 class ScheduleAdapter(var mContext: FragmentActivity?,
-                      var mData: List<String>,
+                      var mData: List<Direction>,
                       var mListener: OnItemClickListener) : RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +23,7 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.cityName?.text = mData.get(position)
+        holder.cityName?.text = mData.get(position).city
         holder.bind(mListener)
     }
 
@@ -35,6 +36,11 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
                 mListener.onItemClick(cityName?.text as String)
             })
         }
+    }
+
+    fun updateData(data: List<Direction>) {
+        mData = data
+        notifyDataSetChanged()
     }
 
 }

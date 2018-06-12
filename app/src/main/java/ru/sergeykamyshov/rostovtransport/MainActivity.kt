@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        mAppBar = findViewById<AppBarLayout>(R.id.main_app_bar)
+        mAppBar = findViewById(R.id.main_app_bar)
 
         // Настраиваем Drawer
         mDrawer = findViewById(R.id.drawer_layout)

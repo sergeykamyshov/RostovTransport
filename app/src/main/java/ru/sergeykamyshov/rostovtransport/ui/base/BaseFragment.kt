@@ -6,8 +6,8 @@ import ru.sergeykamyshov.rostovtransport.MainActivity
 
 open class BaseFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         // Показываем AppBarLayout при создании нового фрагмента (даже если на предыдущем он был скрыт)
         (activity as MainActivity).showAppBarLayout()
     }
