@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +24,7 @@ import ru.sergeykamyshov.rostovtransport.ui.news.news.SpecificNews
 class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
 
     private lateinit var mPresenter: NewsContract.MvpPresenter
+    private lateinit var mProgress: ProgressBar
 
     companion object {
         fun newInstance() = NewsFragment()
@@ -32,6 +34,8 @@ class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
 
         setActionBarTitle(R.string.title_news)
+
+        mProgress = view.findViewById(R.id.news_progress)
 
         mPresenter = NewsPresenter()
         mPresenter.onAttach(this)
@@ -45,17 +49,18 @@ class NewsFragment : BaseFragment(), MvpView, OnItemClickListener {
 
         val call = (activity as MainActivity).restService.getRecentNews()
         call.enqueue(object : Callback<News> {
-            override fun onFailure(call: Call<News>?, t: Throwable?) {
-                Log.i("NewsFragment", "Failed to get recent posts: $t")
-            }
-
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
                 Log.i("NewsFragment", "Response successfull = ${response?.isSuccessful}")
                 val news = response?.body()
                 if (news?.posts != null) {
                     Log.i("NewsFragment", "Posts not null")
                     adapter.updateData(news.posts)
+                    mProgress.visibility = View.GONE
                 }
+            }
+
+            override fun onFailure(call: Call<News>?, t: Throwable?) {
+                Log.i("NewsFragment", "Failed to get recent posts: $t")
             }
         })
 

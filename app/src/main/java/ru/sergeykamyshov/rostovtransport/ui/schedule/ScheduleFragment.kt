@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
+import android.widget.ProgressBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,7 @@ import ru.sergeykamyshov.rostovtransport.ui.schedule.city.CityScheduleActivity
 class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
     lateinit var adapter: ScheduleAdapter
+    lateinit var mProgress: ProgressBar
 
     companion object {
         fun newInstance() = ScheduleFragment()
@@ -30,6 +32,8 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
         setActionBarTitle(R.string.title_schedule)
         setHasOptionsMenu(true)
+
+        mProgress = view.findViewById(R.id.schedule_progress)
 
         val recycler = view.findViewById<RecyclerView>(R.id.schedule_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)
@@ -45,7 +49,10 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
                 Log.i("ScheduleNetworkTest", "Responce ${response?.isSuccessful}")
                 val body = response?.body()
                 val directions = body?.directions
-                if (directions != null) adapter.updateData(directions)
+                if (directions != null) {
+                    adapter.updateData(directions)
+                    mProgress.visibility = View.GONE
+                }
             }
 
             override fun onFailure(call: Call<Directions>?, t: Throwable?) {
