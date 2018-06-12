@@ -2,6 +2,7 @@ package ru.sergeykamyshov.rostovtransport
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -22,16 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawer: DrawerLayout
     private lateinit var mToggle: ActionBarDrawerToggle
+    private lateinit var mAppBar: AppBarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Настраивает Toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar_main)
+        val toolbar: Toolbar = findViewById(R.id.main_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        mAppBar = findViewById<AppBarLayout>(R.id.main_app_bar)
 
         // Настраиваем Drawer
         mDrawer = findViewById(R.id.drawer_layout)
@@ -84,5 +87,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         return true
+    }
+
+    fun showAppBarLayout() {
+        mAppBar.setExpanded(true)
     }
 }
