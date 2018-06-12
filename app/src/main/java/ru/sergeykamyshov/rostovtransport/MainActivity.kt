@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import ru.sergeykamyshov.rostovtransport.data.network.RestService
 import ru.sergeykamyshov.rostovtransport.ui.about.AboutFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.ui.complain.ComplainFragment
@@ -18,8 +19,12 @@ import ru.sergeykamyshov.rostovtransport.ui.news.NewsFragment
 import ru.sergeykamyshov.rostovtransport.ui.online.TransportOnlineFragment
 import ru.sergeykamyshov.rostovtransport.ui.routes.RoutesFragment
 import ru.sergeykamyshov.rostovtransport.ui.schedule.ScheduleFragment
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    public lateinit var restService: RestService
 
     private lateinit var mDrawer: DrawerLayout
     private lateinit var mToggle: ActionBarDrawerToggle
@@ -60,6 +65,9 @@ class MainActivity : AppCompatActivity() {
             mDrawer.closeDrawers()
             true
         }
+
+        App.daggerComponent.inject(this)
+
         // Экран по умолчанию - Новости
         startFragment(NewsFragment.newInstance())
     }

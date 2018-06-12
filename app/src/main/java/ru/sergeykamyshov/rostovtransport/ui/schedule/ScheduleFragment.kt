@@ -7,14 +7,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
-import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
 import ru.sergeykamyshov.rostovtransport.data.network.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
@@ -41,15 +38,7 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         recycler.setHasFixedSize(true)
 
-        val gson = GsonBuilder().setDateFormat("dd.MM.yyyy").create()
-        var retrofit = Retrofit.Builder()
-                .baseUrl("http://howtoandroid.ru")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-
-        val service = retrofit.create(RestService::class.java)
-
-        val call = service.getDirections()
+        val call = (activity as MainActivity).restService.getDirections()
 
         call.enqueue(object : Callback<Directions> {
             override fun onResponse(call: Call<Directions>?, response: Response<Directions>?) {
