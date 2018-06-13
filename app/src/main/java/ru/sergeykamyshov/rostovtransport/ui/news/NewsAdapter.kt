@@ -55,6 +55,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
         holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
+        holder.newsId?.text = post.id
 
         holder.bind(mListener)
     }
@@ -68,12 +69,14 @@ class NewsAdapter(var mContext: FragmentActivity?,
         val container: ViewGroup? = itemView?.findViewById(R.id.container_item_news)
         val newsThumbnail: ImageView? = itemView?.findViewById(R.id.img_news_thumbnail)
         val newsTitle: TextView? = itemView?.findViewById(R.id.tv_news_title)
-        val newsDate: TextView? = itemView?.findViewById(R.id.tv_news_date)
         val newsAuthor: TextView? = itemView?.findViewById(R.id.tv_news_author)
+        val newsDate: TextView? = itemView?.findViewById(R.id.tv_news_date)
+        // Скрытое поле
+        val newsId: TextView? = itemView?.findViewById(R.id.tv_news_id)
 
         fun bind(listener: OnItemClickListener) {
             container?.setOnClickListener({
-                listener.onItemClick(newsTitle?.text as String)
+                listener.onItemClick(newsId?.text as String)
             })
         }
     }

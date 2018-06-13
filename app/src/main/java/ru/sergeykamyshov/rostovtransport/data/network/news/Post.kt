@@ -10,6 +10,9 @@ class Post {
     @SerializedName("title")
     lateinit var title: String
 
+    @SerializedName("content")
+    lateinit var content: String
+
     @SerializedName("date")
     lateinit var date: String
 

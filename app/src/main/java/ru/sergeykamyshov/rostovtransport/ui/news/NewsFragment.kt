@@ -15,7 +15,7 @@ import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
-import ru.sergeykamyshov.rostovtransport.ui.news.news.SpecificNews
+import ru.sergeykamyshov.rostovtransport.ui.news.specific.SpecificNews
 
 class NewsFragment : BaseFragment(), OnItemClickListener {
 
@@ -51,9 +51,9 @@ class NewsFragment : BaseFragment(), OnItemClickListener {
         return view
     }
 
-    override fun onItemClick(news: String) {
+    override fun onItemClick(id: String) {
         val intent = Intent(activity, SpecificNews::class.java)
-        intent.putExtra(SpecificNews.SPECIFIC_NEWS_EXTRA, news)
+        intent.putExtra(SpecificNews.SPECIFIC_NEWS_ID_EXTRA, id)
         startActivity(intent)
     }
 }
