@@ -28,6 +28,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = mData.get(position)
+        var imageEmpty = true
         // Объект Attachments может оказаться пуст
         if (post.attachments.isNotEmpty()) {
             val attachment = post.attachments.get(0)
@@ -35,7 +36,16 @@ class NewsAdapter(var mContext: FragmentActivity?,
             val thumbnail = attachment.images?.thumbnail?.url
             Picasso.get()
                     .load(thumbnail)
-                    .resize(100, 100)
+                    .resize(150, 100)
+                    .centerCrop()
+                    .into(holder.newsThumbnail)
+            imageEmpty = false
+        }
+        if (imageEmpty) {
+            // Если картинка не была загружена из интернета, то установить картинку по-умолчанию
+            Picasso.get()
+                    .load(R.drawable.img_thumbnail_news_item)
+                    .resize(150, 100)
                     .centerCrop()
                     .into(holder.newsThumbnail)
         }
