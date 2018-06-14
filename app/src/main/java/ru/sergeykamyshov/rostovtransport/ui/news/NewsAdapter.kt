@@ -68,7 +68,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         val container: ViewGroup? = itemView?.findViewById(R.id.container_item_news)
         val newsThumbnail: ImageView? = itemView?.findViewById(R.id.img_news_thumbnail)
-        val newsTitle: TextView? = itemView?.findViewById(R.id.tv_news_title)
+        val newsTitle: TextView? = itemView?.findViewById(R.id.tv_post_title)
         val newsAuthor: TextView? = itemView?.findViewById(R.id.tv_news_author)
         val newsDate: TextView? = itemView?.findViewById(R.id.tv_news_date)
         // Скрытое поле

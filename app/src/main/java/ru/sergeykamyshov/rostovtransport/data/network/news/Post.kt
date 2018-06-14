@@ -35,6 +35,9 @@ class Post {
             @SerializedName("thumbnail")
             lateinit var thumbnail: Thumbnail
 
+            @SerializedName("medium")
+            lateinit var medium: Thumbnail
+
             class Thumbnail {
                 @SerializedName("url")
                 lateinit var url: String
