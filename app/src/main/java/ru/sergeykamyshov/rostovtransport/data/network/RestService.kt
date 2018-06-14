@@ -18,4 +18,7 @@ interface RestService {
     @GET("/tmp/rostov-transport/test/directions.json")
     fun getDirections(): Call<Directions>
 
+    @GET("/tmp/rostov-transport/test/about.json")
+    fun getAbout(): Call<About>
+
 }
