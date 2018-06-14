@@ -1,8 +1,9 @@
-package ru.sergeykamyshov.rostovtransport.data.network.news
+package ru.sergeykamyshov.rostovtransport.data.network.news.post
 
 import com.google.gson.annotations.SerializedName
+import ru.sergeykamyshov.rostovtransport.data.network.news.Post
 
-class SpecificNews {
+class Post {
 
     @SerializedName("status")
     lateinit var status: String

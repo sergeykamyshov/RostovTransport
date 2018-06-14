@@ -1,32 +1,35 @@
-package ru.sergeykamyshov.rostovtransport.ui.news.specific
+package ru.sergeykamyshov.rostovtransport.ui.news.post
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Html
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
 
-class SpecificNews : AppCompatActivity() {
+class PostActivity : AppCompatActivity() {
 
     companion object {
-        const val SPECIFIC_NEWS_ID_EXTRA = "specificNewsId"
+        const val POST_ID_EXTRA = "postId"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_specific_news)
+        setContentView(R.layout.activity_post)
 
-        val progressBar = findViewById<ProgressBar>(R.id.specific_news_progress)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val progressBar = findViewById<ProgressBar>(R.id.post_progress)
         val newsTitle = findViewById<TextView>(R.id.tv_news_title)
         val newsContent = findViewById<TextView>(R.id.tv_news_content)
 
-        val id = intent.getStringExtra(SPECIFIC_NEWS_ID_EXTRA)
+        val id = intent.getStringExtra(POST_ID_EXTRA)
 
-        val viewModel = ViewModelProviders.of(this, SpecificNewsModelFactory(id)).get(SpecificNewsViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, PostModelFactory(id)).get(PostViewModel::class.java)
         viewModel.getData().observe(this, Observer {
             newsTitle.text = it?.title
             newsContent.text = Html.fromHtml(it?.content)
@@ -34,5 +37,12 @@ class SpecificNews : AppCompatActivity() {
 
         })
         viewModel.loadData()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

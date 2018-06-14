@@ -25,7 +25,7 @@
             android:name=".ui.schedule.city.CityScheduleActivity"
             android:label="@string/title_schedule"/>
         <activity
-            android:name=".ui.news.specific.SpecificNews"
+            android:name=".ui.news.post.PostActivity"
             android:label="@string/title_news"/>
     </application>
 

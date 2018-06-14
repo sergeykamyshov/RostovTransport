@@ -8,10 +8,10 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.news.specific.SpecificNews">
+        tools:context=".ui.news.post.PostActivity">
 
         <ProgressBar
-            android:id="@+id/specific_news_progress"
+            android:id="@+id/post_progress"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
