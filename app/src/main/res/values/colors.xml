@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/nav_background</color>
-    <color name="colorPrimaryDark">@color/nav_background</color>
-    <color name="colorAccent">@color/nav_accent_color</color>
+    <color name="colorPrimary">@color/color_primary</color>
+    <color name="colorPrimaryDark">@color/color_primary_dark</color>
+    <color name="colorAccent">@color/color_accent</color>
 
     <!--Общее-->
-    <color name="nav_accent_color">@android:color/holo_green_light</color>
-    <color name="nav_background">@android:color/black</color>
-    <color name="nav_text">@android:color/white</color>
+    <color name="color_primary">#FFF</color>
+    <color name="color_primary_dark">#9E9E9E</color>
+    <color name="color_accent">#4CAF50</color>
+    <color name="color_background">@android:color/white</color>
+    <color name="color_text">@android:color/black</color>
 
     <!--Логотип-->
-    <color name="nav_logo_text">@color/nav_text</color>
-    <color name="nav_logo_second_text">@color/nav_accent_color</color>
-    <color name="nav_logo_background">@color/nav_background</color>
+    <color name="nav_logo_text">@color/color_text</color>
+    <color name="nav_logo_second_text">@android:color/black</color>
+    <color name="nav_logo_background">@color/color_background</color>
 
     <!--Выдвижная панель-->
-    <color name="nav_item_icon">@color/nav_accent_color</color>
-    <color name="nav_item_text">@color/nav_text</color>
-    <color name="nav_item_background">@color/nav_background</color>
+    <color name="nav_item_icon">@color/color_accent</color>
+    <color name="nav_item_text">@color/color_text</color>
+    <color name="nav_item_background">@color/color_background</color>
 </resources>
