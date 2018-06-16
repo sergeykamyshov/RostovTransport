@@ -69,8 +69,14 @@ class MainActivity : AppCompatActivity() {
         // Dagger
         App.daggerComponent.inject(this)
 
-        // Экран по умолчанию - Новости
-        startFragment(NewsFragment.newInstance())
+        if (supportFragmentManager.findFragmentById(R.id.fragment_container) != null) {
+            // Восстанавливаем фрагмент после поворота экрана
+            supportFragmentManager.popBackStack()
+        } else {
+            // Экран по умолчанию - Новости
+            startFragment(NewsFragment.newInstance())
+        }
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
