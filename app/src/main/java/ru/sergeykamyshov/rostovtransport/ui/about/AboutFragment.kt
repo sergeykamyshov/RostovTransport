@@ -37,7 +37,7 @@ class AboutFragment : BaseFragment() {
             if (it?.photoUrl == null || it.photoUrl.isEmpty()) {
                 teamPhoto.visibility = View.GONE
             } else {
-                Picasso.get().load(it.photoUrl).resize(400, 200).centerCrop().into(teamPhoto)
+                Picasso.get().load(it.photoUrl).resize(300, 200).centerCrop().into(teamPhoto)
             }
             shortDesc.text = it?.shortDescription
             importantInfo.text = it?.importantInfo
