@@ -3,6 +3,9 @@ package ru.sergeykamyshov.rostovtransport.ui.about
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +31,24 @@ class AboutFragment : BaseFragment() {
         val importantInfo = view.findViewById<TextView>(R.id.tv_important)
         val fullDesc = view.findViewById<TextView>(R.id.tv_full_desc)
 
+        val recycler = view.findViewById<RecyclerView>(R.id.contacts_recycler)
+        recycler.layoutManager = LinearLayoutManager(activity)
+        val adapter = ContactsAdapter(activity, ArrayList())
+        recycler.adapter = adapter
+        recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        recycler.setHasFixedSize(true)
+
         val viewModel = ViewModelProviders.of(activity as MainActivity).get(AboutViewModel::class.java)
         val liveData = viewModel.getData()
         liveData.observe(this, Observer {
             shortDesc.text = it?.shortDescription
             importantInfo.text = it?.importantInfo
             fullDesc.text = it?.fullDescription
+
+            if (it?.contacts != null && it.contacts.isNotEmpty()) {
+                adapter.updateData(it.contacts)
+            }
+
             progressBar.visibility = View.GONE
         })
         viewModel.loadData()

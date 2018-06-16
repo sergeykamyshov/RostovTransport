@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_background_material_grey_100">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,6 +124,40 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_important_title"
                         tools:text="Здесь будет размещена важная информация"/>
                 </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--Карточка с контактами-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_contancts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_contacts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/about_contacts_title"
+                        android:textColor="@color/color_text"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="Контакты"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/contacts_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
             </android.support.v7.widget.CardView>
 
             <!--Карточка с полной информацией о проекте-->

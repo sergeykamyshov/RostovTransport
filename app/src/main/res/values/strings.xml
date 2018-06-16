@@ -30,5 +30,6 @@
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>
     <string name="about_important_title">Важно помнить!</string>
+    <string name="about_contacts_title">Контакты</string>
     <string name="about_full_desc_title">Подробно о проекте</string>
 </resources>

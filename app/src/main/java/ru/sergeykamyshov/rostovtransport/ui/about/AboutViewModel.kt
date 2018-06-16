@@ -8,7 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.About
+import ru.sergeykamyshov.rostovtransport.data.network.about.About
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
 
 class AboutViewModel : ViewModel() {

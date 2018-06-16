@@ -3,6 +3,7 @@ package ru.sergeykamyshov.rostovtransport.data.network
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
+import ru.sergeykamyshov.rostovtransport.data.network.about.About
 import ru.sergeykamyshov.rostovtransport.data.network.news.News
 import ru.sergeykamyshov.rostovtransport.data.network.news.post.Post
 import ru.sergeykamyshov.rostovtransport.data.network.schedule.Directions

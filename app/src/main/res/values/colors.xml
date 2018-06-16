@@ -4,11 +4,12 @@
     <color name="colorPrimaryDark">@color/color_primary_dark</color>
     <color name="colorAccent">@color/color_accent</color>
 
-    <!--Общее-->
+    <!--Общие-->
     <color name="color_primary">#FFF</color>
     <color name="color_primary_dark">#9E9E9E</color>
     <color name="color_accent">#4CAF50</color>
     <color name="color_background">@android:color/white</color>
+    <color name="color_background_material_grey_100">#f5f5f5</color>
     <color name="color_text">@android:color/black</color>
 
     <!--Логотип-->
