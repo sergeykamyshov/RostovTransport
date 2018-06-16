@@ -8,9 +8,6 @@ class About {
     @SerializedName("lastUpdate")
     lateinit var lastUpdate: Date
 
-    @SerializedName("photoUrl")
-    lateinit var photoUrl: String
-
     @SerializedName("shortDescription")
     lateinit var shortDescription: String
 

@@ -44,7 +44,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
         if (imageEmpty) {
             // Если картинка не была загружена из интернета, то установить картинку по-умолчанию
             Picasso.get()
-                    .load(R.drawable.img_thumbnail_news_item)
+                    .load(getDefaultThumbnail(position))
                     .resize(150, 100)
                     .centerCrop()
                     .into(holder.newsThumbnail)
@@ -63,6 +63,15 @@ class NewsAdapter(var mContext: FragmentActivity?,
     fun updateData(data: List<Post>) {
         mData = data
         notifyDataSetChanged()
+    }
+
+    private fun getDefaultThumbnail(position: Int): Int {
+        if (position != 0 && position % 3 == 0) {
+            return R.drawable.img_thumbnail_news_item_3
+        } else if (position % 2 == 0) {
+            return R.drawable.img_thumbnail_news_item_2
+        }
+        return R.drawable.img_thumbnail_news_item_1
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
