@@ -14,10 +14,10 @@ class RoutesAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPage
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 -> return ShuttleListFragment()
-            1 -> return BusListFragment()
-            2 -> return TrolleybusListFragment()
-            3 -> return TramListFragment()
+            0 -> return ShuttleListFragment.newInstance()
+            1 -> return BusListFragment.newInstance()
+            2 -> return TrolleybusListFragment.newInstance()
+            3 -> return TramListFragment.newInstance()
         }
         return ShuttleListFragment()
     }
