@@ -26,6 +26,12 @@
     <string name="nav_item_complain">Complain</string>
     <string name="nav_item_about">About Project</string>
 
+    <!--Маршруты-->
+    <string name="routes_tab_title_shuttle">Маршрутки</string>
+    <string name="routes_tab_title_bus">Автобусы</string>
+    <string name="routes_tab_title_trolleybus">Троллейбусы</string>
+    <string name="routes_tab_title_tram">Трамваи</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>
