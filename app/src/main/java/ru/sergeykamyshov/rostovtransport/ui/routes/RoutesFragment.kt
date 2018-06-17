@@ -22,7 +22,8 @@ class RoutesFragment : BaseFragment() {
 
         // Настраиваем переключение по вкладкам
         val viewPager = view.findViewById<ViewPager>(R.id.vp_routes)
-        viewPager.adapter = RoutesAdapter(activity, activity?.supportFragmentManager)
+        // Используем childFragmentManager для корректного поведения фрагментов на вкладках, т.к. они находятся внутри фрагмента "Маршруты"
+        viewPager.adapter = RoutesAdapter(activity, childFragmentManager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_routes)
         tabLayout?.setupWithViewPager(viewPager)
 
