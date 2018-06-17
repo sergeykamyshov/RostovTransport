@@ -1,41 +1,39 @@
 <resources>
     <string name="app_name">Rostov-Transport</string>
 
-    <!--Панель навигации-->
-    <string name="logo_subtitle">Весь транспорт Южной столицы</string>
-
     <!--Заголовки-->
     <string name="title_news">News</string>
-    <string name="title_schedule">Schedule</string>
     <string name="title_routes">Routes</string>
+    <string name="title_schedule">Schedule</string>
     <string name="title_transport_online">Transport Online</string>
     <string name="title_help">Help</string>
     <string name="title_transport_card">Transport Card</string>
     <string name="title_complain">Complain</string>
     <string name="title_about">About Project</string>
 
-    <!--Выдвижная панель-->
+    <!--Выдвижная панель навигации-->
+    <string name="logo_subtitle">All transport of city</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
-    <string name="nav_item_news">News</string>
-    <string name="nav_item_routes">Routes</string>
-    <string name="nav_item_schedule">Schedule</string>
-    <string name="nav_item_transport_online">Transport Online</string>
-    <string name="nav_item_help">Help</string>
-    <string name="nav_item_transport_card">Transport Card</string>
-    <string name="nav_item_complain">Complain</string>
-    <string name="nav_item_about">About Project</string>
+    <string name="nav_item_news">@string/title_news</string>
+    <string name="nav_item_routes">@string/title_routes</string>
+    <string name="nav_item_schedule">@string/title_schedule</string>
+    <string name="nav_item_transport_online">@string/title_transport_online</string>
+    <string name="nav_item_help">@string/title_help</string>
+    <string name="nav_item_transport_card">@string/title_transport_card</string>
+    <string name="nav_item_complain">@string/title_complain</string>
+    <string name="nav_item_about">@string/title_about</string>
 
     <!--Маршруты-->
-    <string name="routes_tab_title_shuttle">Маршрутки</string>
-    <string name="routes_tab_title_bus">Автобусы</string>
-    <string name="routes_tab_title_trolleybus">Троллейбусы</string>
-    <string name="routes_tab_title_tram">Трамваи</string>
+    <string name="routes_tab_title_shuttle">Shuttle</string>
+    <string name="routes_tab_title_bus">Bus</string>
+    <string name="routes_tab_title_trolleybus">Trolleybus</string>
+    <string name="routes_tab_title_tram">Tram</string>
 
     <!--Экран "О проекте"-->
-    <string name="about_team_photo">Фотография команды проекта</string>
-    <string name="about_short_desc_title">Кратко о проекте</string>
-    <string name="about_important_title">Важно помнить!</string>
-    <string name="about_contacts_title">Контакты</string>
-    <string name="about_full_desc_title">Подробно о проекте</string>
+    <string name="about_team_photo">Team photo</string>
+    <string name="about_short_desc_title">About project</string>
+    <string name="about_important_title">Important!</string>
+    <string name="about_contacts_title">Contacts</string>
+    <string name="about_full_desc_title">More about project</string>
 </resources>

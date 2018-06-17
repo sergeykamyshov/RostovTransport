@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ростов-Транспорт</string>
+
+    <!--Заголовки-->
+    <string name="title_news">Новости</string>
+    <string name="title_routes">Маршруты</string>
+    <string name="title_schedule">Расписание</string>
+    <string name="title_transport_online">Транспорт Онлайн</string>
+    <string name="title_help">Справка</string>
+    <string name="title_transport_card">Транспортная Карта</string>
+    <string name="title_complain">Пожаловаться</string>
+    <string name="title_about">О Проекте</string>
+
+    <!--Выдвижная панель навигации-->
+    <string name="logo_subtitle">Весь транспорт Южной столицы</string>
+    <string name="navigation_drawer_open">Открыть</string>
+    <string name="navigation_drawer_close">Закрыть</string>
+    <string name="nav_item_news">@string/title_news</string>
+    <string name="nav_item_routes">@string/title_routes</string>
+    <string name="nav_item_schedule">@string/title_schedule</string>
+    <string name="nav_item_transport_online">@string/title_transport_online</string>
+    <string name="nav_item_help">@string/title_help</string>
+    <string name="nav_item_transport_card">@string/title_transport_card</string>
+    <string name="nav_item_complain">@string/title_complain</string>
+    <string name="nav_item_about">@string/title_about</string>
+
+    <!--Маршруты-->
+    <string name="routes_tab_title_shuttle">Маршрутки</string>
+    <string name="routes_tab_title_bus">Автобусы</string>
+    <string name="routes_tab_title_trolleybus">Троллейбусы</string>
+    <string name="routes_tab_title_tram">Трамваи</string>
+
+    <!--Экран "О проекте"-->
+    <string name="about_team_photo">Фотография команды проекта</string>
+    <string name="about_short_desc_title">Кратко о проекте</string>
+    <string name="about_important_title">Важно понимать!</string>
+    <string name="about_contacts_title">Контакты</string>
+    <string name="about_full_desc_title">Подробнее о проекте</string>
+</resources>
