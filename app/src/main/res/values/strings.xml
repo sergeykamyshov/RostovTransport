@@ -30,6 +30,11 @@
     <string name="routes_tab_title_trolleybus">Trolleybus</string>
     <string name="routes_tab_title_tram">Tram</string>
 
+    <!--Справка-->
+    <string name="help_tab_title_departments">Departments</string>
+    <string name="help_tab_title_stations">Stations</string>
+    <string name="help_tab_title_business">Business</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Team photo</string>
     <string name="about_short_desc_title">About project</string>
