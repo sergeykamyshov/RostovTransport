@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.sergeykamyshov.rostovtransport.data.network.about.About
+import ru.sergeykamyshov.rostovtransport.data.network.help.Help
 import ru.sergeykamyshov.rostovtransport.data.network.news.News
 import ru.sergeykamyshov.rostovtransport.data.network.news.post.Post
 import ru.sergeykamyshov.rostovtransport.data.network.routes.Routes
@@ -22,6 +23,10 @@ interface RestService {
     // Маршруты
     @GET("/tmp/rostov-transport/test/routes/{transport}/{transport}.json")
     fun getRoutesFor(@Path("transport") transport: String): Call<Routes>
+
+    // Справка
+    @GET("/tmp/rostov-transport/test/help/{help}.json")
+    fun getHelpFor(@Path("help") help: String): Call<Help>
 
     // Расписание
     @GET("/tmp/rostov-transport/test/directions.json")

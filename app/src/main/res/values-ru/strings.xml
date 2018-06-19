@@ -32,7 +32,7 @@
     <string name="routes_tab_title_tram">Трамваи</string>
 
     <!--Справка-->
-    <string name="help_tab_title_departments">Департаменты</string>
+    <string name="help_tab_title_departments">Власти</string>
     <string name="help_tab_title_stations">Вокзалы</string>
     <string name="help_tab_title_business">Перевозчики</string>
 
