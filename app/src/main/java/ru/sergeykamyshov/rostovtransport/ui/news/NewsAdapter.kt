@@ -2,13 +2,14 @@ package ru.sergeykamyshov.rostovtransport.ui.news
 
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,21 +29,14 @@ class NewsAdapter(var mContext: FragmentActivity?,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = mData.get(position)
-        var imageEmpty = true
-        // Объект Attachments может оказаться пуст
-        if (post.attachments.isNotEmpty()) {
-            val attachment = post.attachments.get(0)
-            // Объект Images может отсутствовать во вложениях, поэтому сделал его Nullable
-            val thumbnail = attachment.images?.thumbnail?.url
+        if (post.thumbnail?.isNotEmpty()!!) {
             Picasso.get()
-                    .load(thumbnail)
+                    .load(post.thumbnail)
                     .resize(150, 100)
                     .centerCrop()
                     .into(holder.newsThumbnail)
-            imageEmpty = false
-        }
-        if (imageEmpty) {
-            // Если картинка не была загружена из интернета, то установить картинку по-умолчанию
+        } else {
+            // Если картинку невозможно загрузить из интернета, то устанавливаем картинку по-умолчанию
             Picasso.get()
                     .load(getDefaultThumbnail(position))
                     .resize(150, 100)
@@ -50,7 +44,8 @@ class NewsAdapter(var mContext: FragmentActivity?,
                     .into(holder.newsThumbnail)
         }
 
-        holder.newsTitle?.text = post.title
+        // Внимание! В заголовках статей могут быть указаны html теги
+        holder.newsTitle?.text = Html.fromHtml(post.title)
         holder.newsAuthor?.text = post.author.name
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
@@ -66,7 +61,11 @@ class NewsAdapter(var mContext: FragmentActivity?,
     }
 
     private fun getDefaultThumbnail(position: Int): Int {
-        if (position != 0 && position % 3 == 0) {
+        if (position % 5 == 0) {
+            return R.drawable.img_thumbnail_news_item_5
+        } else if (position % 4 == 0) {
+            return R.drawable.img_thumbnail_news_item_4
+        } else if (position % 3 == 0) {
             return R.drawable.img_thumbnail_news_item_3
         } else if (position % 2 == 0) {
             return R.drawable.img_thumbnail_news_item_2

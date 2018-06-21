@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
 import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
@@ -33,7 +34,7 @@ class PostActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id)).get(PostViewModel::class.java)
         viewModel.getData().observe(this, Observer {
-            postTitle.text = it?.title
+            postTitle.text = Html.fromHtml(it?.title)
             webView.loadData(it?.content, "text/html; charset=utf-8", "utf-8")
             progressBar.visibility = View.GONE
         })

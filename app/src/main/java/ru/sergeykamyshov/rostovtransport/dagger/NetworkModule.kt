@@ -10,7 +10,7 @@ class NetworkModule {
 
     @Provides
     fun providesRestService(): RestService {
-        return App.retrofit.create(RestService::class.java)
+        return App.createRestService()
     }
 
 }

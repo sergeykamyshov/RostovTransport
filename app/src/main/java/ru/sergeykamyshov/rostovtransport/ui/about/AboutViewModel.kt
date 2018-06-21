@@ -8,16 +8,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
+import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 
 class AboutViewModel : ViewModel() {
 
+    val restService: RestService = App.createRestService()
     private var mData = MutableLiveData<About>()
-    lateinit var restService: RestService
 
     fun getData(): LiveData<About> {
-        restService = App.retrofit.create(RestService::class.java)
         return mData
     }
 

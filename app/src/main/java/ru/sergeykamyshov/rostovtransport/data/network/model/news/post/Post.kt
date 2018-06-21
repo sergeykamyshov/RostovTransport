@@ -1,7 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.data.network.model.news.post
 
 import com.google.gson.annotations.SerializedName
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
 
 class Post {
 
@@ -9,5 +9,5 @@ class Post {
     lateinit var status: String
 
     @SerializedName("post")
-    lateinit var post: Post
+    lateinit var post: News.Post
 }

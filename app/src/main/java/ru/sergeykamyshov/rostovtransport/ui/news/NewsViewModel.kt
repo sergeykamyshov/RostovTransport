@@ -8,17 +8,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
+import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
 import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
 
 class NewsViewModel : ViewModel() {
 
+    val restService: NewsRestService = App.createNewsRestService()
     private var mData = MutableLiveData<List<Post>>()
-    lateinit var restService: RestService
 
     fun getData(): LiveData<List<Post>> {
-        restService = App.retrofit.create(RestService::class.java)
         return mData
     }
 

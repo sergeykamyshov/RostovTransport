@@ -13,11 +13,10 @@ import ru.sergeykamyshov.rostovtransport.ui.help.base.BaseViewModel
 
 class BusinessViewModel : BaseViewModel() {
 
+    val restService: RestService = App.createRestService()
     private var mData = MutableLiveData<List<Help.Contact>>()
-    lateinit var restService: RestService
 
     override fun getData(): LiveData<List<Help.Contact>> {
-        restService = App.retrofit.create(RestService::class.java)
         return mData
     }
 

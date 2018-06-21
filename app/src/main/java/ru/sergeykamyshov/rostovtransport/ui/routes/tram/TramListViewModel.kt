@@ -13,11 +13,10 @@ import ru.sergeykamyshov.rostovtransport.ui.routes.base.BaseViewModel
 
 class TramListViewModel : BaseViewModel() {
 
+    val restService: RestService = App.createRestService()
     private var mData = MutableLiveData<List<Routes.Route>>()
-    lateinit var restService: RestService
 
     override fun getData(): LiveData<List<Routes.Route>> {
-        restService = App.retrofit.create(RestService::class.java)
         return mData
     }
 
