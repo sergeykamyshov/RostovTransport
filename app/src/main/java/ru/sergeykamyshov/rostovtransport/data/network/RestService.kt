@@ -4,12 +4,12 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.sergeykamyshov.rostovtransport.data.network.about.About
-import ru.sergeykamyshov.rostovtransport.data.network.help.Help
-import ru.sergeykamyshov.rostovtransport.data.network.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.news.post.Post
-import ru.sergeykamyshov.rostovtransport.data.network.routes.Routes
-import ru.sergeykamyshov.rostovtransport.data.network.schedule.Directions
+import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
+import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.post.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 
 interface RestService {
 

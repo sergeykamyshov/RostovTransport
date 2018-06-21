@@ -9,8 +9,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.news.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.Post
 
 class NewsViewModel : ViewModel() {
 

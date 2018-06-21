@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.data.network.schedule
+package ru.sergeykamyshov.rostovtransport.data.network.model.schedule
 
 import com.google.gson.annotations.SerializedName
 

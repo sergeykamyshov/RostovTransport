@@ -2,12 +2,11 @@ package ru.sergeykamyshov.rostovtransport.ui.routes.base
 
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 
 class RoutesAdapter(var mContext: FragmentActivity?,
                     var mData: List<Routes.Route>) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {

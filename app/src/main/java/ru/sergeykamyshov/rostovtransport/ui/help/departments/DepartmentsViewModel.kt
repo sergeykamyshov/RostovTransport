@@ -8,7 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.help.Help
+import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 import ru.sergeykamyshov.rostovtransport.ui.help.base.BaseViewModel
 
 class DepartmentsViewModel : BaseViewModel() {

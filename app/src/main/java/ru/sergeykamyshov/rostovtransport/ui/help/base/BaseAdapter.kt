@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.help.Help
+import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 
 class BaseAdapter(var mContext: FragmentActivity?,
                   var mData: List<Help.Contact>) : RecyclerView.Adapter<BaseAdapter.ViewHolder>() {

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.schedule.Direction
+import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Direction
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 
 class ScheduleAdapter(var mContext: FragmentActivity?,

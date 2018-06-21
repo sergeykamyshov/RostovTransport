@@ -8,7 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 import ru.sergeykamyshov.rostovtransport.ui.routes.base.BaseViewModel
 
 class BusListViewModel : BaseViewModel() {

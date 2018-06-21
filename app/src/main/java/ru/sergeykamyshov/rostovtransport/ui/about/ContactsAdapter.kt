@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.about.About
+import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 
 class ContactsAdapter(var mContext: FragmentActivity?,
                       var mData: List<About.Contact>) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {

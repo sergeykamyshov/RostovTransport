@@ -13,7 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.schedule.Directions
+import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.ui.schedule.city.CityScheduleActivity

@@ -2,7 +2,7 @@ package ru.sergeykamyshov.rostovtransport.ui.help.base
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import ru.sergeykamyshov.rostovtransport.data.network.help.Help
+import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 
 abstract class BaseViewModel : ViewModel() {
 

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.news.Post
+import ru.sergeykamyshov.rostovtransport.data.network.model.news.Post
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*

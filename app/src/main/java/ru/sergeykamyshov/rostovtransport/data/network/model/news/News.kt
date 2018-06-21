@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.data.network.news
+package ru.sergeykamyshov.rostovtransport.data.network.model.news
 
 import com.google.gson.annotations.SerializedName
 
