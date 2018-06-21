@@ -1,5 +1,6 @@
 package ru.sergeykamyshov.rostovtransport.ui.help
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
@@ -22,10 +23,16 @@ class HelpFragment : BaseFragment() {
 
         // Настраиваем переключение по вкладкам
         val viewPager = view.findViewById<ViewPager>(R.id.vp_help)
-        // Используем childFragmentManager для корректного поведения фрагментов на вкладках, т.к. они находятся внутри фрагмента "Маршруты"
+        // Используем childFragmentManager для корректного поведения фрагментов на вкладках,
+        // т.к. они находятся внутри фрагмента "Маршруты"
         viewPager.adapter = HelpAdapter(activity, childFragmentManager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_help)
         tabLayout?.setupWithViewPager(viewPager)
+        // В портретной ориентации все вкладки не вмещаются, поэтому по умолчанию они scrollable,
+        // но в горизонтальной ориентации больше места, поэтому меняем настройку только при повороте экрана
+        if (Configuration.ORIENTATION_LANDSCAPE == activity?.resources?.configuration?.orientation) {
+            tabLayout.tabMode = TabLayout.MODE_FIXED
+        }
 
         return view
     }
