@@ -35,6 +35,12 @@
     <string name="help_tab_title_stations">Stations</string>
     <string name="help_tab_title_business">Business</string>
 
+    <!--Транспортная карта-->
+    <string name="card_tab_title_info">Info</string>
+    <string name="card_tab_title_buy">Where to buy</string>
+    <string name="card_tab_title_deposit">Where to deposit</string>
+    <string name="card_tab_title_questions">Questions</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Team photo</string>
     <string name="about_short_desc_title">About project</string>

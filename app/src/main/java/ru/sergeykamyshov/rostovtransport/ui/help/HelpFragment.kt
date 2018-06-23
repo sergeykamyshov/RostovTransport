@@ -25,7 +25,7 @@ class HelpFragment : BaseFragment() {
         val viewPager = view.findViewById<ViewPager>(R.id.vp_help)
         // Используем childFragmentManager для корректного поведения фрагментов на вкладках,
         // т.к. они находятся внутри фрагмента "Справка"
-        viewPager.adapter = HelpAdapter(activity, childFragmentManager)
+        viewPager.adapter = HelpTabsAdapter(activity, childFragmentManager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_help)
         tabLayout?.setupWithViewPager(viewPager)
         // В портретной ориентации все вкладки не вмещаются, поэтому по умолчанию они scrollable,

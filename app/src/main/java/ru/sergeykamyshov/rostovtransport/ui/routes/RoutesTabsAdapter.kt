@@ -10,7 +10,10 @@ import ru.sergeykamyshov.rostovtransport.ui.routes.shuttle.ShuttleListFragment
 import ru.sergeykamyshov.rostovtransport.ui.routes.tram.TramListFragment
 import ru.sergeykamyshov.rostovtransport.ui.routes.trolleybus.TrolleybusListFragment
 
-class RoutesAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+/**
+ * Адаптер экрана "Маршруты" для формирования вкладок
+ */
+class RoutesTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -19,7 +22,7 @@ class RoutesAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPage
             2 -> return TrolleybusListFragment.newInstance()
             3 -> return TramListFragment.newInstance()
         }
-        return ShuttleListFragment()
+        return ShuttleListFragment.newInstance()
     }
 
     override fun getCount() = 4

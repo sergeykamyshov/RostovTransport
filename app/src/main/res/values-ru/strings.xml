@@ -36,6 +36,12 @@
     <string name="help_tab_title_stations">Вокзалы</string>
     <string name="help_tab_title_business">Перевозчики</string>
 
+    <!--Транспортная карта-->
+    <string name="card_tab_title_info">Информация</string>
+    <string name="card_tab_title_buy">Где купить</string>
+    <string name="card_tab_title_deposit">Где пополнить</string>
+    <string name="card_tab_title_questions">Вопросы</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>

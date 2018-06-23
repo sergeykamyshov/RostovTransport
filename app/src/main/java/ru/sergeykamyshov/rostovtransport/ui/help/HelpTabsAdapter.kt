@@ -9,7 +9,10 @@ import ru.sergeykamyshov.rostovtransport.ui.help.business.BusinessListFragment
 import ru.sergeykamyshov.rostovtransport.ui.help.departments.DepartmentsListFragment
 import ru.sergeykamyshov.rostovtransport.ui.help.stations.StationsListFragment
 
-class HelpAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+/**
+ * Адаптер экрана "Справка" для формирования вкладок
+ */
+class HelpTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -17,7 +20,7 @@ class HelpAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerA
             1 -> return StationsListFragment.newInstance()
             2 -> return BusinessListFragment.newInstance()
         }
-        return DepartmentsListFragment()
+        return DepartmentsListFragment.newInstance()
     }
 
     override fun getCount() = 3

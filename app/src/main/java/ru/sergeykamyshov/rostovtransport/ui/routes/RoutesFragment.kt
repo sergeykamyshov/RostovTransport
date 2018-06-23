@@ -25,7 +25,7 @@ class RoutesFragment : BaseFragment() {
         val viewPager = view.findViewById<ViewPager>(R.id.vp_routes)
         // Используем childFragmentManager для корректного поведения фрагментов на вкладках,
         // т.к. они находятся внутри фрагмента "Маршруты"
-        viewPager.adapter = RoutesAdapter(activity, childFragmentManager)
+        viewPager.adapter = RoutesTabsAdapter(activity, childFragmentManager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_routes)
         tabLayout?.setupWithViewPager(viewPager)
         // В портретной ориентации все вкладки не вмещаются, поэтому по умолчанию они scrollable,
