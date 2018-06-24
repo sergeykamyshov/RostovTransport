@@ -27,6 +27,9 @@
         <activity
             android:name=".ui.news.post.PostActivity"
             android:label="@string/title_news"/>
+        <activity
+            android:name=".ui.card.buy.map.CardBuyMapActivity"
+            android:label="@string/card_tab_title_buy"/>
     </application>
 
 </manifest>

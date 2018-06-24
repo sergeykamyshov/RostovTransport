@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.ui.card.buy.CardBuyFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.info.CardInfoFragment
 
 /**
@@ -15,7 +16,7 @@ class TransportCardTabsAdapter(var mContext: Context?, fm: FragmentManager?) : F
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> return CardInfoFragment.newInstance()
-            1 -> return CardInfoFragment.newInstance()
+            1 -> return CardBuyFragment.newInstance()
             2 -> return CardInfoFragment.newInstance()
             3 -> return CardInfoFragment.newInstance()
         }

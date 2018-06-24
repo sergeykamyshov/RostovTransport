@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardInfo
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
@@ -26,6 +27,9 @@ interface RestService {
     // Транспортная карта
     @GET("/tmp/rostov-transport/test/card/card_info.json")
     fun getCardInfo(): Call<CardInfo>
+
+    @GET("/tmp/rostov-transport/test/card/card_buy.json")
+    fun getCardBuy(): Call<CardBuy>
 
     // О проекте
     @GET("/tmp/rostov-transport/test/about.json")

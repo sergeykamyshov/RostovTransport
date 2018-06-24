@@ -42,6 +42,9 @@
     <string name="card_tab_title_deposit">Где пополнить</string>
     <string name="card_tab_title_questions">Вопросы</string>
 
+    <string name="card_buy_open_map_text">Посмотреть на карте</string>
+    <string name="card_buy_open_map_background">Изображение Google Карты на заднем фоне</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>

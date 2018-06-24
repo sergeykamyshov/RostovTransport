@@ -41,6 +41,9 @@
     <string name="card_tab_title_deposit">Where to deposit</string>
     <string name="card_tab_title_questions">Questions</string>
 
+    <string name="card_buy_open_map_text">Show on map</string>
+    <string name="card_buy_open_map_background">Image of Google Maps on background</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Team photo</string>
     <string name="about_short_desc_title">About project</string>

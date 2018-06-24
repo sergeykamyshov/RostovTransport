@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
 
 class CardInfoFragment : Fragment() {
@@ -27,7 +28,7 @@ class CardInfoFragment : Fragment() {
         val title = view.findViewById<TextView>(R.id.tv_card_info_title)
         val content = view.findViewById<TextView>(R.id.tv_card_info_content)
 
-        val viewModel = ViewModelProviders.of(activity!!).get(CardInfoViewModel::class.java)
+        val viewModel = ViewModelProviders.of(activity as MainActivity).get(CardInfoViewModel::class.java)
         viewModel.getData().observe(this, Observer {
             if (it != null) {
                 image.visibility = View.VISIBLE
