@@ -8,6 +8,7 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.ui.card.buy.CardBuyFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.deposit.CardDepositFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.info.CardInfoFragment
+import ru.sergeykamyshov.rostovtransport.ui.card.questions.CardQuestionsFragment
 
 /**
  * Адаптер экрана "Транспортная карта" для формирования вкладок
@@ -19,7 +20,7 @@ class TransportCardTabsAdapter(var mContext: Context?, fm: FragmentManager?) : F
             0 -> return CardInfoFragment.newInstance()
             1 -> return CardBuyFragment.newInstance()
             2 -> return CardDepositFragment.newInstance()
-            3 -> return CardBuyFragment.newInstance()
+            3 -> return CardQuestionsFragment.newInstance()
         }
         return CardInfoFragment.newInstance()
     }

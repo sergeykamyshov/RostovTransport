@@ -7,6 +7,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardInfo
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
@@ -34,6 +35,9 @@ interface RestService {
 
     @GET("/tmp/rostov-transport/test/card/card_deposit.json")
     fun getCardDeposit(): Call<CardDeposit>
+
+    @GET("/tmp/rostov-transport/test/card/card_questions.json")
+    fun getCardQuestions(): Call<CardQuestions>
 
     // О проекте
     @GET("/tmp/rostov-transport/test/about.json")
