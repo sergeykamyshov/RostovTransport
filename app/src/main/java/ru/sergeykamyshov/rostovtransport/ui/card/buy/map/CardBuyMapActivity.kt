@@ -10,6 +10,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 
 class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -31,9 +32,30 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        val latLng = LatLng(47.224337, 39.629944)
-        googleMap?.addMarker(MarkerOptions().position(latLng).title("67 bus ))"))
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+
+        val addresses = generateTestData()
+
+        addresses.forEach {
+            googleMap?.addMarker(MarkerOptions()
+                    .position(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+                    .title(it.desc)
+                    .snippet(it.address))
+        }
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                LatLng(addresses[0].latitude.toDouble(), addresses[0].longitude.toDouble()), 13F))
+    }
+
+    fun generateTestData(): List<CardBuy.Address> {
+        val list = mutableListOf<CardBuy.Address>()
+        for (i in 0..10) {
+            val element = CardBuy.Address()
+            element.desc = "Test desc $i"
+            element.address = "Test address $i"
+            element.latitude = 47.22.toString() + i
+            element.longitude = 39.63.toString() + i
+            list.add(element)
+        }
+        return list
     }
 
 }

@@ -18,7 +18,7 @@ android {
     }
     buildTypes {
         release {
-            buildConfigField 'String', 'GoogleMapsApiKey', RostovTransport_GoogleMapsApiKey
+            resValue 'string', 'google_maps_api_key', RostovTransport_GoogleMapsApiKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
