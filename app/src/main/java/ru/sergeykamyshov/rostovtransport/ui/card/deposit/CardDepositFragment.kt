@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.ui.card.buy.map.CardBuyMapActivity
+import ru.sergeykamyshov.rostovtransport.ui.card.deposit.map.CardDepositMapActivity
 
 class CardDepositFragment : Fragment() {
 
@@ -29,7 +29,7 @@ class CardDepositFragment : Fragment() {
 
         val mapButton = view.findViewById<ViewGroup>(R.id.layout_card_deposit_button_map)
         mapButton.setOnClickListener {
-            startActivity(Intent(activity, CardBuyMapActivity::class.java))
+            startActivity(Intent(activity, CardDepositMapActivity::class.java))
         }
 
         val recycler = view.findViewById<RecyclerView>(R.id.rv_card_deposit)

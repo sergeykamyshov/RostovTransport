@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Rostov-Transport</string>
 
+    <!--API-->
+    <string name="google_maps_api_key">Insert your API key here</string>
+
     <!--Заголовки-->
     <string name="title_news">News</string>
     <string name="title_routes">Routes</string>

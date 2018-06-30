@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.ui.card.buy.map
+package ru.sergeykamyshov.rostovtransport.ui.card.deposit.map
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -12,13 +12,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
-import ru.sergeykamyshov.rostovtransport.ui.card.buy.CardBuyViewModel
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.ui.card.deposit.CardDepositViewModel
 import ru.sergeykamyshov.rostovtransport.utils.Const
 
-class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
+class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var addresses: List<CardBuy.Address>
+    private lateinit var addresses: List<CardDeposit.Address>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
 
-        val viewModel = ViewModelProviders.of(this).get(CardBuyViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this).get(CardDepositViewModel::class.java)
         val liveData = viewModel.getData()
         liveData.observe(this, Observer {
             if (it != null) {

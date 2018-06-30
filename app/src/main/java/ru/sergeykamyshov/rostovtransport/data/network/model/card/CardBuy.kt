@@ -23,10 +23,10 @@ class CardBuy {
         lateinit var address: String
 
         @SerializedName("latitude")
-        lateinit var latitude: String
+        var latitude = ""
 
         @SerializedName("longitude")
-        lateinit var longitude: String
+        var longitude = ""
 
     }
 

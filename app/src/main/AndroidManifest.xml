@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".App"
@@ -18,7 +16,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="google_maps_api_key"/>
+            android:value="@string/google_maps_api_key"/>
 
         <activity
             android:name=".MainActivity"
@@ -38,6 +36,9 @@
         <activity
             android:name=".ui.card.buy.map.CardBuyMapActivity"
             android:label="@string/card_title_buy"/>
+        <activity
+            android:name=".ui.card.deposit.map.CardDepositMapActivity"
+            android:label="@string/card_title_deposit"/>
     </application>
 
 </manifest>
