@@ -39,6 +39,8 @@
         <activity
             android:name=".ui.card.deposit.map.CardDepositMapActivity"
             android:label="@string/card_title_deposit"/>
+
+        <service android:name=".service.TransportOnlineService"/>
     </application>
 
 </manifest>

@@ -7,17 +7,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.sergeykamyshov.rostovtransport.dagger.AppComponent
 import ru.sergeykamyshov.rostovtransport.dagger.DaggerAppComponent
 import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
+import ru.sergeykamyshov.rostovtransport.data.network.OnlineRestService
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
 
 class App : Application() {
 
     val TEST_DOMAIN: String = "http://howtoandroid.ru"
     val NEWS_DOMAIN: String = "http://rostov-transport.info"
+    val TRANSPORT_ONLINE_DOMAIN: String = "http://bus.perseus.su"
     val JSON_DATE_FORMAT: String = "dd.MM.yyyy"
 
     companion object {
         lateinit var retrofit: Retrofit
         lateinit var retrofitNews: Retrofit
+        lateinit var retrofitOnline: Retrofit
         lateinit var daggerComponent: AppComponent
 
         fun createRestService(): RestService {
@@ -26,6 +29,10 @@ class App : Application() {
 
         fun createNewsRestService(): NewsRestService {
             return retrofitNews.create(NewsRestService::class.java)
+        }
+
+        fun createOnlineRestService(): OnlineRestService {
+            return retrofitOnline.create(OnlineRestService::class.java)
         }
     }
 
@@ -40,6 +47,10 @@ class App : Application() {
                 .build()
         retrofitNews = Retrofit.Builder()
                 .baseUrl(NEWS_DOMAIN)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+        retrofitOnline = Retrofit.Builder()
+                .baseUrl(TRANSPORT_ONLINE_DOMAIN)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
 
