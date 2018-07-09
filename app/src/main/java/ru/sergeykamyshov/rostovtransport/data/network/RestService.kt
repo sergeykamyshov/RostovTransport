@@ -10,6 +10,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardInfo
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 import ru.sergeykamyshov.rostovtransport.data.network.model.online.Transport
+import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 
@@ -18,6 +19,9 @@ interface RestService {
     // Маршруты
     @GET("/tmp/rostov-transport/test/routes/{transport}/{transport}.json")
     fun getRoutesFor(@Path("transport") transport: String): Call<Routes>
+
+    @GET("/tmp/rostov-transport/test/routes/{transport}/{route}.json")
+    fun getRoute(@Path("transport") transport: String, @Path("route") route: String): Call<RouteInfo>
 
     // Расписание
     @GET("/tmp/rostov-transport/test/directions.json")

@@ -13,4 +13,6 @@ class TrolleybusListFragment : BaseFragment() {
         return TrolleybusListViewModel()
     }
 
+    override fun getTransportType() = "trolleybus"
+
 }

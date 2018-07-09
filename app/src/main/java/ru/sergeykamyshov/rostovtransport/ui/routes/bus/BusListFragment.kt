@@ -13,4 +13,6 @@ class BusListFragment : BaseFragment() {
         return BusListViewModel()
     }
 
+    override fun getTransportType() = "bus"
+
 }

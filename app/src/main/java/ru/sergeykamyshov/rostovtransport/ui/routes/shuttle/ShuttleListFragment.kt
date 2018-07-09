@@ -13,4 +13,6 @@ class ShuttleListFragment : BaseFragment() {
         return ShuttleListViewModel()
     }
 
+    override fun getTransportType() = "shuttle"
+
 }

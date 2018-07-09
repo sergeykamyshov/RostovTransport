@@ -13,4 +13,6 @@ class TramListFragment : BaseFragment() {
         return TramListViewModel()
     }
 
+    override fun getTransportType() = "tram"
+    
 }

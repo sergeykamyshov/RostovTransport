@@ -34,6 +34,9 @@
             android:name=".ui.news.post.PostActivity"
             android:label="@string/title_news"/>
         <activity
+            android:name=".ui.routes.base.RouteMapActivity"
+            android:label="@string/title_routes"/>
+        <activity
             android:name=".ui.card.buy.map.CardBuyMapActivity"
             android:label="@string/card_title_buy"/>
         <activity

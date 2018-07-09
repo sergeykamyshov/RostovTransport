@@ -9,7 +9,8 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 
 class RoutesAdapter(var mContext: FragmentActivity?,
-                    var mData: List<Routes.Route>) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
+                    var mData: List<Routes.Route>,
+                    var onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_routes, parent, false)
@@ -24,8 +25,9 @@ class RoutesAdapter(var mContext: FragmentActivity?,
         val route = mData.get(position)
         holder.routeNumber?.text = route.number
         holder.routeName?.text = route.name
-
-        // TODO: set on click listener later
+        holder.container?.setOnClickListener {
+            onItemClickListener.onItemClick(route.id)
+        }
     }
 
     fun updateData(data: List<Routes.Route>) {
