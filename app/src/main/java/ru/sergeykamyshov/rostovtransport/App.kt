@@ -12,9 +12,9 @@ import ru.sergeykamyshov.rostovtransport.data.network.RestService
 
 class App : Application() {
 
-    val TEST_DOMAIN: String = "http://howtoandroid.ru"
-    val NEWS_DOMAIN: String = "http://rostov-transport.info"
-    val TRANSPORT_ONLINE_DOMAIN: String = "http://bus.perseus.su"
+    val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/"
+    val NEWS_BASE_URL: String = "http://rostov-transport.info"
+    val ONLINE_BASE_URL: String = "http://bus.perseus.su"
     val JSON_DATE_FORMAT: String = "dd.MM.yyyy"
 
     companion object {
@@ -42,15 +42,15 @@ class App : Application() {
         // Retrofit
         val gson = GsonBuilder().setDateFormat(JSON_DATE_FORMAT).create()
         retrofit = Retrofit.Builder()
-                .baseUrl(TEST_DOMAIN)
+                .baseUrl(BITBUCKET_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
         retrofitNews = Retrofit.Builder()
-                .baseUrl(NEWS_DOMAIN)
+                .baseUrl(NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
         retrofitOnline = Retrofit.Builder()
-                .baseUrl(TRANSPORT_ONLINE_DOMAIN)
+                .baseUrl(ONLINE_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
 

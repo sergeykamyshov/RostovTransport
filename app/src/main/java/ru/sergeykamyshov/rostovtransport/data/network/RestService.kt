@@ -17,39 +17,39 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 interface RestService {
 
     // Маршруты
-    @GET("/tmp/rostov-transport/test/routes/{transport}/{transport}.json")
+    @GET("routes/{transport}/{transport}.json")
     fun getRoutesFor(@Path("transport") transport: String): Call<Routes>
 
-    @GET("/tmp/rostov-transport/test/routes/{transport}/{route}.json")
+    @GET("routes/{transport}/{route}.json")
     fun getRoute(@Path("transport") transport: String, @Path("route") route: String): Call<RouteInfo>
 
     // Расписание
-    @GET("/tmp/rostov-transport/test/directions.json")
+    @GET("schedule/directions.json")
     fun getDirections(): Call<Directions>
 
     // Транспорт онлайн
-    @GET("/tmp/rostov-transport/test/online/transport_list.json")
+    @GET("online/transport_list.json")
     fun getTransportList(): Call<Transport>
 
     // Справка
-    @GET("/tmp/rostov-transport/test/help/{help}.json")
+    @GET("help/{help}.json")
     fun getHelpFor(@Path("help") help: String): Call<Help>
 
     // Транспортная карта
-    @GET("/tmp/rostov-transport/test/card/card_info.json")
+    @GET("card/card_info.json")
     fun getCardInfo(): Call<CardInfo>
 
-    @GET("/tmp/rostov-transport/test/card/card_buy.json")
+    @GET("card/card_buy.json")
     fun getCardBuy(): Call<CardBuy>
 
-    @GET("/tmp/rostov-transport/test/card/card_deposit.json")
+    @GET("card/card_deposit.json")
     fun getCardDeposit(): Call<CardDeposit>
 
-    @GET("/tmp/rostov-transport/test/card/card_questions.json")
+    @GET("card/card_questions.json")
     fun getCardQuestions(): Call<CardQuestions>
 
     // О проекте
-    @GET("/tmp/rostov-transport/test/about.json")
+    @GET("about/about.json")
     fun getAbout(): Call<About>
 
 }
