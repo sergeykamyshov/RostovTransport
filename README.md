@@ -6,9 +6,9 @@
 - изучить маршруты города
 - посмотреть передвижение транспорта онлайн
 
-![](https://howtoandroid.ru/github/01.png)
-![](https://howtoandroid.ru/github/02.png)
-![](https://howtoandroid.ru/github/03.png)
-![](https://howtoandroid.ru/github/04.png)
-![](https://howtoandroid.ru/github/05.png)
-![](https://howtoandroid.ru/github/06.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/01.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/02.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/03.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/04.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/05.png)
+![](https://bytebucket.org/sergeykamyshov/rostov-transport-data/raw/master/readme/screenshots/06.png)
