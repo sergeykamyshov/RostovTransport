@@ -8,18 +8,30 @@ class RouteInfo {
     @SerializedName("lastUpdate")
     lateinit var lastUpdate: Date
 
-    @SerializedName("to")
-    lateinit var to: List<Point>
+    @SerializedName("name")
+    lateinit var name: String
 
-    @SerializedName("from")
-    lateinit var from: List<Point>
+    @SerializedName("type")
+    lateinit var type: String
 
-    class Point {
+    @SerializedName("from_name")
+    lateinit var fromName: String
 
-        @SerializedName("lat")
-        var lat: Double = 0.0
+    @SerializedName("to_name")
+    lateinit var toName: String
 
-        @SerializedName("lon")
-        var lon: Double = 0.0
+    @SerializedName("directions")
+    lateinit var directions: List<Direction>
+
+    class Direction {
+
+        @SerializedName("type")
+        lateinit var type: String
+
+        @SerializedName("center_point")
+        lateinit var centerPoint: String
+
+        @SerializedName("points")
+        lateinit var points: String
     }
 }

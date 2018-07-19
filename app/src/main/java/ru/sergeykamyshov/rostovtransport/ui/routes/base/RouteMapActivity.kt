@@ -41,21 +41,11 @@ class RouteMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 .of(this, RoutesModelFactory(type, id))
                 .get(RouteMapViewModel::class.java)
         viewModel.getData().observe(this, Observer {
-            if (it != null) {
-                drawRouteTo(it.to)
+            it?.directions?.forEach {
+                prepareAndDrawRoute(it, if (it.type == "forward") Color.RED else Color.GRAY)
             }
         })
         viewModel.loadData()
-    }
-
-    private fun drawRouteTo(to: List<RouteInfo.Point>) {
-        val options = PolylineOptions()
-        to.forEach {
-            options.add(LatLng(it.lat, it.lon))
-        }
-        options.width(8F)
-        options.color(Color.RED)
-        mGoogleMap?.addPolyline(options)
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -63,6 +53,38 @@ class RouteMapActivity : AppCompatActivity(), OnMapReadyCallback {
         mGoogleMap?.uiSettings?.isZoomControlsEnabled = true
         mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 LatLng(Const.RND_LATITUDE, Const.RND_LONGITUDE), 12F))
+    }
+
+    private fun prepareAndDrawRoute(direction: RouteInfo.Direction, color: Int) {
+        val centerPoint = getPoint(direction.centerPoint)
+        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(centerPoint, 12F))
+
+        val points = getPoints(direction.points)
+        drawRoute(points, Color.RED)
+    }
+
+    private fun drawRoute(points: List<LatLng>, color: Int) {
+        val options = PolylineOptions()
+        points.forEach {
+            options.add(it)
+        }
+        options.width(10F)
+        options.color(color)
+        mGoogleMap?.addPolyline(options)
+    }
+
+    private fun getPoint(str: String): LatLng {
+        val coordinates = str.split(" ")
+        return LatLng(coordinates[1].toDouble(), coordinates[0].toDouble())
+    }
+
+    private fun getPoints(str: String): List<LatLng> {
+        val coordinates = str.split(",")
+        var points = mutableListOf<LatLng>()
+        coordinates.forEach {
+            points.add(getPoint(it))
+        }
+        return points
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
