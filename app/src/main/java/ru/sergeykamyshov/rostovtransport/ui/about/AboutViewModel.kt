@@ -16,6 +16,10 @@ class AboutViewModel : ViewModel() {
     val restService: RestService = App.createRestService()
     private var mData = MutableLiveData<About>()
 
+    init {
+        loadData()
+    }
+
     fun getData(): LiveData<About> {
         return mData
     }

@@ -8,20 +8,21 @@ class About {
     @SerializedName("lastUpdate")
     lateinit var lastUpdate: Date
 
-    @SerializedName("shortDescription")
-    lateinit var shortDescription: String
-
-    @SerializedName("importantInfo")
-    lateinit var importantInfo: String
-
-    @SerializedName("fullDescription")
-    lateinit var fullDescription: String
+    @SerializedName("cards")
+    lateinit var cards: List<Card>
 
     @SerializedName("contacts")
     lateinit var contacts: List<Contact>
 
-    class Contact {
+    class Card {
+        @SerializedName("title")
+        lateinit var title: String
 
+        @SerializedName("content")
+        lateinit var content: String
+    }
+
+    class Contact {
         @SerializedName("position")
         lateinit var position: String
 
