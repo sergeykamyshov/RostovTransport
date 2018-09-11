@@ -2,6 +2,8 @@ package ru.sergeykamyshov.rostovtransport.ui.about
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,11 +63,29 @@ class AboutFragment : BaseFragment() {
                 if (contact.phone.isEmpty()) {
                     contactLayout.tv_contact_phone.visibility = View.GONE
                     contactLayout.img_contact_phone.visibility = View.GONE
-                } else contactLayout.tv_contact_phone.text = contact.phone
+                } else {
+                    contactLayout.tv_contact_phone.text = contact.phone
+                    contactLayout.tv_contact_phone.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_DIAL)
+                        val phoneNumber = contact.phone.trim()
+                                .replace("(", "")
+                                .replace(")", "")
+                                .replace(" ", "")
+                        intent.data = Uri.parse("tel:$phoneNumber")
+                        activity?.startActivity(intent)
+                    }
+                }
                 if (contact.email.isEmpty()) {
                     contactLayout.tv_contact_email.visibility = View.GONE
                     contactLayout.img_contact_email.visibility = View.GONE
-                } else contactLayout.tv_contact_email.text = contact.email
+                } else {
+                    contactLayout.tv_contact_email.text = contact.email
+                    contactLayout.tv_contact_email.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_SENDTO)
+                        intent.data = Uri.parse("mailto:${contact.email}")
+                        activity?.startActivity(intent)
+                    }
+                }
 
                 ll_about_contacts_layout.addView(contactLayout)
             }
