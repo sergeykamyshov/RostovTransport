@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.ui.news
+package ru.sergeykamyshov.rostovtransport.ui.news.list
 
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView

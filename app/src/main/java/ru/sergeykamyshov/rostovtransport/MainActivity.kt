@@ -15,7 +15,7 @@ import ru.sergeykamyshov.rostovtransport.ui.about.AboutFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.ui.complain.ComplainFragment
 import ru.sergeykamyshov.rostovtransport.ui.help.HelpFragment
-import ru.sergeykamyshov.rostovtransport.ui.news.NewsFragment
+import ru.sergeykamyshov.rostovtransport.ui.news.list.NewsFragment
 import ru.sergeykamyshov.rostovtransport.ui.online.TransportOnlineFragment
 import ru.sergeykamyshov.rostovtransport.ui.routes.RoutesFragment
 import ru.sergeykamyshov.rostovtransport.ui.schedule.ScheduleFragment

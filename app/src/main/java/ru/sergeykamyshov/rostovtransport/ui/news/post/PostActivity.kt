@@ -34,8 +34,11 @@ class PostActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id)).get(PostViewModel::class.java)
         viewModel.getData().observe(this, Observer {
+            // Убираем html теги из заголовка
             postTitle.text = Html.fromHtml(it?.title)
-            webView.loadData(it?.content, "text/html; charset=utf-8", "utf-8")
+            // Убираем подписи к фотографиям
+            val htmlContent = it?.content?.replace("<figcaption.+/(figcaption)*>".toRegex(), "")
+            webView.loadData(htmlContent, "text/html; charset=utf-8", "utf-8")
             progressBar.visibility = View.GONE
         })
         viewModel.loadData()

@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.ui.news
+package ru.sergeykamyshov.rostovtransport.ui.news.list
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
