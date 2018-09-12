@@ -28,32 +28,40 @@ class News {
         lateinit var author: Author
 
         @SerializedName("attachments")
-        lateinit var attachments: List<Attachments>
+        lateinit var attachments: List<Attachment>
 
         @SerializedName("thumbnail")
         var thumbnail: String? = ""
+
+        @SerializedName("thumbnail_images")
+        lateinit var thumbnailImages: ThumbnailImage
 
         class Author {
             @SerializedName("name")
             lateinit var name: String
         }
 
-        class Attachments {
+        class Attachment {
             @SerializedName("images")
-            var images: Images? = null
+            var images: Image? = null
+        }
 
-            class Images {
-                @SerializedName("thumbnail")
-                lateinit var thumbnail: Thumbnail
+        class Image {
+            @SerializedName("thumbnail")
+            lateinit var thumbnail: Thumbnail
 
-                @SerializedName("medium")
-                lateinit var medium: Thumbnail
+            @SerializedName("medium")
+            lateinit var medium: Thumbnail
+        }
 
-                class Thumbnail {
-                    @SerializedName("url")
-                    lateinit var url: String
-                }
-            }
+        class ThumbnailImage {
+            @SerializedName("medium")
+            lateinit var medium: Thumbnail
+        }
+
+        class Thumbnail {
+            @SerializedName("url")
+            lateinit var url: String
         }
     }
 

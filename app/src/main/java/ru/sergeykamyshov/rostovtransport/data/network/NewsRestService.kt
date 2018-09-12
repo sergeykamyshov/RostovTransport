@@ -12,6 +12,6 @@ interface NewsRestService {
     fun getRecentNews(): Call<News>
 
     @GET("/?json=get_post")
-    fun getNewsById(@Query("post_id") id: String): Call<Post>
+    fun getPostById(@Query("post_id") id: String): Call<Post>
 
 }

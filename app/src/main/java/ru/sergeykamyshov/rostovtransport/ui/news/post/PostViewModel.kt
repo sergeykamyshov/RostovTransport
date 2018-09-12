@@ -17,17 +17,20 @@ class PostViewModel(var id: String) : ViewModel() {
     val restService: NewsRestService = App.createNewsRestService()
     private var mData = MutableLiveData<News.Post>()
 
+    init {
+        loadData()
+    }
+
     fun getData(): LiveData<News.Post> {
         return mData
     }
 
     fun loadData() {
-        val call = restService.getNewsById(id)
+        val call = restService.getPostById(id)
         call.enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>?, response: Response<Post>?) {
                 Log.i("PostViewModel", "success")
-                val news = response?.body()
-                val post = news?.post
+                val post = response?.body()?.post
                 Log.i("PostViewModel", "id=${post?.id}, title=${post?.title}")
                 mData.postValue(post)
             }
