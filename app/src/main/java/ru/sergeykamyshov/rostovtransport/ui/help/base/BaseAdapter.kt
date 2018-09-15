@@ -1,9 +1,13 @@
 package ru.sergeykamyshov.rostovtransport.ui.help.base
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
@@ -25,20 +29,44 @@ class BaseAdapter(var mContext: FragmentActivity?,
 
         if (contact.name.isEmpty()) holder.name?.visibility = View.GONE else holder.name?.text = contact.name
         if (contact.desc.isEmpty()) holder.desc?.visibility = View.GONE else holder.desc?.text = contact.desc
-        if (contact.address.isEmpty()) holder.address?.visibility = View.GONE else holder.address?.text = contact.address
 
+        // Подготавливаем адреса
+        if (contact.address.isEmpty()) {
+            holder.address?.visibility = View.GONE
+            holder.imgAddress?.visibility = View.GONE
+        } else {
+            holder.address?.text = contact.address
+            holder.address?.setOnClickListener {
+                val locationUri = Uri.parse("geo:?q=${contact.address}")
+                val intent = Intent(Intent.ACTION_VIEW, locationUri)
+                mContext?.startActivity(intent)
+            }
+        }
+
+        // Подготавливаем телефоны
         val phones = contact.phones
         if (phones.isEmpty()) {
-            holder.phones?.visibility = View.GONE
+            holder.phonesLayout?.visibility = View.GONE
         } else {
-            var formatedPhones = ""
+            holder.phonesLayout?.removeAllViews()
+
             for (i in 0 until phones.size) {
-                formatedPhones += phones[i]
-                if (i < phones.size - 1) {
-                    formatedPhones += "\n"
+                val phoneLayout = mContext?.layoutInflater?.inflate(R.layout.help_contact_item, holder.phonesLayout, false)
+                val phoneNumber = phoneLayout?.findViewById<TextView>(R.id.tv_help_contact_phone)
+                phoneNumber?.text = phones[i]
+
+                phoneNumber?.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    val number = phones[i].trim()
+                            .replace("(", "")
+                            .replace(")", "")
+                            .replace(" ", "")
+                    intent.data = Uri.parse("tel:$number")
+                    mContext?.startActivity(intent)
                 }
+
+                holder.phonesLayout?.addView(phoneLayout)
             }
-            holder.phones?.text = formatedPhones
         }
     }
 
@@ -51,7 +79,8 @@ class BaseAdapter(var mContext: FragmentActivity?,
         val container = itemView?.findViewById<ViewGroup>(R.id.container_item_help)
         val name = itemView?.findViewById<TextView>(R.id.tv_help_contact_name)
         val desc = itemView?.findViewById<TextView>(R.id.tv_help_contact_desc)
-        val phones = itemView?.findViewById<TextView>(R.id.tv_help_contact_phones)
+        val phonesLayout = itemView?.findViewById<LinearLayout>(R.id.ll_help_contact_phones)
+        val imgAddress = itemView?.findViewById<ImageView>(R.id.img_help_contact_address)
         val address = itemView?.findViewById<TextView>(R.id.tv_help_contact_address)
     }
 }
