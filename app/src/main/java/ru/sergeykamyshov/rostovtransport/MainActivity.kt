@@ -52,12 +52,12 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_news -> startFragment(NewsFragment.newInstance())
-                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
-                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
-                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
+//                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
+//                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
+//                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
                 R.id.nav_item_help -> startFragment(HelpFragment.newInstance())
                 R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance())
-                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
+//                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
                 R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
                 else -> super.onOptionsItemSelected(menuItem)
             }
