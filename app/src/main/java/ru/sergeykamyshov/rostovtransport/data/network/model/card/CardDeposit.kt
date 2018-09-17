@@ -8,10 +8,13 @@ class CardDeposit {
     @SerializedName("lastUpdate")
     lateinit var lastUpdate: Date
 
-    @SerializedName("address")
-    lateinit var address: List<Address>
+    @SerializedName("addresses")
+    lateinit var addresses: List<Address>
 
     class Address {
+
+        @SerializedName("type")
+        lateinit var type: String
 
         @SerializedName("desc")
         lateinit var desc: String
@@ -22,11 +25,8 @@ class CardDeposit {
         @SerializedName("schedule")
         lateinit var schedule: String
 
-        @SerializedName("latitude")
-        var latitude = ""
-
-        @SerializedName("longitude")
-        var longitude = ""
+        @SerializedName("location")
+        lateinit var location: String
 
     }
 }

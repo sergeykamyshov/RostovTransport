@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
@@ -40,14 +41,19 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        addresses.forEach {
-            if (it.latitude.isEmpty() || it.longitude.isEmpty()) {
-                return@forEach
-            }
+        addresses.forEach addressLoop@{
+            if (it.location.isEmpty()) return@addressLoop
+
+            val coordinates = it.location.trim().replace(" ", "").split(",")
+            if (coordinates.size != 2) return@addressLoop
+
             googleMap?.addMarker(MarkerOptions()
-                    .position(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+                    .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
                     .title(it.desc)
-                    .snippet(it.address))
+                    .snippet(it.address)
+                    .icon(BitmapDescriptorFactory.defaultMarker(
+                            if (Const.CARD_TYPE_YELLOW == it.type) BitmapDescriptorFactory.HUE_ORANGE
+                            else BitmapDescriptorFactory.HUE_RED)))
         }
         googleMap?.uiSettings?.isZoomControlsEnabled = true
         googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
