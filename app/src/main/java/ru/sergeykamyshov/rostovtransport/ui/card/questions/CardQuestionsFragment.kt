@@ -7,19 +7,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import kotlinx.android.synthetic.main.card_questions_first_card_layout.view.*
+import kotlinx.android.synthetic.main.fragment_card_questions.*
+import kotlinx.android.synthetic.main.card_questions_card_layout.view.*
 import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
 
 
 class CardQuestionsFragment : Fragment() {
-
-    private lateinit var firstQuestion: TextView
-    private lateinit var firstAnswer: TextView
-    private lateinit var contentLayout: LinearLayout
 
     companion object {
         fun newInstance() = CardQuestionsFragment()
@@ -28,20 +24,13 @@ class CardQuestionsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_card_questions, container, false)
 
-        val progressBar = view.findViewById<ProgressBar>(R.id.card_questions_progress)
-
-        contentLayout = view.findViewById(R.id.sv_card_questions_content)
-
-        firstQuestion = view.findViewById(R.id.tv_card_first_question)
-        firstAnswer = view.findViewById(R.id.tv_card_first_answer)
-
         val viewModel = ViewModelProviders.of(activity as MainActivity).get(CardQuestionsViewModel::class.java)
         viewModel.getData().observe(this, Observer {
             if (it != null) {
-                createLayoutAndfillData(it)
+                createLayoutAndFillData(it)
 
-                progressBar.visibility = View.GONE
-                contentLayout.visibility = View.VISIBLE
+                card_questions_progress.visibility = View.GONE
+                ll_card_questions_content.visibility = View.VISIBLE
             }
         })
         viewModel.loadData()
@@ -50,27 +39,24 @@ class CardQuestionsFragment : Fragment() {
     }
 
     /**
-     * Создает разметку для всех вопросов/ответов (кроме первого) и заполняем их данными
+     * Создает разметку для всех вопросов/ответов и заполняем их данными
      * questions - список вопросов с ответами
      */
-    private fun createLayoutAndfillData(questions: List<CardQuestions.Question>) {
+    private fun createLayoutAndFillData(questions: List<CardQuestions.Question>) {
+        val mainActivity = activity as MainActivity
+        ll_card_questions_content.removeAllViews()
         for (i in 0 until questions.size) {
             if (i == 0) {
-                // Первый вопрос/ответ всегда заполняет поля заголовока (тот что с картинкой)
-                firstQuestion.text = questions.get(i).question
-                firstAnswer.text = questions.get(i).answer
+                // Для первого вопроса/ответа создаем и заполняем разметку с изображением
+                val view = mainActivity.layoutInflater.inflate(R.layout.card_questions_first_card_layout, ll_card_questions_content, true)
+                view.tv_card_first_question.text = questions[i].question
+                view.tv_card_first_answer.text = questions[i].answer
             } else {
                 // Для каждого следующего вопроса/ответа создаем и заполняем новую разметку
-                val mainActivity = activity as MainActivity
-                val view = mainActivity.layoutInflater.inflate(R.layout.item_card_questions, contentLayout, false)
-
-                val question = view.findViewById<TextView>(R.id.tv_question)
-                val answer = view.findViewById<TextView>(R.id.tv_answer)
-
-                question.text = questions.get(i).question
-                answer.text = questions.get(i).answer
-
-                contentLayout.addView(view)
+                val view = mainActivity.layoutInflater.inflate(R.layout.card_questions_card_layout, ll_card_questions_content, false)
+                view.tv_question.text = questions[i].question
+                view.tv_answer.text = questions[i].answer
+                ll_card_questions_content.addView(view)
             }
         }
     }
