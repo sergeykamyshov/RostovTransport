@@ -26,7 +26,7 @@ class CardBuyViewModel : ViewModel() {
             override fun onResponse(call: Call<CardBuy>?, response: Response<CardBuy>?) {
                 val cardBuy = response?.body()
                 Log.i("CardInfoViewModel", "Last update: ${cardBuy?.lastUpdate}")
-                mData.postValue(cardBuy?.address)
+                mData.postValue(cardBuy?.addresses)
             }
 
             override fun onFailure(call: Call<CardBuy>?, t: Throwable?) {

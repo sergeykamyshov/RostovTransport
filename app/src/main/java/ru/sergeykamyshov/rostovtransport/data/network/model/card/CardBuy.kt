@@ -8,25 +8,22 @@ class CardBuy {
     @SerializedName("lastUpdate")
     lateinit var lastUpdate: Date
 
-    @SerializedName("address")
-    lateinit var address: List<Address>
+    @SerializedName("addresses")
+    lateinit var addresses: List<Address>
 
     class Address {
 
         @SerializedName("desc")
         lateinit var desc: String
 
-        @SerializedName("district")
-        lateinit var district: String
+        @SerializedName("type")
+        lateinit var type: String
 
-        @SerializedName("address")
-        lateinit var address: String
+        @SerializedName("note")
+        lateinit var note: String
 
-        @SerializedName("latitude")
-        var latitude = ""
-
-        @SerializedName("longitude")
-        var longitude = ""
+        @SerializedName("locations")
+        lateinit var locations: List<String>
 
     }
 

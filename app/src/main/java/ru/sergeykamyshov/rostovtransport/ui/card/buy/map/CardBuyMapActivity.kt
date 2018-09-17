@@ -28,6 +28,7 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
 
+        // TODO: зачем нам делать еще один запрос, когда у нас уже есть список с координатами?
         val viewModel = ViewModelProviders.of(this).get(CardBuyViewModel::class.java)
         val liveData = viewModel.getData()
         liveData.observe(this, Observer {
@@ -40,19 +41,22 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        addresses.forEach {
-            if (it.latitude.isEmpty() || it.longitude.isEmpty()) {
-                return@forEach
+        addresses.forEach addressLoop@{ address ->
+            val locations = address.locations
+            if (locations.isEmpty()) return@addressLoop
+
+            locations.forEach locationLoop@{ location ->
+                val coordinates = location.trim().replace(" ", "").split(",")
+                if (coordinates.size != 2) return@locationLoop
+                googleMap?.addMarker(MarkerOptions()
+                        .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
+                        .title(address.desc))
             }
-            googleMap?.addMarker(MarkerOptions()
-                    .position(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
-                    .title(it.desc)
-                    .snippet(it.address))
         }
+
         googleMap?.uiSettings?.isZoomControlsEnabled = true
         googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 LatLng(Const.RND_LATITUDE, Const.RND_LONGITUDE), 12F))
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

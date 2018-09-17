@@ -19,10 +19,9 @@ class CardBuyAdapter(var mContext: FragmentActivity?,
     override fun getItemCount() = mData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val address = mData.get(position)
-        holder.desc?.text = address.desc
-        holder.address?.text = address.address
-        holder.district?.text = address.district
+        val item = mData.get(position)
+        holder.desc?.text = item.desc
+        if (item.note.isEmpty()) holder.note?.visibility = View.GONE else holder.note?.text = item.note
     }
 
     fun updateData(data: List<CardBuy.Address>) {
@@ -32,8 +31,7 @@ class CardBuyAdapter(var mContext: FragmentActivity?,
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         var desc = itemView?.findViewById<TextView>(R.id.tv_card_buy_desc)
-        var address = itemView?.findViewById<TextView>(R.id.tv_card_buy_address)
-        var district = itemView?.findViewById<TextView>(R.id.tv_card_buy_district)
+        var note = itemView?.findViewById<TextView>(R.id.tv_card_buy_note)
     }
 
 }
