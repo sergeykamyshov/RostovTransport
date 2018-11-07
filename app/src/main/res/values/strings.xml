@@ -27,6 +27,9 @@
     <string name="nav_item_complain">@string/title_complain</string>
     <string name="nav_item_about">@string/title_about</string>
 
+    <!--Новости-->
+    <string name="news_post_menu_action_open_in_browser">Open in browser</string>
+
     <!--Маршруты-->
     <string name="routes_tab_title_shuttle">Shuttle</string>
     <string name="routes_tab_title_bus">Bus</string>

@@ -2,9 +2,12 @@ package ru.sergeykamyshov.rostovtransport.ui.news.post
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Html
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.squareup.picasso.Picasso
@@ -13,6 +16,8 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.utils.EmptyImageGetter
 
 class PostActivity : AppCompatActivity() {
+
+    private lateinit var url: String
 
     companion object {
         const val POST_ID_EXTRA = "postId"
@@ -28,6 +33,8 @@ class PostActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id)).get(PostViewModel::class.java)
         viewModel.getData().observe(this, Observer {
+            url = it?.url.toString()
+
             Picasso.get().load(it?.thumbnailImages?.medium?.url)
                     .resize(300, 150)
                     .centerCrop()
@@ -54,10 +61,20 @@ class PostActivity : AppCompatActivity() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_news_post, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> finish()
+            R.id.menu_item_open_in_browser -> openInBrowser()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun openInBrowser() {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
 }
