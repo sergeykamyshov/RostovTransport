@@ -12,7 +12,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.RestService
 
 class App : Application() {
 
-    val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/"
+    val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/api/1.0/"
     val NEWS_BASE_URL: String = "http://rostov-transport.info"
     val ONLINE_BASE_URL: String = "http://bus.perseus.su"
     val JSON_DATE_FORMAT: String = "dd.MM.yyyy"
