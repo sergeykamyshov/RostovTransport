@@ -17,6 +17,7 @@ class ComplainPresenter : Contract.Presenter {
 
     override fun sendComplaint() {
         if (!isFillCorrect()) {
+            view?.showCheckErrorToast()
             return
         }
         val text = buildComplainText()

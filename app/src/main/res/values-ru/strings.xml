@@ -51,12 +51,12 @@
     <string name="card_buy_open_map_background">Изображение Google Карты на заднем фоне</string>
 
     <!--Пожаловаться-->
-    <string name="complain_title_transport_type">Вид транспорта</string>
-    <string name="complain_title_route">Номер маршрута</string>
-    <string name="complain_title_transport_number">Бортовой или госномер транспорта</string>
-    <string name="complain_title_time">Время</string>
-    <string name="complain_title_place">Место совершения нарушения</string>
-    <string name="complain_title_violations">Виды нарушений</string>
+    <string name="complain_title_transport_type">Вид транспорта <font color="red">*</font></string>
+    <string name="complain_title_route">Номер маршрута <font color="red">*</font></string>
+    <string name="complain_title_transport_number">Бортовой или госномер транспорта <font color="red">*</font></string>
+    <string name="complain_title_time">Время <font color="red">*</font></string>
+    <string name="complain_title_place">Место совершения нарушения <font color="red">*</font></string>
+    <string name="complain_title_violations">Виды нарушений <font color="red">*</font></string>
     <string name="complain_action_send_complaint">Отправить жалобу</string>
 
     <string name="complain_transport_type_bus">Автобус</string>
@@ -68,6 +68,8 @@
     <string name="complain_hint_enter_transport_number">Укажите номер</string>
     <string name="complain_hint_enter_time">Укажите время</string>
     <string name="complain_hint_enter_place">Укажите место</string>
+
+    <string name="complain_error_check_fill">Заполните обязательные поля</string>
 
     <string-array name="violation_entries">
         <item>Стоит на остановках дольше нужного</item>

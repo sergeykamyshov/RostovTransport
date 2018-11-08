@@ -53,12 +53,12 @@
     <string name="card_buy_open_map_background">Image of Google Maps on background</string>
 
     <!--Пожаловаться-->
-    <string name="complain_title_transport_type">Transport type</string>
-    <string name="complain_title_route">Route number</string>
-    <string name="complain_title_transport_number">Transport number</string>
-    <string name="complain_title_time">Time</string>
-    <string name="complain_title_place">Place</string>
-    <string name="complain_title_violations">Violations</string>
+    <string name="complain_title_transport_type">Transport type <font color="red">*</font></string>
+    <string name="complain_title_route">Route number <font color="red">*</font></string>
+    <string name="complain_title_transport_number">Transport number <font color="red">*</font></string>
+    <string name="complain_title_time">Time <font color="red">*</font></string>
+    <string name="complain_title_place">Place <font color="red">*</font></string>
+    <string name="complain_title_violations">Violations <font color="red">*</font></string>
     <string name="complain_action_send_complaint">Send complaint</string>
 
     <string name="complain_transport_type_bus">Bus</string>
@@ -70,6 +70,8 @@
     <string name="complain_hint_enter_transport_number">Enter number</string>
     <string name="complain_hint_enter_time">Enter time</string>
     <string name="complain_hint_enter_place">Enter place</string>
+
+    <string name="complain_error_check_fill">Fill in required fields</string>
 
     <string-array name="violation_entries">
         <item>Stays longer than needed</item>

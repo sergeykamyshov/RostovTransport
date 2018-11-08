@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -132,6 +133,10 @@ class ComplainFragment : BaseFragment(), Contract.View {
 
     override fun getCheckedItems(): List<ViolationItem> {
         return adapter.getCheckedItems()
+    }
+
+    override fun showCheckErrorToast() {
+        Toast.makeText(activity, getString(R.string.complain_error_check_fill), Toast.LENGTH_LONG).show()
     }
 
     override fun sendComplaintViaEmail(text: String) {
