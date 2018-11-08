@@ -1,8 +1,6 @@
 package ru.sergeykamyshov.rostovtransport
 
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
@@ -18,9 +16,6 @@ import ru.sergeykamyshov.rostovtransport.ui.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.ui.complain.ComplainFragment
 import ru.sergeykamyshov.rostovtransport.ui.help.HelpFragment
 import ru.sergeykamyshov.rostovtransport.ui.news.list.NewsFragment
-import ru.sergeykamyshov.rostovtransport.ui.online.TransportOnlineFragment
-import ru.sergeykamyshov.rostovtransport.ui.routes.RoutesFragment
-import ru.sergeykamyshov.rostovtransport.ui.schedule.ScheduleFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -59,8 +54,7 @@ class MainActivity : AppCompatActivity() {
 //                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
                 R.id.nav_item_help -> startFragment(HelpFragment.newInstance())
                 R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance())
-//                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
-                R.id.nav_item_complain -> openEmailClient()
+                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
                 R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
                 else -> super.onOptionsItemSelected(menuItem)
             }
@@ -105,12 +99,6 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         return true
-    }
-
-    private fun openEmailClient() {
-        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:mail@rostov-transport.info"))
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Пожаловаться на транспорт")
-        startActivity(intent)
     }
 
     fun showAppBarLayout() {

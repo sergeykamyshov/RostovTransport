@@ -52,6 +52,41 @@
     <string name="card_buy_open_map_text">Show on map</string>
     <string name="card_buy_open_map_background">Image of Google Maps on background</string>
 
+    <!--Пожаловаться-->
+    <string name="complain_title_transport_type">Transport type</string>
+    <string name="complain_title_route">Route number</string>
+    <string name="complain_title_transport_number">Transport number</string>
+    <string name="complain_title_time">Time</string>
+    <string name="complain_title_place">Place</string>
+    <string name="complain_title_violations">Violations</string>
+    <string name="complain_action_send_complaint">Send complaint</string>
+
+    <string name="complain_transport_type_bus">Bus</string>
+    <string name="complain_transport_type_shuttlebus">Shuttle bus</string>
+    <string name="complain_transport_type_trolleybus">Trolleybus</string>
+    <string name="complain_transport_type_tram">Tram</string>
+
+    <string name="complain_hint_enter_route">Enter route</string>
+    <string name="complain_hint_enter_transport_number">Enter number</string>
+    <string name="complain_hint_enter_time">Enter time</string>
+    <string name="complain_hint_enter_place">Enter place</string>
+
+    <string-array name="violation_entries">
+        <item>Stays longer than needed</item>
+        <item>Smoking in the cabin</item>
+        <item>Rudeness, rudeness</item>
+        <item>Dangerous driving</item>
+        <item>Traffic Violation</item>
+        <item>Landing in the wrong place</item>
+        <item>Salon issues</item>
+        <item>Dirty interior, seats, etc.</item>
+        <item>No ticket on demand</item>
+        <item>Refusal of travel allowance</item>
+        <item>Not Issued Change</item>
+        <item>Talking on the phone while driving</item>
+        <item>Other </item>
+    </string-array>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Team photo</string>
     <string name="about_short_desc_title">About project</string>

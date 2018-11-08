@@ -50,6 +50,41 @@
     <string name="card_buy_open_map_text">Посмотреть на карте</string>
     <string name="card_buy_open_map_background">Изображение Google Карты на заднем фоне</string>
 
+    <!--Пожаловаться-->
+    <string name="complain_title_transport_type">Вид транспорта</string>
+    <string name="complain_title_route">Номер маршрута</string>
+    <string name="complain_title_transport_number">Бортовой или госномер транспорта</string>
+    <string name="complain_title_time">Время</string>
+    <string name="complain_title_place">Место совершения нарушения</string>
+    <string name="complain_title_violations">Виды нарушений</string>
+    <string name="complain_action_send_complaint">Отправить жалобу</string>
+
+    <string name="complain_transport_type_bus">Автобус</string>
+    <string name="complain_transport_type_shuttlebus">Маршрутка</string>
+    <string name="complain_transport_type_trolleybus">Троллейбус</string>
+    <string name="complain_transport_type_tram">Трамвай</string>
+
+    <string name="complain_hint_enter_route">Укажите маршрут</string>
+    <string name="complain_hint_enter_transport_number">Укажите номер</string>
+    <string name="complain_hint_enter_time">Укажите время</string>
+    <string name="complain_hint_enter_place">Укажите место</string>
+
+    <string-array name="violation_entries">
+        <item>Стоит на остановках дольше нужного</item>
+        <item>Курение в салоне</item>
+        <item>Грубость, хамство</item>
+        <item>Опасное вождение</item>
+        <item>Грубые нарушения ПДД</item>
+        <item>Высадка в неположенном месте</item>
+        <item>Неисправности в салоне</item>
+        <item>Грязный салон, сиденья и т.п.</item>
+        <item>Не выдан билет по требованию</item>
+        <item>Отказ в льготном проезде</item>
+        <item>Не выдана сдача</item>
+        <item>Разговор по телефону во время вождения</item>
+        <item>Другое</item>
+    </string-array>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>
