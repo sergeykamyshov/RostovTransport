@@ -118,16 +118,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_transport_number" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edt_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:ems="10"
+                android:background="?attr/editTextBackground"
+                android:gravity="center_vertical"
                 android:hint="@string/complain_hint_enter_time"
-                android:inputType="time"
+                android:textColor="?attr/editTextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_time_title" />

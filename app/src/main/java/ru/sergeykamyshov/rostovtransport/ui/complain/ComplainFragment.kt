@@ -1,5 +1,6 @@
 package ru.sergeykamyshov.rostovtransport.ui.complain
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,10 @@ import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import kotlin.collections.ArrayList
 
 class ComplainFragment : BaseFragment(), Contract.View {
     companion object {
@@ -32,6 +37,18 @@ class ComplainFragment : BaseFragment(), Contract.View {
 
         view.btn_generate_complain.setOnClickListener { initSendingComplain() }
 
+        // Настраиваем выбор времени
+        val calendar = Calendar.getInstance()
+        view.edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+        val dialog = TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { v, hourOfDay, minute ->
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            view.edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
+        view.edt_time.setOnClickListener {
+            dialog.show()
+        }
+
         // Настраиваем RecyclerView
         view.recycler_offences.layoutManager = LinearLayoutManager(activity)
         view.recycler_offences.setHasFixedSize(true)
@@ -42,7 +59,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
         fillViolations(violations, savedInstanceState)
         adapter = ViolationsAdapter(violations)
         view.recycler_offences.adapter = adapter
-        view.recycler_offences.invalidate()
 
         return view
     }
