@@ -1,6 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.ui.complain
 
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
@@ -68,6 +70,12 @@ class ComplainFragment : BaseFragment(), Contract.View {
         outState.putIntegerArrayList(violationsCheckedPositions, ArrayList(positions))
 
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val inputMethodManger = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManger.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
 
     override fun onDestroyView() {
