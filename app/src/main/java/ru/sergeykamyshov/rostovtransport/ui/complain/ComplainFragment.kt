@@ -151,6 +151,14 @@ class ComplainFragment : BaseFragment(), Contract.View {
         return adapter.getCheckedItems()
     }
 
+    override fun getCommentTitle(): String {
+        return txt_comment_title.text.toString()
+    }
+
+    override fun getCommentString(): String {
+        return edt_comment.text.toString()
+    }
+
     override fun showCheckErrorToast() {
         Toast.makeText(activity, getString(R.string.complain_error_check_fill), Toast.LENGTH_LONG).show()
     }

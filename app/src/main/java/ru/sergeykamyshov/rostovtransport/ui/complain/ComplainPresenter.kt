@@ -69,7 +69,11 @@ class ComplainPresenter : Contract.Presenter {
             for (item in it) {
                 text += "- ${item.name}\n"
             }
+            text += "\n"
         }
+
+        val comment = view?.getCommentString()
+        comment?.let { if (it.isNotBlank()) text += "${view?.getCommentTitle()}: \n$it\n" }
 
         return text
     }

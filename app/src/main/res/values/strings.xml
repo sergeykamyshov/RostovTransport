@@ -59,6 +59,7 @@
     <string name="complain_title_time">Time <font color="red">*</font></string>
     <string name="complain_title_place">Place <font color="red">*</font></string>
     <string name="complain_title_violations">Violations <font color="red">*</font></string>
+    <string name="complain_title_comment">Comment</string>
     <string name="complain_action_send_complaint">Send complaint</string>
 
     <string name="complain_transport_type_bus">Bus</string>
@@ -70,6 +71,7 @@
     <string name="complain_hint_enter_transport_number">Enter number</string>
     <string name="complain_hint_enter_time">Enter time</string>
     <string name="complain_hint_enter_place">Enter place</string>
+    <string name="complain_hint_enter_comment">Your comment</string>
 
     <string name="complain_error_check_fill">Fill in required fields</string>
 

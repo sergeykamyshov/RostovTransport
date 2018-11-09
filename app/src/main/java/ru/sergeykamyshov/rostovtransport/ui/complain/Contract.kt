@@ -14,6 +14,8 @@ interface Contract {
         fun getPlaceString(): String
         fun getViolationsTitle(): String
         fun getCheckedItems(): List<ViolationItem>
+        fun getCommentTitle(): String
+        fun getCommentString(): String
         fun showCheckErrorToast()
         fun sendComplaintViaEmail(text: String)
     }
