@@ -16,4 +16,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="ComplainFormTitle">
+        <item name="android:textSize">@dimen/complain_form_title</item>
+        <item name="android:textColor">@color/complain_form_title</item>
+    </style>
 </resources>

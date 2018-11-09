@@ -53,12 +53,18 @@
     <string name="card_buy_open_map_background">Image of Google Maps on background</string>
 
     <!--Пожаловаться-->
-    <string name="complain_title_transport_type">Transport type <font color="red">*</font></string>
-    <string name="complain_title_route">Route number <font color="red">*</font></string>
-    <string name="complain_title_transport_number">Transport number <font color="red">*</font></string>
-    <string name="complain_title_time">Time <font color="red">*</font></string>
-    <string name="complain_title_place">Place <font color="red">*</font></string>
-    <string name="complain_title_violations">Violations <font color="red">*</font></string>
+    <string name="complain_title_how_to">How to send complaint?</string>
+    <string name="complain_desc_how_to">1. Fill in the required form fields and click "Send complaint".\n\n
+2. The application will form a fully completed letter. Click Send email.\n\n
+3. After receiving the letter, we will prepare all the documents and forward the complaint to the Department of transport.</string>
+    <string name="complain_img_desc">Form filling</string>
+
+    <string name="complain_title_transport_type">Transport type <font color="#4CAF50">*</font></string>
+    <string name="complain_title_route">Route number <font color="#4CAF50">*</font></string>
+    <string name="complain_title_transport_number">Transport number <font color="#4CAF50">*</font></string>
+    <string name="complain_title_time">Time <font color="#4CAF50">*</font></string>
+    <string name="complain_title_place">Place <font color="#4CAF50">*</font></string>
+    <string name="complain_title_violations">Violations <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Comment</string>
     <string name="complain_action_send_complaint">Send complaint</string>
 

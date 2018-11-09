@@ -51,12 +51,18 @@
     <string name="card_buy_open_map_background">Изображение Google Карты на заднем фоне</string>
 
     <!--Пожаловаться-->
-    <string name="complain_title_transport_type">Вид транспорта <font color="red">*</font></string>
-    <string name="complain_title_route">Номер маршрута <font color="red">*</font></string>
-    <string name="complain_title_transport_number">Бортовой или госномер транспорта <font color="red">*</font></string>
-    <string name="complain_title_time">Время <font color="red">*</font></string>
-    <string name="complain_title_place">Место совершения нарушения <font color="red">*</font></string>
-    <string name="complain_title_violations">Виды нарушений <font color="red">*</font></string>
+    <string name="complain_title_how_to">Как подать жалобу?</string>
+    <string name="complain_desc_how_to">1. Заполните обязательные поля формы и нажмите кнопку "Отправить жалобу".\n\n
+2. Приложение сформирует полностью заполненное письмо. Нажмите "Отправить email".\n\n
+3. После получения письма мы подготовим все документы и перенаправим жалобу в департамент транспорта.</string>
+    <string name="complain_img_desc">Заполнение формы для жалобы</string>
+
+    <string name="complain_title_transport_type">Вид транспорта <font color="#4CAF50">*</font></string>
+    <string name="complain_title_route">Номер маршрута <font color="#4CAF50">*</font></string>
+    <string name="complain_title_transport_number">Бортовой или госномер транспорта <font color="#4CAF50">*</font></string>
+    <string name="complain_title_time">Время <font color="#4CAF50">*</font></string>
+    <string name="complain_title_place">Место совершения нарушения <font color="#4CAF50">*</font></string>
+    <string name="complain_title_violations">Виды нарушений <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Комментарий</string>
     <string name="complain_action_send_complaint">Отправить жалобу</string>
 

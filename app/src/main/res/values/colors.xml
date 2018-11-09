@@ -21,4 +21,7 @@
     <color name="nav_item_icon">@color/color_accent</color>
     <color name="nav_item_text">@color/color_text</color>
     <color name="nav_item_background">@color/color_background</color>
+
+    <!--Пожаловаться-->
+    <color name="complain_form_title">@android:color/black</color>
 </resources>
