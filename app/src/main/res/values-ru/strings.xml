@@ -78,6 +78,7 @@
     <string name="complain_hint_enter_comment">Ваш комментарий</string>
 
     <string name="complain_error_check_fill">Заполните обязательные поля</string>
+    <string name="complain_error_email_client_not_found">Почтовый клиент не найден</string>
 
     <string-array name="violation_entries">
         <item>Стоит на остановках дольше нужного</item>

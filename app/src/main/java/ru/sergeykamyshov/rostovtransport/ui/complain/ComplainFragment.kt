@@ -1,6 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.ui.complain
 
 import android.app.TimePickerDialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -175,6 +176,10 @@ class ComplainFragment : BaseFragment(), Contract.View {
         val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:mail@rostov-transport.info"))
         intent.putExtra(Intent.EXTRA_SUBJECT, "Пожаловаться на транспорт")
         intent.putExtra(Intent.EXTRA_TEXT, text)
-        startActivity(intent)
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(activity, resources.getString(R.string.complain_error_email_client_not_found), Toast.LENGTH_LONG).show()
+        }
     }
 }

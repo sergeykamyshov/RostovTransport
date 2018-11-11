@@ -80,6 +80,7 @@
     <string name="complain_hint_enter_comment">Your comment</string>
 
     <string name="complain_error_check_fill">Fill in required fields</string>
+    <string name="complain_error_email_client_not_found">Email client not found</string>
 
     <string-array name="violation_entries">
         <item>Stays longer than needed</item>
