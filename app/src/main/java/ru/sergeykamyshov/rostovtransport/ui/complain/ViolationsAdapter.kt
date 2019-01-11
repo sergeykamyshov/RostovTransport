@@ -36,7 +36,7 @@ class ViolationsAdapter(var data: List<ViolationItem>) : RecyclerView.Adapter<Vi
         return items
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ViolationItem) {
             itemView.cb_violation.text = item.name
             itemView.cb_violation.isChecked = item.checked

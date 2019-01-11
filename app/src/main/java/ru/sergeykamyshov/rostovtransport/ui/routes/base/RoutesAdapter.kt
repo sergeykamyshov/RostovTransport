@@ -14,7 +14,7 @@ class RoutesAdapter(var mContext: FragmentActivity?,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_routes, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view!!)
     }
 
     override fun getItemCount(): Int {
@@ -35,7 +35,7 @@ class RoutesAdapter(var mContext: FragmentActivity?,
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val container = itemView?.findViewById<ViewGroup>(R.id.container_item_routes)
         val routeNumber = itemView?.findViewById<TextView>(R.id.tv_route_number)
         val routeName = itemView?.findViewById<TextView>(R.id.tv_route_name)

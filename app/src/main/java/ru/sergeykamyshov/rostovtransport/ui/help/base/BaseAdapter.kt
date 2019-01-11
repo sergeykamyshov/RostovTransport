@@ -17,7 +17,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_help, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view!!)
     }
 
     override fun getItemCount(): Int {
@@ -75,7 +75,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val container = itemView?.findViewById<ViewGroup>(R.id.container_item_help)
         val name = itemView?.findViewById<TextView>(R.id.tv_help_contact_name)
         val desc = itemView?.findViewById<TextView>(R.id.tv_help_contact_desc)

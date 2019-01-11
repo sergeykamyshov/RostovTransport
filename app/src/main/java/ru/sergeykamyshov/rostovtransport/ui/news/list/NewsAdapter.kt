@@ -20,7 +20,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view!!)
     }
 
     override fun getItemCount(): Int {
@@ -73,7 +73,7 @@ class NewsAdapter(var mContext: FragmentActivity?,
         return R.drawable.img_thumbnail_news_item_1
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val container: ViewGroup? = itemView?.findViewById(R.id.container_item_news)
         val newsThumbnail: ImageView? = itemView?.findViewById(R.id.img_news_thumbnail)
         val newsTitle: TextView? = itemView?.findViewById(R.id.tv_post_title)

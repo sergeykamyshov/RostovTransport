@@ -13,7 +13,7 @@ class CardDepositAdapter(var mContext: FragmentActivity?,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_card_deposit, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view!!)
     }
 
     override fun getItemCount() = mData.size
@@ -30,7 +30,7 @@ class CardDepositAdapter(var mContext: FragmentActivity?,
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var desc = itemView?.findViewById<TextView>(R.id.tv_card_deposit_desc)
         var address = itemView?.findViewById<TextView>(R.id.tv_card_deposit_address)
         var schedule = itemView?.findViewById<TextView>(R.id.tv_card_deposit_schedule)

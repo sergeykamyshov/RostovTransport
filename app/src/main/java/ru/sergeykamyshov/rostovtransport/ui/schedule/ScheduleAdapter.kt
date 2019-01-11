@@ -15,7 +15,7 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_schedule, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view!!)
     }
 
     override fun getItemCount(): Int {
@@ -27,7 +27,7 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
         holder.bind(mListener)
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val container = itemView?.findViewById<ViewGroup>(R.id.container_city_name)
         val cityName = itemView?.findViewById<TextView>(R.id.tv_city_name)
 
