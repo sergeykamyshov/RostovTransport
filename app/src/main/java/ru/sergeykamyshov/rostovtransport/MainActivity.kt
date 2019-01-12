@@ -1,15 +1,10 @@
 package ru.sergeykamyshov.rostovtransport
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_container.*
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
 import ru.sergeykamyshov.rostovtransport.ui.about.AboutFragment
 import ru.sergeykamyshov.rostovtransport.ui.card.TransportCardFragment
@@ -23,50 +18,32 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var restService: RestService
 
-    private lateinit var mDrawer: DrawerLayout
-    private lateinit var mToggle: ActionBarDrawerToggle
-    private lateinit var mAppBar: AppBarLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Настраивает Toolbar
-        val toolbar: Toolbar = findViewById(R.id.main_toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-        mAppBar = findViewById(R.id.main_app_bar)
-
-        // Настраиваем Drawer
-        mDrawer = findViewById(R.id.drawer_layout)
-        mToggle = ActionBarDrawerToggle(this, mDrawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        mDrawer.addDrawerListener(mToggle)
+        setSupportActionBar(main_toolbar)
 
         // Обрабатываем выбор пункта меню
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener { menuItem ->
+        vBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_news -> startFragment(NewsFragment.newInstance())
-//                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
-//                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
-//                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
                 R.id.nav_item_help -> startFragment(HelpFragment.newInstance())
                 R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance())
                 R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
                 R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
-                else -> super.onOptionsItemSelected(menuItem)
+//                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
+//                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
+//                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
             }
-            menuItem.isChecked = true
-            mDrawer.closeDrawers()
             true
         }
 
         // Dagger
         App.daggerComponent.inject(this)
 
-        if (supportFragmentManager.findFragmentById(R.id.fragment_container) != null) {
+        if (supportFragmentManager.findFragmentById(R.id.flContainer) != null) {
             // Восстанавливаем фрагмент после поворота экрана
             supportFragmentManager.popBackStack()
         } else {
@@ -76,32 +53,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        mToggle.syncState()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
-        mToggle.onConfigurationChanged(newConfig)
-    }
-
-    override fun onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     private fun startFragment(fragment: Fragment): Boolean {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .replace(R.id.flContainer, fragment)
                 .commit()
         return true
     }
 
     fun showAppBarLayout() {
-        mAppBar.setExpanded(true)
+        main_app_bar.setExpanded(true)
     }
 }
