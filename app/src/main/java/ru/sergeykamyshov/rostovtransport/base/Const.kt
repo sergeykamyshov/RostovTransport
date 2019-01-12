@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.utils
+package ru.sergeykamyshov.rostovtransport.base
 
 class Const {
 

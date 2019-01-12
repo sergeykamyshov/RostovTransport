@@ -2,8 +2,6 @@ package ru.sergeykamyshov.rostovtransport.presentation.news.post
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Html
@@ -13,7 +11,8 @@ import android.view.View
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_post.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.utils.EmptyImageGetter
+import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
+import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
 
 class PostActivity : AppCompatActivity() {
 
@@ -69,12 +68,9 @@ class PostActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> finish()
-            R.id.menu_item_open_in_browser -> openInBrowser()
+            R.id.menu_item_open_in_browser -> openInBrowser(url)
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openInBrowser() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-    }
 }

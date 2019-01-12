@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.CardBuyViewModel
-import ru.sergeykamyshov.rostovtransport.utils.Const
+import ru.sergeykamyshov.rostovtransport.base.Const
 
 class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

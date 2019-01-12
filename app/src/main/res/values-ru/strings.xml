@@ -96,6 +96,9 @@
         <item>Другое</item>
     </string-array>
 
+    <string name="complain_email">mail@rostov-transport.info</string>
+    <string name="complain_email_subject">Complaint</string>
+
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_short_desc_title">Кратко о проекте</string>

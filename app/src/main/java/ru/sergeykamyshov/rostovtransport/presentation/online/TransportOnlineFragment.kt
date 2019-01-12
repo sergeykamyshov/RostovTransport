@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.online.TransportOnline
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import ru.sergeykamyshov.rostovtransport.utils.Const
+import ru.sergeykamyshov.rostovtransport.base.Const
 
 class TransportOnlineFragment : BaseFragment(), OnMapReadyCallback {
 

@@ -1,7 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help.base
 
-import android.content.Intent
-import android.net.Uri
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -11,6 +9,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.recycler_item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
+import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 
 class BaseAdapter(var mContext: FragmentActivity?,
@@ -28,7 +28,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contact = mData.get(position)
+        val contact = mData[position]
 
         if (contact.name.isEmpty()) holder.name.visibility = View.GONE else holder.name.text = contact.name
         if (contact.desc.isEmpty()) holder.desc.visibility = View.GONE else holder.desc.text = contact.desc
@@ -40,9 +40,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
         } else {
             holder.address.text = contact.address
             holder.address.setOnClickListener {
-                val locationUri = Uri.parse("geo:?q=${contact.address}")
-                val intent = Intent(Intent.ACTION_VIEW, locationUri)
-                mContext?.startActivity(intent)
+                mContext?.openOnMap(contact.address)
             }
         }
 
@@ -59,13 +57,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
                 phoneNumber?.text = phones[i]
 
                 phoneNumber?.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_DIAL)
-                    val number = phones[i].trim()
-                            .replace("(", "")
-                            .replace(")", "")
-                            .replace(" ", "")
-                    intent.data = Uri.parse("tel:$number")
-                    mContext?.startActivity(intent)
+                    mContext?.makeCall(phones[i])
                 }
 
                 holder.phonesLayout.addView(phoneLayout)

@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.utils
+package ru.sergeykamyshov.rostovtransport.base
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

@@ -2,8 +2,6 @@ package ru.sergeykamyshov.rostovtransport.presentation.about
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +11,11 @@ import kotlinx.android.synthetic.main.about_contact_item.view.*
 import kotlinx.android.synthetic.main.about_contacts_card_layout.*
 import kotlinx.android.synthetic.main.about_top_card_layout.view.*
 import kotlinx.android.synthetic.main.fragment_about.*
-import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
+import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
+import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 class AboutFragment : BaseFragment() {
 
@@ -66,13 +66,7 @@ class AboutFragment : BaseFragment() {
                 } else {
                     contactLayout.tv_contact_phone.text = contact.phone
                     contactLayout.tv_contact_phone.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_DIAL)
-                        val phoneNumber = contact.phone.trim()
-                                .replace("(", "")
-                                .replace(")", "")
-                                .replace(" ", "")
-                        intent.data = Uri.parse("tel:$phoneNumber")
-                        activity?.startActivity(intent)
+                        activity?.makeCall(contact.phone)
                     }
                 }
                 if (contact.email.isEmpty()) {
@@ -81,9 +75,7 @@ class AboutFragment : BaseFragment() {
                 } else {
                     contactLayout.tv_contact_email.text = contact.email
                     contactLayout.tv_contact_email.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_SENDTO)
-                        intent.data = Uri.parse("mailto:${contact.email}")
-                        activity?.startActivity(intent)
+                        activity?.sendEmail(contact.email)
                     }
                 }
 

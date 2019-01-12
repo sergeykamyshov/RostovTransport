@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.CardDepositViewModel
-import ru.sergeykamyshov.rostovtransport.utils.Const
+import ru.sergeykamyshov.rostovtransport.base.Const
 
 class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

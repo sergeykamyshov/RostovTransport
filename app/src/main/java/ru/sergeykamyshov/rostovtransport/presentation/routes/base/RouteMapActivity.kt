@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
-import ru.sergeykamyshov.rostovtransport.utils.Const
+import ru.sergeykamyshov.rostovtransport.base.Const
 
 class RouteMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

@@ -1,10 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.presentation.complain
 
 import android.app.TimePickerDialog
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -15,6 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -173,13 +171,9 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     override fun sendComplaintViaEmail(text: String) {
-        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:mail@rostov-transport.info"))
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Пожаловаться на транспорт")
-        intent.putExtra(Intent.EXTRA_TEXT, text)
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(activity, resources.getString(R.string.complain_error_email_client_not_found), Toast.LENGTH_LONG).show()
-        }
+        activity?.sendEmail(
+                getString(R.string.complain_email),
+                getString(R.string.complain_email_subject),
+                text)
     }
 }
