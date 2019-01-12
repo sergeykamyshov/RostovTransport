@@ -23,7 +23,7 @@
             />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             >
             <intent-filter>
@@ -33,23 +33,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.schedule.city.CityScheduleActivity"
+            android:name=".presentation.schedule.city.CityScheduleActivity"
             android:label="@string/title_schedule"
             />
         <activity
-            android:name=".ui.news.post.PostActivity"
+            android:name=".presentation.news.post.PostActivity"
             android:label="@string/title_news"
             />
         <activity
-            android:name=".ui.routes.base.RouteMapActivity"
+            android:name=".presentation.routes.base.RouteMapActivity"
             android:label="@string/title_routes"
             />
         <activity
-            android:name=".ui.card.buy.map.CardBuyMapActivity"
+            android:name=".presentation.card.buy.map.CardBuyMapActivity"
             android:label="@string/card_title_buy"
             />
         <activity
-            android:name=".ui.card.deposit.map.CardDepositMapActivity"
+            android:name=".presentation.card.deposit.map.CardDepositMapActivity"
             android:label="@string/card_title_deposit"
             />
     </application>
