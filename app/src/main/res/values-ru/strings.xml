@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Ростов-Транспорт</string>
 
+    <!--Общие-->
+    <string name="common_send">Отправить</string>
+
     <!--Заголовки-->
     <string name="title_news">Новости</string>
     <string name="title_routes">Маршруты</string>
@@ -64,7 +67,6 @@
     <string name="complain_title_place">Место совершения нарушения <font color="#4CAF50">*</font></string>
     <string name="complain_title_violations">Виды нарушений <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Комментарий</string>
-    <string name="complain_action_send_complaint">Отправить жалобу</string>
 
     <string name="complain_transport_type_bus">Автобус</string>
     <string name="complain_transport_type_shuttlebus">Маршрутка</string>

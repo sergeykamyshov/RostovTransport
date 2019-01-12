@@ -4,6 +4,9 @@
     <!--API-->
     <string name="google_maps_api_key">Insert your API key here</string>
 
+    <!--Общие-->
+    <string name="common_send">Send</string>
+
     <!--Заголовки-->
     <string name="title_news">News</string>
     <string name="title_routes">Routes</string>
@@ -66,7 +69,6 @@
     <string name="complain_title_place">Place <font color="#4CAF50">*</font></string>
     <string name="complain_title_violations">Violations <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Comment</string>
-    <string name="complain_action_send_complaint">Send complaint</string>
 
     <string name="complain_transport_type_bus">Bus</string>
     <string name="complain_transport_type_shuttlebus">Shuttle bus</string>
