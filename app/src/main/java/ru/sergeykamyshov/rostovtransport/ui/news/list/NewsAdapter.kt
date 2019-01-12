@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
 import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
@@ -18,8 +19,10 @@ class NewsAdapter(var mContext: FragmentActivity?,
                   var mData: List<Post>,
                   var mListener: OnItemClickListener) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
+    private val layoutInflater = mContext?.layoutInflater
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
+        val view = layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
         return ViewHolder(view!!)
     }
 
@@ -74,18 +77,17 @@ class NewsAdapter(var mContext: FragmentActivity?,
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container: ViewGroup? = itemView?.findViewById(R.id.container_item_news)
-        val newsThumbnail: ImageView? = itemView?.findViewById(R.id.img_news_thumbnail)
-        val newsTitle: TextView? = itemView?.findViewById(R.id.tv_post_title)
-        val newsAuthor: TextView? = itemView?.findViewById(R.id.tv_news_author)
-        val newsDate: TextView? = itemView?.findViewById(R.id.tv_news_date)
+        val newsThumbnail: ImageView? = itemView.img_news_thumbnail
+        val newsTitle: TextView? = itemView.tv_post_title
+        val newsAuthor: TextView? = itemView.tv_news_author
+        val newsDate: TextView? = itemView.tv_news_date
         // Скрытое поле
-        val newsId: TextView? = itemView?.findViewById(R.id.tv_news_id)
+        val newsId: TextView? = itemView.tv_news_id
 
         fun bind(listener: OnItemClickListener) {
-            container?.setOnClickListener({
+            itemView.setOnClickListener {
                 listener.onItemClick(newsId?.text as String)
-            })
+            }
         }
     }
 

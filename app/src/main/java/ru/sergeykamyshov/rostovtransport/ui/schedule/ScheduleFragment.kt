@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
-import android.widget.ProgressBar
+import kotlinx.android.synthetic.main.fragment_schedule.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +20,6 @@ import ru.sergeykamyshov.rostovtransport.ui.schedule.city.CityScheduleActivity
 class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
     lateinit var adapter: ScheduleAdapter
-    lateinit var mProgress: ProgressBar
 
     companion object {
         fun newInstance() = ScheduleFragment()
@@ -33,14 +31,11 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         setActionBarTitle(R.string.title_schedule)
         setHasOptionsMenu(true)
 
-        mProgress = view.findViewById(R.id.schedule_progress)
-
-        val recycler = view.findViewById<RecyclerView>(R.id.schedule_recycler)
-        recycler.layoutManager = LinearLayoutManager(activity)
+        schedule_recycler.layoutManager = LinearLayoutManager(activity)
         adapter = ScheduleAdapter(activity, ArrayList(), this)
-        recycler.adapter = adapter
-        recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        recycler.setHasFixedSize(true)
+        schedule_recycler.adapter = adapter
+        schedule_recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        schedule_recycler.setHasFixedSize(true)
 
         val call = (activity as MainActivity).restService.getDirections()
 
@@ -51,7 +46,7 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
                 val directions = body?.directions
                 if (directions != null) {
                     adapter.updateData(directions)
-                    mProgress.visibility = View.GONE
+                    schedule_progress.visibility = View.GONE
                 }
             }
 

@@ -6,11 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import kotlinx.android.synthetic.main.fragment_news.view.*
 import ru.sergeykamyshov.rostovtransport.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.ui.base.BaseFragment
@@ -18,8 +17,6 @@ import ru.sergeykamyshov.rostovtransport.ui.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.ui.news.post.PostActivity
 
 class NewsFragment : BaseFragment(), OnItemClickListener {
-
-    private lateinit var mProgress: ProgressBar
 
     companion object {
         fun newInstance() = NewsFragment()
@@ -30,9 +27,7 @@ class NewsFragment : BaseFragment(), OnItemClickListener {
 
         setActionBarTitle(R.string.title_news)
 
-        mProgress = view.findViewById(R.id.news_progress)
-
-        val recycler = view.findViewById<RecyclerView>(R.id.news_recycler)
+        val recycler = view.news_recycler
         recycler.layoutManager = LinearLayoutManager(activity)
         val adapter = NewsAdapter(activity, ArrayList(), this)
         recycler.adapter = adapter
@@ -44,7 +39,7 @@ class NewsFragment : BaseFragment(), OnItemClickListener {
             if (it != null) {
                 adapter.updateData(it)
             }
-            mProgress.visibility = View.GONE
+            view.news_progress.visibility = View.GONE
         })
         viewModel.loadData()
 

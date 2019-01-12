@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import kotlinx.android.synthetic.main.recycler_item_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 
@@ -12,8 +13,10 @@ class RoutesAdapter(var mContext: FragmentActivity?,
                     var mData: List<Routes.Route>,
                     var onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
 
+    private val layoutInflater = mContext?.layoutInflater
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mContext?.layoutInflater?.inflate(R.layout.recycler_item_routes, parent, false)
+        val view = layoutInflater?.inflate(R.layout.recycler_item_routes, parent, false)
         return ViewHolder(view!!)
     }
 
@@ -22,10 +25,10 @@ class RoutesAdapter(var mContext: FragmentActivity?,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val route = mData.get(position)
-        holder.routeNumber?.text = route.number
-        holder.routeName?.text = route.name
-        holder.container?.setOnClickListener {
+        val route = mData[position]
+        holder.routeNumber.text = route.number
+        holder.routeName.text = route.name
+        holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(route.id)
         }
     }
@@ -36,8 +39,7 @@ class RoutesAdapter(var mContext: FragmentActivity?,
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container = itemView?.findViewById<ViewGroup>(R.id.container_item_routes)
-        val routeNumber = itemView?.findViewById<TextView>(R.id.tv_route_number)
-        val routeName = itemView?.findViewById<TextView>(R.id.tv_route_name)
+        val routeNumber: TextView = itemView.tv_route_number
+        val routeName: TextView = itemView.tv_route_name
     }
 }
