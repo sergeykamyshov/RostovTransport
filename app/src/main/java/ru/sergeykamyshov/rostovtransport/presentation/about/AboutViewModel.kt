@@ -14,21 +14,21 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 class AboutViewModel : ViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<About>()
+    private var data = MutableLiveData<About>()
 
     init {
         loadData()
     }
 
     fun getData(): LiveData<About> {
-        return mData
+        return data
     }
 
     fun loadData() {
         val call = restService.getAbout()
         call.enqueue(object : Callback<About> {
             override fun onResponse(call: Call<About>?, response: Response<About>?) {
-                mData.postValue(response?.body())
+                data.postValue(response?.body())
             }
 
             override fun onFailure(call: Call<About>?, t: Throwable?) {

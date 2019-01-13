@@ -13,10 +13,12 @@ import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
 import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
 import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
 
-class BaseAdapter(var mContext: FragmentActivity?,
-                  var mData: List<Help.Contact>) : RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
+class BaseAdapter(
+        var context: FragmentActivity?,
+        var items: List<Help.Contact>
+) : RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
 
-    private val layoutInflater = mContext?.layoutInflater
+    private val layoutInflater = context?.layoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_help, parent, false)
@@ -24,11 +26,11 @@ class BaseAdapter(var mContext: FragmentActivity?,
     }
 
     override fun getItemCount(): Int {
-        return mData.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contact = mData[position]
+        val contact = items[position]
 
         if (contact.name.isEmpty()) holder.name.visibility = View.GONE else holder.name.text = contact.name
         if (contact.desc.isEmpty()) holder.desc.visibility = View.GONE else holder.desc.text = contact.desc
@@ -40,7 +42,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
         } else {
             holder.address.text = contact.address
             holder.address.setOnClickListener {
-                mContext?.openOnMap(contact.address)
+                context?.openOnMap(contact.address)
             }
         }
 
@@ -57,7 +59,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
                 phoneNumber?.text = phones[i]
 
                 phoneNumber?.setOnClickListener {
-                    mContext?.makeCall(phones[i])
+                    context?.makeCall(phones[i])
                 }
 
                 holder.phonesLayout.addView(phoneLayout)
@@ -66,7 +68,7 @@ class BaseAdapter(var mContext: FragmentActivity?,
     }
 
     fun updateData(data: List<Help.Contact>) {
-        mData = data
+        items = data
         notifyDataSetChanged()
     }
 

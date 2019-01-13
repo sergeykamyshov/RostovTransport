@@ -14,10 +14,10 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
 class CardDepositViewModel : ViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<List<CardDeposit.Address>>()
+    private var data = MutableLiveData<List<CardDeposit.Address>>()
 
     fun getData(): LiveData<List<CardDeposit.Address>> {
-        return mData
+        return data
     }
 
     fun loadData() {
@@ -26,7 +26,7 @@ class CardDepositViewModel : ViewModel() {
             override fun onResponse(call: Call<CardDeposit>?, response: Response<CardDeposit>?) {
                 val cardDeposit = response?.body()
                 Log.i("CardDepositViewModel", "Last update: ${cardDeposit?.lastUpdate}")
-                mData.postValue(cardDeposit?.addresses)
+                data.postValue(cardDeposit?.addresses)
             }
 
             override fun onFailure(call: Call<CardDeposit>?, t: Throwable?) {

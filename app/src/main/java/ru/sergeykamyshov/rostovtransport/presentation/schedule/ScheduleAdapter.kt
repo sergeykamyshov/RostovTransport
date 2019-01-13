@@ -10,11 +10,13 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Direction
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 
-class ScheduleAdapter(var mContext: FragmentActivity?,
-                      var mData: List<Direction>,
-                      var mListener: OnItemClickListener) : RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
+class ScheduleAdapter(
+        var context: FragmentActivity?,
+        var items: List<Direction>,
+        var listener: OnItemClickListener
+) : RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
 
-    private val layoutInflater = mContext?.layoutInflater
+    private val layoutInflater = context?.layoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_schedule, parent, false)
@@ -22,12 +24,12 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
     }
 
     override fun getItemCount(): Int {
-        return mData.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.cityName.text = mData.get(position).city
-        holder.bind(mListener)
+        holder.cityName.text = items.get(position).city
+        holder.bind(listener)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,7 +43,7 @@ class ScheduleAdapter(var mContext: FragmentActivity?,
     }
 
     fun updateData(data: List<Direction>) {
-        mData = data
+        items = data
         notifyDataSetChanged()
     }
 

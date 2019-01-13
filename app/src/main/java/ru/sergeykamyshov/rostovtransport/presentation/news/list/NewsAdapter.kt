@@ -15,11 +15,13 @@ import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsAdapter(var mContext: FragmentActivity?,
-                  var mData: List<Post>,
-                  var mListener: OnItemClickListener) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(
+        var context: FragmentActivity?,
+        var items: List<Post>,
+        var listener: OnItemClickListener
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    private val layoutInflater = mContext?.layoutInflater
+    private val layoutInflater = context?.layoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
@@ -27,11 +29,11 @@ class NewsAdapter(var mContext: FragmentActivity?,
     }
 
     override fun getItemCount(): Int {
-        return mData.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val post = mData.get(position)
+        val post = items.get(position)
         if (post.thumbnail?.isNotEmpty()!!) {
             Picasso.get()
                     .load(post.thumbnail)
@@ -55,11 +57,11 @@ class NewsAdapter(var mContext: FragmentActivity?,
         holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
         holder.newsId?.text = post.id
 
-        holder.bind(mListener)
+        holder.bind(listener)
     }
 
     fun updateData(data: List<Post>) {
-        mData = data
+        items = data
         notifyDataSetChanged()
     }
 

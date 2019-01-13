@@ -14,10 +14,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseViewModel
 class DepartmentsViewModel : BaseViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<List<Help.Contact>>()
+    private var data = MutableLiveData<List<Help.Contact>>()
 
     override fun getData(): LiveData<List<Help.Contact>> {
-        return mData
+        return data
     }
 
     override fun loadData() {
@@ -26,7 +26,7 @@ class DepartmentsViewModel : BaseViewModel() {
             override fun onResponse(call: Call<Help>?, response: Response<Help>?) {
                 val help = response?.body()
                 Log.i("DepartmentsViewModel", "Last update: ${help?.lastUpdate}")
-                mData.postValue(help?.contacts)
+                data.postValue(help?.contacts)
             }
 
             override fun onFailure(call: Call<Help>?, t: Throwable?) {

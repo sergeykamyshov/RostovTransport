@@ -9,26 +9,28 @@ import kotlinx.android.synthetic.main.recycler_item_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 
-class CardBuyAdapter(var mContext: FragmentActivity?,
-                     var mData: List<CardBuy.Address>) : RecyclerView.Adapter<CardBuyAdapter.ViewHolder>() {
+class CardBuyAdapter(
+        var context: FragmentActivity?,
+        var items: List<CardBuy.Address>
+) : RecyclerView.Adapter<CardBuyAdapter.ViewHolder>() {
 
-    private val layoutInflater = mContext?.layoutInflater
+    private val layoutInflater = context?.layoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_card_buy, parent, false)
         return ViewHolder(view!!)
     }
 
-    override fun getItemCount() = mData.size
+    override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = mData[position]
+        val item = items[position]
         holder.desc.text = item.desc
         if (item.note.isEmpty()) holder.note.visibility = View.GONE else holder.note.text = item.note
     }
 
     fun updateData(data: List<CardBuy.Address>) {
-        mData = data
+        items = data
         notifyDataSetChanged()
     }
 

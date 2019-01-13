@@ -14,10 +14,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.base.BaseViewModel
 class TramListViewModel : BaseViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<List<Routes.Route>>()
+    private var data = MutableLiveData<List<Routes.Route>>()
 
     override fun getData(): LiveData<List<Routes.Route>> {
-        return mData
+        return data
     }
 
     override fun loadData() {
@@ -26,7 +26,7 @@ class TramListViewModel : BaseViewModel() {
             override fun onResponse(call: Call<Routes>?, response: Response<Routes>?) {
                 val routes = response?.body()
                 Log.i("TramListViewModel", "Last update: ${routes?.lastUpdate}")
-                mData.postValue(routes?.routes)
+                data.postValue(routes?.routes)
             }
 
             override fun onFailure(call: Call<Routes>?, t: Throwable?) {

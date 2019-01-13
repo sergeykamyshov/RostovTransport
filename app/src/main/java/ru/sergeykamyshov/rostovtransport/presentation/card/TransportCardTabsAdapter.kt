@@ -13,7 +13,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.card.questions.CardQuestio
 /**
  * Адаптер экрана "Транспортная карта" для формирования вкладок
  */
-class TransportCardTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class TransportCardTabsAdapter(
+        var context: Context?,
+        fm: FragmentManager?
+) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -29,10 +32,10 @@ class TransportCardTabsAdapter(var mContext: Context?, fm: FragmentManager?) : F
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            0 -> return mContext?.getString(R.string.card_tab_title_info)
-            1 -> return mContext?.getString(R.string.card_tab_title_buy)
-            2 -> return mContext?.getString(R.string.card_tab_title_deposit)
-            3 -> return mContext?.getString(R.string.card_tab_title_questions)
+            0 -> return context?.getString(R.string.card_tab_title_info)
+            1 -> return context?.getString(R.string.card_tab_title_buy)
+            2 -> return context?.getString(R.string.card_tab_title_deposit)
+            3 -> return context?.getString(R.string.card_tab_title_questions)
         }
         return super.getPageTitle(position)
     }

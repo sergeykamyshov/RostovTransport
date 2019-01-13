@@ -13,7 +13,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.trolleybus.Trolleyb
 /**
  * Адаптер экрана "Маршруты" для формирования вкладок
  */
-class RoutesTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class RoutesTabsAdapter(
+        var context: Context?,
+        fm: FragmentManager?
+) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -29,10 +32,10 @@ class RoutesTabsAdapter(var mContext: Context?, fm: FragmentManager?) : Fragment
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            0 -> return mContext?.getString(R.string.routes_tab_title_shuttle)
-            1 -> return mContext?.getString(R.string.routes_tab_title_bus)
-            2 -> return mContext?.getString(R.string.routes_tab_title_trolleybus)
-            3 -> return mContext?.getString(R.string.routes_tab_title_tram)
+            0 -> return context?.getString(R.string.routes_tab_title_shuttle)
+            1 -> return context?.getString(R.string.routes_tab_title_bus)
+            2 -> return context?.getString(R.string.routes_tab_title_trolleybus)
+            3 -> return context?.getString(R.string.routes_tab_title_tram)
         }
         return super.getPageTitle(position)
     }

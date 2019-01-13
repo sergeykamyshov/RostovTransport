@@ -14,10 +14,10 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
 class RouteMapViewModel(var type: String, var id: String) : ViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<RouteInfo>()
+    private var data = MutableLiveData<RouteInfo>()
 
     fun getData(): LiveData<RouteInfo> {
-        return mData
+        return data
     }
 
     fun loadData() {
@@ -26,7 +26,7 @@ class RouteMapViewModel(var type: String, var id: String) : ViewModel() {
             override fun onResponse(call: Call<RouteInfo>?, response: Response<RouteInfo>?) {
                 val routeInfo = response?.body()
                 Log.i("RouteMapViewModel", "Last update ${routeInfo?.lastUpdate}")
-                mData.postValue(routeInfo)
+                data.postValue(routeInfo)
             }
 
             override fun onFailure(call: Call<RouteInfo>?, t: Throwable?) {

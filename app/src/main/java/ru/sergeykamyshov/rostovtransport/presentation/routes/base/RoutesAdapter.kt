@@ -9,11 +9,13 @@ import kotlinx.android.synthetic.main.recycler_item_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
 
-class RoutesAdapter(var mContext: FragmentActivity?,
-                    var mData: List<Routes.Route>,
-                    var onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
+class RoutesAdapter(
+        var context: FragmentActivity?,
+        var items: List<Routes.Route>,
+        var onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
 
-    private val layoutInflater = mContext?.layoutInflater
+    private val layoutInflater = context?.layoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_routes, parent, false)
@@ -21,11 +23,11 @@ class RoutesAdapter(var mContext: FragmentActivity?,
     }
 
     override fun getItemCount(): Int {
-        return mData.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val route = mData[position]
+        val route = items[position]
         holder.routeNumber.text = route.number
         holder.routeName.text = route.name
         holder.itemView.setOnClickListener {
@@ -34,7 +36,7 @@ class RoutesAdapter(var mContext: FragmentActivity?,
     }
 
     fun updateData(data: List<Routes.Route>) {
-        mData = data
+        items = data
         notifyDataSetChanged()
     }
 

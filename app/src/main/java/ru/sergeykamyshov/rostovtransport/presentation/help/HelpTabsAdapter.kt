@@ -12,7 +12,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.stations.StationsList
 /**
  * Адаптер экрана "Справка" для формирования вкладок
  */
-class HelpTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class HelpTabsAdapter(
+        var context: Context?,
+        fm: FragmentManager?
+) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
@@ -27,9 +30,9 @@ class HelpTabsAdapter(var mContext: Context?, fm: FragmentManager?) : FragmentPa
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            0 -> return mContext?.getString(R.string.help_tab_title_departments)
-            1 -> return mContext?.getString(R.string.help_tab_title_stations)
-            2 -> return mContext?.getString(R.string.help_tab_title_business)
+            0 -> return context?.getString(R.string.help_tab_title_departments)
+            1 -> return context?.getString(R.string.help_tab_title_stations)
+            2 -> return context?.getString(R.string.help_tab_title_business)
         }
         return super.getPageTitle(position)
     }

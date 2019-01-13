@@ -15,10 +15,10 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
 class NewsViewModel : ViewModel() {
 
     val restService: NewsRestService = App.createNewsRestService()
-    private var mData = MutableLiveData<List<Post>>()
+    private var data = MutableLiveData<List<Post>>()
 
     fun getData(): LiveData<List<Post>> {
-        return mData
+        return data
     }
 
     fun loadData() {
@@ -26,7 +26,7 @@ class NewsViewModel : ViewModel() {
         call.enqueue(object : Callback<News> {
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
                 val news = response?.body()
-                mData.postValue(news?.posts)
+                data.postValue(news?.posts)
             }
 
             override fun onFailure(call: Call<News>?, t: Throwable?) {

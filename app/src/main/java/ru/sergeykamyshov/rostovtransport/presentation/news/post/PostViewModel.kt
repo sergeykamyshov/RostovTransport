@@ -15,14 +15,14 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.news.post.Post
 class PostViewModel(var id: String) : ViewModel() {
 
     val restService: NewsRestService = App.createNewsRestService()
-    private var mData = MutableLiveData<News.Post>()
+    private var data = MutableLiveData<News.Post>()
 
     init {
         loadData()
     }
 
     fun getData(): LiveData<News.Post> {
-        return mData
+        return data
     }
 
     fun loadData() {
@@ -32,7 +32,7 @@ class PostViewModel(var id: String) : ViewModel() {
                 Log.i("PostViewModel", "success")
                 val post = response?.body()?.post
                 Log.i("PostViewModel", "id=${post?.id}, title=${post?.title}")
-                mData.postValue(post)
+                data.postValue(post)
             }
 
             override fun onFailure(call: Call<Post>?, t: Throwable?) {

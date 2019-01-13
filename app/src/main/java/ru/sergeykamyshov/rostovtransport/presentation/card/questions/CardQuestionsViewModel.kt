@@ -15,10 +15,10 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions.Q
 class CardQuestionsViewModel : ViewModel() {
 
     val restService: RestService = App.createRestService()
-    private var mData = MutableLiveData<List<Question>>()
+    private var data = MutableLiveData<List<Question>>()
 
     fun getData(): LiveData<List<Question>> {
-        return mData
+        return data
     }
 
     fun loadData() {
@@ -27,7 +27,7 @@ class CardQuestionsViewModel : ViewModel() {
             override fun onResponse(call: Call<CardQuestions>?, response: Response<CardQuestions>?) {
                 val cardQuestions = response?.body()
                 Log.i("CardQuestionsViewModel", "Last update: ${cardQuestions?.lastUpdate}")
-                mData.postValue(cardQuestions?.questions)
+                data.postValue(cardQuestions?.questions)
             }
 
             override fun onFailure(call: Call<CardQuestions>?, t: Throwable?) {
