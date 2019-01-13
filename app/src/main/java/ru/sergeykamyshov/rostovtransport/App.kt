@@ -1,7 +1,9 @@
 package ru.sergeykamyshov.rostovtransport
 
 import android.app.Application
+import com.crashlytics.android.Crashlytics
 import com.google.gson.GsonBuilder
+import io.fabric.sdk.android.Fabric
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.sergeykamyshov.rostovtransport.dagger.AppComponent
@@ -56,6 +58,9 @@ class App : Application() {
 
         // Dagger
         daggerComponent = DaggerAppComponent.create()
+
+        // Crashlytics
+        Fabric.with(this, Crashlytics())
     }
 
 }
