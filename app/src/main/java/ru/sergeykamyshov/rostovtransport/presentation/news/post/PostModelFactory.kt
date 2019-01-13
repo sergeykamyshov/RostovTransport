@@ -1,7 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.post
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class PostModelFactory(var id: String) : ViewModelProvider.NewInstanceFactory() {
 

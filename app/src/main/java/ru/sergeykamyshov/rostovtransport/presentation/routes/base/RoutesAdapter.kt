@@ -1,10 +1,10 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes.base
 
-import android.support.v4.app.FragmentActivity
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes

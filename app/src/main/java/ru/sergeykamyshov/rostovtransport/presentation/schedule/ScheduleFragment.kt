@@ -2,19 +2,19 @@ package ru.sergeykamyshov.rostovtransport.presentation.schedule
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
+import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.presentation.schedule.city.CityScheduleActivity
 
 class ScheduleFragment : BaseFragment(), OnItemClickListener {
@@ -58,8 +58,8 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_schedule, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_schedule, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

@@ -1,11 +1,11 @@
 package ru.sergeykamyshov.rostovtransport.presentation.online
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -13,9 +13,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.Const
 import ru.sergeykamyshov.rostovtransport.data.network.model.online.TransportOnline
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import ru.sergeykamyshov.rostovtransport.base.Const
 
 class TransportOnlineFragment : BaseFragment(), OnMapReadyCallback {
 

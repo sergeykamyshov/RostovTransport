@@ -1,9 +1,8 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.help.business.BusinessListFragment
 import ru.sergeykamyshov.rostovtransport.presentation.help.departments.DepartmentsListFragment
@@ -14,10 +13,10 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.stations.StationsList
  */
 class HelpTabsAdapter(
         var context: Context?,
-        fm: FragmentManager?
+        fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment {
+    override fun getItem(position: Int): androidx.fragment.app.Fragment {
         when (position) {
             0 -> return DepartmentsListFragment.newInstance()
             1 -> return StationsListFragment.newInstance()

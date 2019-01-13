@@ -1,11 +1,11 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes.base
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -13,8 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
 import ru.sergeykamyshov.rostovtransport.base.Const
+import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
 
 class RouteMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

@@ -19,7 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -37,17 +37,16 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Support
-    def androidSupport = "28.0.0"
-    implementation "com.android.support:appcompat-v7:${androidSupport}"
-    implementation "com.android.support:support-v4:${androidSupport}"
-    implementation "com.android.support:design:${androidSupport}"
-    implementation "com.android.support:cardview-v7:${androidSupport}"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
 
     // Test
     testImplementation "junit:junit:4.12"
-    androidTestImplementation "com.android.support.test:runner:1.0.2"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    androidTestImplementation "androidx.test:runner:1.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -56,11 +55,11 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:16.0.0"
 
     // Architecture Components
-    def archVersion = "1.1.1"
-    implementation "android.arch.lifecycle:runtime:$archVersion"
-    implementation "android.arch.lifecycle:extensions:$archVersion"
-    implementation "android.arch.lifecycle:reactivestreams:$archVersion"
-    kapt "android.arch.lifecycle:compiler:$archVersion"
+    def archVersion = "2.1.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-runtime:$archVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$archVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$archVersion"
 
     // Retrofit 2
     def retrofitVersion = "2.5.0"

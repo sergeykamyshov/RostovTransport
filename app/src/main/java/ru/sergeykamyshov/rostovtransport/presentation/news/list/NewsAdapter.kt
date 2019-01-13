@@ -1,12 +1,12 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.list
 
-import android.support.v4.app.FragmentActivity
-import android.support.v7.widget.RecyclerView
 import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -78,7 +78,7 @@ class NewsAdapter(
         return R.drawable.img_thumbnail_news_item_1
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val newsThumbnail: ImageView? = itemView.img_news_thumbnail
         val newsTitle: TextView? = itemView.tv_post_title
         val newsAuthor: TextView? = itemView.tv_news_author

@@ -1,9 +1,9 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.routes.bus.BusListFragment
 import ru.sergeykamyshov.rostovtransport.presentation.routes.shuttle.ShuttleListFragment
@@ -15,7 +15,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.trolleybus.Trolleyb
  */
 class RoutesTabsAdapter(
         var context: Context?,
-        fm: FragmentManager?
+        fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
