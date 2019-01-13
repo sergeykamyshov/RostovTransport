@@ -1,7 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -12,10 +12,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
-import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.CardDepositViewModel
 import ru.sergeykamyshov.rostovtransport.base.Const
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
 
 class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -27,17 +28,11 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
+        val json = intent.getStringExtra(ADDRESSES_LIST)
+        addresses = Gson().fromJson(json, Array<CardDeposit.Address>::class.java).toList()
 
-        val viewModel = ViewModelProviders.of(this).get(CardDepositViewModel::class.java)
-        val liveData = viewModel.getData()
-        liveData.observe(this, Observer {
-            if (it != null) {
-                addresses = it
-                mapFragment.getMapAsync(this)
-            }
-        })
-        viewModel.loadData()
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -66,6 +61,16 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
             android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val ADDRESSES_LIST = "${BuildConfig.APPLICATION_ID}.CardDepositMapActivity.ADDRESSES_LIST"
+
+        fun getIntent(context: Context, addresses: String): Intent {
+            val intent = Intent(context, CardDepositMapActivity::class.java)
+            intent.putExtra(ADDRESSES_LIST, addresses)
+            return intent
+        }
     }
 
 }

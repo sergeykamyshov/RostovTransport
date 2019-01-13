@@ -1,7 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.buy.map
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -11,10 +11,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
-import ru.sergeykamyshov.rostovtransport.presentation.card.buy.CardBuyViewModel
 import ru.sergeykamyshov.rostovtransport.base.Const
+import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 
 class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -26,18 +27,11 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
+        val json = intent.getStringExtra(ADDRESSES_LIST)
+        addresses = Gson().fromJson(json, Array<CardBuy.Address>::class.java).toList()
 
-        // TODO: зачем нам делать еще один запрос, когда у нас уже есть список с координатами?
-        val viewModel = ViewModelProviders.of(this).get(CardBuyViewModel::class.java)
-        val liveData = viewModel.getData()
-        liveData.observe(this, Observer {
-            if (it != null) {
-                addresses = it
-                mapFragment.getMapAsync(this)
-            }
-        })
-        viewModel.loadData()
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -64,6 +58,16 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
             android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val ADDRESSES_LIST = "${BuildConfig.APPLICATION_ID}.CardBuyMapActivity.ADDRESSES_LIST"
+
+        fun getIntent(context: Context, addresses: String): Intent {
+            val intent = Intent(context, CardBuyMapActivity::class.java)
+            intent.putExtra(ADDRESSES_LIST, addresses)
+            return intent
+        }
     }
 
 }
