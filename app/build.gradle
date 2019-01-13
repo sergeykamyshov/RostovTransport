@@ -29,6 +29,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -70,6 +74,9 @@ dependencies {
 
     // Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Firebase Analytics
     implementation 'com.google.firebase:firebase-core:16.0.6'

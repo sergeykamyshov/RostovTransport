@@ -11,6 +11,7 @@ import ru.sergeykamyshov.rostovtransport.dagger.DaggerAppComponent
 import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
 import ru.sergeykamyshov.rostovtransport.data.network.OnlineRestService
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
+import timber.log.Timber
 
 class App : Application() {
 
@@ -40,6 +41,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
 
         // Retrofit
         val gson = GsonBuilder().setDateFormat(JSON_DATE_FORMAT).create()
