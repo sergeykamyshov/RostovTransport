@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.main_container.*
+import kotlinx.android.synthetic.main.toolbar_layout.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.RestService

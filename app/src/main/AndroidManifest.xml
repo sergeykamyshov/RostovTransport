@@ -24,7 +24,8 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="@string/fabric_crashlytics_api_key" />
+            android:value="@string/fabric_crashlytics_api_key"
+            />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -48,6 +49,7 @@
         <activity
             android:name=".presentation.news.post.PostActivity"
             android:label="@string/title_news"
+            android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
             android:name=".presentation.routes.base.RouteMapActivity"

@@ -28,7 +28,7 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val json = intent.getStringExtra(ADDRESSES_LIST)
+        val json = intent.getStringExtra(ADDRESSES_EXTRA)
         addresses = Gson().fromJson(json, Array<CardDeposit.Address>::class.java).toList()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
@@ -64,11 +64,11 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     companion object {
-        const val ADDRESSES_LIST = "${BuildConfig.APPLICATION_ID}.CardDepositMapActivity.ADDRESSES_LIST"
+        const val ADDRESSES_EXTRA = "${BuildConfig.APPLICATION_ID}.CardDepositMapActivity.ADDRESSES"
 
         fun getIntent(context: Context, addresses: String): Intent {
             val intent = Intent(context, CardDepositMapActivity::class.java)
-            intent.putExtra(ADDRESSES_LIST, addresses)
+            intent.putExtra(ADDRESSES_EXTRA, addresses)
             return intent
         }
     }

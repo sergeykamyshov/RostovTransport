@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,9 +45,7 @@ class NewsFragment : BaseFragment(), OnItemClickListener {
         return view
     }
 
-    override fun onItemClick(id: String) {
-        val intent = Intent(activity, PostActivity::class.java)
-        intent.putExtra(PostActivity.POST_ID_EXTRA, id)
-        startActivity(intent)
+    override fun onItemClick(postId: String) {
+        startActivity(PostActivity.getIntent(activity as MainActivity, postId))
     }
 }

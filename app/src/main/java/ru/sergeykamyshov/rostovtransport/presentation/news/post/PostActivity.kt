@@ -1,5 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.post
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.view.Menu
@@ -10,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_post.*
+import kotlinx.android.synthetic.main.toolbar_layout.*
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
@@ -18,14 +22,11 @@ class PostActivity : AppCompatActivity() {
 
     private lateinit var url: String
 
-    companion object {
-        const val POST_ID_EXTRA = "postId"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
 
+        setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val id = intent.getStringExtra(POST_ID_EXTRA)
@@ -71,6 +72,16 @@ class PostActivity : AppCompatActivity() {
             R.id.menu_item_open_in_browser -> openInBrowser(url)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val POST_ID_EXTRA = "${BuildConfig.APPLICATION_ID}.PostActivity.POST_ID"
+
+        fun getIntent(context: Context, postId: String): Intent {
+            val intent = Intent(context, PostActivity::class.java)
+            intent.putExtra(PostActivity.POST_ID_EXTRA, postId)
+            return intent
+        }
     }
 
 }
