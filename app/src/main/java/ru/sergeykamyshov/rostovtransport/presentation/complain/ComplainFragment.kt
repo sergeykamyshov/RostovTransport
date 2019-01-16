@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
+import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
+import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -20,12 +22,11 @@ import java.util.Locale
 import kotlin.collections.ArrayList
 
 class ComplainFragment : BaseFragment(), Contract.View {
-    companion object {
-        fun newInstance() = ComplainFragment()
-    }
+
+    private val SEND_COMPLAIN_EVENT = "send_complaint"
+    private val violationsCheckedPositions = "violations_checked_positions"
 
     private lateinit var presenter: Contract.Presenter
-    private val violationsCheckedPositions = "violations_checked_positions"
     private lateinit var adapter: ViolationsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,7 +37,16 @@ class ComplainFragment : BaseFragment(), Contract.View {
         presenter = ComplainPresenter()
         presenter.attachView(this)
 
-        view.btn_generate_complain.setOnClickListener { initSendingComplain() }
+        view.btn_generate_complain.setOnClickListener {
+            App.firebaseAnalytics.sendEvent(
+                    SEND_COMPLAIN_EVENT,
+                    mapOf(
+                            "transport_type" to getTransportTypeString(),
+                            "route_number" to getRouteString()
+                    )
+            )
+            initSendingComplain()
+        }
 
         // Настраиваем выбор времени
         val calendar = Calendar.getInstance()
@@ -176,4 +186,9 @@ class ComplainFragment : BaseFragment(), Contract.View {
                 getString(R.string.complain_email_subject),
                 text)
     }
+
+    companion object {
+        fun newInstance() = ComplainFragment()
+    }
+
 }

@@ -11,12 +11,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_buy.view.*
+import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
 import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.map.CardBuyMapActivity
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 class CardBuyFragment : Fragment() {
+
+    private val CARD_BUY_MAP_EVENT = "card_buy_map"
 
     private lateinit var addresses: List<CardBuy.Address>
 
@@ -41,6 +45,7 @@ class CardBuyFragment : Fragment() {
         viewModel.loadData()
 
         view.layout_card_buy_button_map.setOnClickListener {
+            App.firebaseAnalytics.sendEvent(CARD_BUY_MAP_EVENT)
             startActivity(CardBuyMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))
         }
 

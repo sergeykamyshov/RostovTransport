@@ -2,6 +2,7 @@ package ru.sergeykamyshov.rostovtransport
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.GsonBuilder
 import io.fabric.sdk.android.Fabric
 import retrofit2.Retrofit
@@ -25,6 +26,7 @@ class App : Application() {
         lateinit var retrofitNews: Retrofit
         lateinit var retrofitOnline: Retrofit
         lateinit var daggerComponent: AppComponent
+        lateinit var firebaseAnalytics: FirebaseAnalytics
 
         fun createRestService(): RestService {
             return retrofit.create(RestService::class.java)
@@ -63,6 +65,9 @@ class App : Application() {
 
         // Dagger
         daggerComponent = DaggerAppComponent.create()
+
+        // FirebaseAnalytics
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         // Crashlytics
         Fabric.with(this, Crashlytics())
