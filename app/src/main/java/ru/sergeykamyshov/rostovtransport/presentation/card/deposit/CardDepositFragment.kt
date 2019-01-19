@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.CustomEvent
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.App
@@ -46,6 +48,7 @@ class CardDepositFragment : Fragment() {
 
         view.layout_card_deposit_button_map.setOnClickListener {
             App.firebaseAnalytics.sendEvent(CARD_DEPOSIT_MAP_EVENT)
+            Answers.getInstance().logCustom(CustomEvent(CARD_DEPOSIT_MAP_EVENT))
             startActivity(CardDepositMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))
         }
 

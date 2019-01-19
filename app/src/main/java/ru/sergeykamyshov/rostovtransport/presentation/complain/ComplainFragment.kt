@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.CustomEvent
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.App
@@ -38,13 +40,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
         presenter.attachView(this)
 
         view.btn_generate_complain.setOnClickListener {
-            App.firebaseAnalytics.sendEvent(
-                    SEND_COMPLAIN_EVENT,
-                    mapOf(
-                            "transport_type" to getTransportTypeString(),
-                            "route_number" to getRouteString()
-                    )
-            )
             initSendingComplain()
         }
 
@@ -181,6 +176,17 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     override fun sendComplaintViaEmail(text: String) {
+        App.firebaseAnalytics.sendEvent(
+                SEND_COMPLAIN_EVENT,
+                mapOf(
+                        "transport_type" to getTransportTypeString(),
+                        "route_number" to getRouteString().toLowerCase()
+                )
+        )
+        Answers.getInstance().logCustom(CustomEvent(SEND_COMPLAIN_EVENT)
+                .putCustomAttribute("transport_type", getTransportTypeString())
+                .putCustomAttribute("route_number", getRouteString().toLowerCase())
+        )
         activity?.sendEmail(
                 getString(R.string.complain_email),
                 getString(R.string.complain_email_subject),
