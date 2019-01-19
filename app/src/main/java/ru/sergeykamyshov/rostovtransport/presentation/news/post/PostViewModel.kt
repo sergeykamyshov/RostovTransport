@@ -8,13 +8,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.post.Post
+import ru.sergeykamyshov.rostovtransport.data.news.NewsApi
+import ru.sergeykamyshov.rostovtransport.data.models.news.News
+import ru.sergeykamyshov.rostovtransport.data.models.news.post.Post
 
 class PostViewModel(var id: String) : ViewModel() {
 
-    val restService: NewsRestService = App.newsRestService
+    val api: NewsApi = App.provider.apiProvider.newsApi
     private var data = MutableLiveData<News.Post>()
 
     init {
@@ -26,7 +26,7 @@ class PostViewModel(var id: String) : ViewModel() {
     }
 
     fun loadData() {
-        val call = restService.getPostById(id)
+        val call = api.getPostById(id)
         call.enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>?, response: Response<Post>?) {
                 Log.i("PostViewModel", "success")

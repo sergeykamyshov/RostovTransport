@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
+import ru.sergeykamyshov.rostovtransport.data.models.news.News.Post
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*

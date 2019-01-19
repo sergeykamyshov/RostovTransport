@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
 
 class RoutesAdapter(
         var context: FragmentActivity?,

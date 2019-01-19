@@ -8,13 +8,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
+import ru.sergeykamyshov.rostovtransport.data.news.NewsApi
+import ru.sergeykamyshov.rostovtransport.data.models.news.News
+import ru.sergeykamyshov.rostovtransport.data.models.news.News.Post
 
 class NewsViewModel : ViewModel() {
 
-    val restService: NewsRestService = App.newsRestService
+    val api: NewsApi = App.provider.apiProvider.newsApi
     private var data = MutableLiveData<List<Post>>()
 
     fun getData(): LiveData<List<Post>> {
@@ -22,7 +22,7 @@ class NewsViewModel : ViewModel() {
     }
 
     fun loadData() {
-        val call = restService.getRecentNews()
+        val call = api.getRecentNews()
         call.enqueue(object : Callback<News> {
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
                 val news = response?.body()

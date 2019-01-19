@@ -2,7 +2,7 @@ package ru.sergeykamyshov.rostovtransport.presentation.routes.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
 
 abstract class BaseViewModel : ViewModel() {
 

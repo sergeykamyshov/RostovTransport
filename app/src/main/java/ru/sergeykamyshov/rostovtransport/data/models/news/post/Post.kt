@@ -1,7 +1,7 @@
-package ru.sergeykamyshov.rostovtransport.data.network.model.news.post
+package ru.sergeykamyshov.rostovtransport.data.models.news.post
 
 import com.google.gson.annotations.SerializedName
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
+import ru.sergeykamyshov.rostovtransport.data.models.news.News
 
 class Post {
 

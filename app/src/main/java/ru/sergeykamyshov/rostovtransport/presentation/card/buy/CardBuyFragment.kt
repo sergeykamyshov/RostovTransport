@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.map.CardBuyMapActivity
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 

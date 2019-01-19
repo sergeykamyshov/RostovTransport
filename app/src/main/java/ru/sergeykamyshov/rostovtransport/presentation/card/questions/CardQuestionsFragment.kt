@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.card_questions_card_layout.view.*
 import kotlinx.android.synthetic.main.card_questions_first_card_layout.view.*
 import kotlinx.android.synthetic.main.fragment_card_questions.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 

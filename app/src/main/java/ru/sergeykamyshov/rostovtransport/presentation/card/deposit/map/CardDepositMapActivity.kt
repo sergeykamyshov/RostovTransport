@@ -16,7 +16,7 @@ import com.google.gson.Gson
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.Const
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 
 class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

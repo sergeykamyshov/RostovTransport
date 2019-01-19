@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.recycler_item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
 import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
-import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
+import ru.sergeykamyshov.rostovtransport.data.models.help.Help
 
 class BaseAdapter(
         var context: FragmentActivity?,

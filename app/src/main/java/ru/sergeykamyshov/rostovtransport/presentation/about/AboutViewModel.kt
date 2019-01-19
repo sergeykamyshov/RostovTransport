@@ -1,19 +1,19 @@
 package ru.sergeykamyshov.rostovtransport.presentation.about
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
+import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
+import ru.sergeykamyshov.rostovtransport.data.models.about.About
 
 class AboutViewModel : ViewModel() {
 
-    val restService: RestService = App.restService
+    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
     private var data = MutableLiveData<About>()
 
     init {
@@ -25,7 +25,7 @@ class AboutViewModel : ViewModel() {
     }
 
     fun loadData() {
-        val call = restService.getAbout()
+        val call = jsonDataApi.getAbout()
         call.enqueue(object : Callback<About> {
             override fun onResponse(call: Call<About>?, response: Response<About>?) {
                 data.postValue(response?.body())

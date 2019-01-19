@@ -1,20 +1,20 @@
-package ru.sergeykamyshov.rostovtransport.data.network
+package ru.sergeykamyshov.rostovtransport.data.json
 
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardInfo
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
-import ru.sergeykamyshov.rostovtransport.data.network.model.help.Help
-import ru.sergeykamyshov.rostovtransport.data.network.model.online.Transport
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
-import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
+import ru.sergeykamyshov.rostovtransport.data.models.about.About
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardInfo
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions
+import ru.sergeykamyshov.rostovtransport.data.models.help.Help
+import ru.sergeykamyshov.rostovtransport.data.models.online.Transport
+import ru.sergeykamyshov.rostovtransport.data.models.routes.RouteInfo
+import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.models.schedule.Directions
 
-interface RestService {
+interface JsonDataApi {
 
     // Маршруты
     @GET("routes/{transport}/{transport}.json")

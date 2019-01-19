@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map.CardDepositMapActivity
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 

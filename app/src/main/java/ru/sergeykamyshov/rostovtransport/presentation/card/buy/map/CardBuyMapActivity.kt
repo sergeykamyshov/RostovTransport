@@ -15,7 +15,7 @@ import com.google.gson.Gson
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.Const
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
 
 class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 

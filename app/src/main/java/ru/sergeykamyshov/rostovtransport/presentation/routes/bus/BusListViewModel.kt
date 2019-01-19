@@ -7,13 +7,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.routes.Routes
+import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
+import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
 import ru.sergeykamyshov.rostovtransport.presentation.routes.base.BaseViewModel
 
 class BusListViewModel : BaseViewModel() {
 
-    val restService: RestService = App.restService
+    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
     private var data = MutableLiveData<List<Routes.Route>>()
 
     override fun getData(): LiveData<List<Routes.Route>> {
@@ -21,7 +21,7 @@ class BusListViewModel : BaseViewModel() {
     }
 
     override fun loadData() {
-        val call = restService.getRoutesFor("bus")
+        val call = jsonDataApi.getRoutesFor("bus")
         call.enqueue(object : Callback<Routes> {
             override fun onResponse(call: Call<Routes>?, response: Response<Routes>?) {
                 val routes = response?.body()

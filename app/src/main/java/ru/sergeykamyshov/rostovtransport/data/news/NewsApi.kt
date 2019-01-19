@@ -1,12 +1,12 @@
-package ru.sergeykamyshov.rostovtransport.data.network
+package ru.sergeykamyshov.rostovtransport.data.news
 
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.post.Post
+import ru.sergeykamyshov.rostovtransport.data.models.news.News
+import ru.sergeykamyshov.rostovtransport.data.models.news.post.Post
 
-interface NewsRestService {
+interface NewsApi {
 
     @GET("/?json=get_recent_posts")
     fun getRecentNews(): Call<News>

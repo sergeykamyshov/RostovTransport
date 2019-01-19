@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.data.network.model.online
+package ru.sergeykamyshov.rostovtransport.data.models.online
 
 import com.google.gson.annotations.SerializedName
 import java.util.*

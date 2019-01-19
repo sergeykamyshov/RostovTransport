@@ -8,13 +8,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions.Question
+import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions.Question
 
 class CardQuestionsViewModel : ViewModel() {
 
-    val restService: RestService = App.restService
+    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
     private var data = MutableLiveData<List<Question>>()
 
     fun getData(): LiveData<List<Question>> {
@@ -22,7 +22,7 @@ class CardQuestionsViewModel : ViewModel() {
     }
 
     fun loadData() {
-        val call = restService.getCardQuestions()
+        val call = jsonDataApi.getCardQuestions()
         call.enqueue(object : Callback<CardQuestions> {
             override fun onResponse(call: Call<CardQuestions>?, response: Response<CardQuestions>?) {
                 val cardQuestions = response?.body()
