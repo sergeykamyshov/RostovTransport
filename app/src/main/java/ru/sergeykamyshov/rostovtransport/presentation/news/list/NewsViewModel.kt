@@ -1,38 +1,39 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.news.NewsApi
-import ru.sergeykamyshov.rostovtransport.data.models.news.News
-import ru.sergeykamyshov.rostovtransport.data.models.news.News.Post
+import ru.sergeykamyshov.rostovtransport.domain.news.GetRecentNews
+import ru.sergeykamyshov.rostovtransport.domain.news.Post
+import timber.log.Timber
 
 class NewsViewModel : ViewModel() {
 
-    val api: NewsApi = App.provider.apiProvider.newsApi
+    private val getRecentNews: GetRecentNews = App.provider.useCase.getRecentNews
     private var data = MutableLiveData<List<Post>>()
+    private lateinit var disposable: Disposable
 
     fun getData(): LiveData<List<Post>> {
         return data
     }
 
     fun loadData() {
-        val call = api.getRecentNews()
-        call.enqueue(object : Callback<News> {
-            override fun onResponse(call: Call<News>?, response: Response<News>?) {
-                val news = response?.body()
-                data.postValue(news?.posts)
-            }
-
-            override fun onFailure(call: Call<News>?, t: Throwable?) {
-                Log.i("NewsFragment", "Failed to get recent posts: $t")
-            }
-        })
+        disposable = getRecentNews.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data.postValue(it)
+                }, {
+                    Timber.d(it)
+                })
     }
 
+    override fun onCleared() {
+        disposable.dispose()
+        super.onCleared()
+    }
 }

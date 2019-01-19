@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.models.card.CardInfo
 
 class CardInfoViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<CardInfo>()
 
     fun getData(): LiveData<CardInfo> {

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.models.news.News.Post
+import ru.sergeykamyshov.rostovtransport.domain.news.Post
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
@@ -51,7 +51,7 @@ class NewsAdapter(
 
         // Внимание! В заголовках статей могут быть указаны html теги
         holder.newsTitle?.text = Html.fromHtml(post.title)
-        holder.newsAuthor?.text = post.author.name
+        holder.newsAuthor?.text = post.authorName
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
         holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)

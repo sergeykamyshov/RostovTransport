@@ -35,7 +35,7 @@ class PostActivity : AppCompatActivity() {
         viewModel.getData().observe(this, Observer {
             url = it?.url.toString()
 
-            Picasso.get().load(it?.thumbnailImages?.medium?.url)
+            Picasso.get().load(it?.thumbnailMedium)
                     .resize(300, 150)
                     .centerCrop()
                     .into(img_post_title)

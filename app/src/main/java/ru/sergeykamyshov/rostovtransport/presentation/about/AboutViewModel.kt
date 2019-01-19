@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.models.about.About
 
 class AboutViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<About>()
 
     init {

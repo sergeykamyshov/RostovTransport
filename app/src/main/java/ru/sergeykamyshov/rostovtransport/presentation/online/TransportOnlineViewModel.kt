@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit
 class TransportOnlineViewModel : ViewModel() {
 
     private val mUpdateInterval: Long = 5
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var mTransportList = MutableLiveData<List<Transport.Item>>()
-    val onlineTransportApi: OnlineTransportApi = App.provider.apiProvider.onlineTransportApi
+    val onlineTransportApi: OnlineTransportApi = App.provider.api.onlineTransportApi
     private var mTransportOnline = MutableLiveData<List<TransportOnline>>()
     private var isRunning = true
 

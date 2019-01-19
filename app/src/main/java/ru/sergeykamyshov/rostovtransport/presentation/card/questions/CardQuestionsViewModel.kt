@@ -14,7 +14,7 @@ import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions.Question
 
 class CardQuestionsViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<List<Question>>()
 
     fun getData(): LiveData<List<Question>> {

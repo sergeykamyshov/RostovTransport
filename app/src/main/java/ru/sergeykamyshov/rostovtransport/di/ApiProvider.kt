@@ -1,12 +1,11 @@
 package ru.sergeykamyshov.rostovtransport.di
 
-import android.content.Context
 import ru.sergeykamyshov.rostovtransport.data.Network
 import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
 import ru.sergeykamyshov.rostovtransport.data.news.NewsApi
 import ru.sergeykamyshov.rostovtransport.data.online.OnlineTransportApi
 
-class ApiProvider(context: Context, network: Network) {
+class ApiProvider(network: Network) {
 
     val newsApi: NewsApi =
             network.newsRetrofit.create(NewsApi::class.java)

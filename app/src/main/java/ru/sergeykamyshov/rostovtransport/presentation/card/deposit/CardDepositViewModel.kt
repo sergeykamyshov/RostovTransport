@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 
 class CardDepositViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<List<CardDeposit.Address>>()
 
     fun getData(): LiveData<List<CardDeposit.Address>> {

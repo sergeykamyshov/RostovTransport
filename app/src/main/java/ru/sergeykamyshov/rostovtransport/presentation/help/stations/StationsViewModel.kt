@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseViewModel
 
 class StationsViewModel : BaseViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<List<Help.Contact>>()
 
     override fun getData(): LiveData<List<Help.Contact>> {

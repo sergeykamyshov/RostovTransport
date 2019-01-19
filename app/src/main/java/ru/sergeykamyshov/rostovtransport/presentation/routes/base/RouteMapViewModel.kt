@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.models.routes.RouteInfo
 
 class RouteMapViewModel(var type: String, var id: String) : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<RouteInfo>()
 
     fun getData(): LiveData<RouteInfo> {

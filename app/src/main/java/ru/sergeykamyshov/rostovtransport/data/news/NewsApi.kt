@@ -1,17 +1,15 @@
 package ru.sergeykamyshov.rostovtransport.data.news
 
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.sergeykamyshov.rostovtransport.data.models.news.News
-import ru.sergeykamyshov.rostovtransport.data.models.news.post.Post
 
 interface NewsApi {
 
     @GET("/?json=get_recent_posts")
-    fun getRecentNews(): Call<News>
+    fun getRecentNews(): Single<NewsResponse>
 
     @GET("/?json=get_post")
-    fun getPostById(@Query("post_id") id: String): Call<Post>
+    fun getPost(@Query("post_id") id: String): Single<PostResponse>
 
 }

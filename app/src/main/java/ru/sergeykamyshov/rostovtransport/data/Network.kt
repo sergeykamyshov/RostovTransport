@@ -2,6 +2,7 @@ package ru.sergeykamyshov.rostovtransport.data
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Network {
@@ -19,6 +20,7 @@ class Network {
         val gson = GsonBuilder().setDateFormat(DATE_FORMAT).create()
         newsRetrofit = Retrofit.Builder()
                 .baseUrl(NEWS_BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
         jsonDataRetrofit = Retrofit.Builder()

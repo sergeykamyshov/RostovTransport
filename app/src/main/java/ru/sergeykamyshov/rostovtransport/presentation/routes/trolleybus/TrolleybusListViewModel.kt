@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.base.BaseViewModel
 
 class TrolleybusListViewModel : BaseViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<List<Routes.Route>>()
 
     override fun getData(): LiveData<List<Routes.Route>> {

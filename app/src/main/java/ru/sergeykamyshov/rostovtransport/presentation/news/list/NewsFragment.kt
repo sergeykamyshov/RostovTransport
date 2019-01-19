@@ -35,9 +35,7 @@ class NewsFragment : BaseFragment(), OnItemClickListener {
 
         val viewModel = ViewModelProviders.of(activity as MainActivity).get(NewsViewModel::class.java)
         viewModel.getData().observe(this, Observer {
-            if (it != null) {
-                adapter.updateData(it)
-            }
+            adapter.updateData(it)
             view.news_progress.visibility = View.GONE
         })
         viewModel.loadData()

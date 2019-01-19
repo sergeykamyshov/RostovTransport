@@ -5,7 +5,9 @@ import ru.sergeykamyshov.rostovtransport.data.Network
 
 class Provider(context: Context) {
 
-    val network = Network()
-    val apiProvider = ApiProvider(context, network)
+    private val network = Network()
+    val api = ApiProvider(network)
+    private val dataSource = DataSourceProvider(api)
+    val useCase = UseCaseProvider(dataSource)
 
 }

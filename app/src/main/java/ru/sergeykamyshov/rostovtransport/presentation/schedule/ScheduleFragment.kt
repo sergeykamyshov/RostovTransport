@@ -19,7 +19,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.schedule.city.CitySchedule
 
 class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
-    val jsonDataApi = App.provider.apiProvider.jsonDataApi
+    val jsonDataApi = App.provider.api.jsonDataApi
     lateinit var adapter: ScheduleAdapter
 
     companion object {
