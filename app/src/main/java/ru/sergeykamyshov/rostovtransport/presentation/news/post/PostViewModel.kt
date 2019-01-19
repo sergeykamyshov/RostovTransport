@@ -14,29 +14,40 @@ class PostViewModel(private var id: String) : ViewModel() {
 
     private val getPost = App.provider.useCase.getPost
     private var data = MutableLiveData<Post>()
+    private var loading = MutableLiveData<Boolean>()
+    private var error = MutableLiveData<Boolean>()
+
     private lateinit var disposable: Disposable
 
     init {
         loadData()
     }
 
-    fun getData(): LiveData<Post> {
-        return data
-    }
+    fun getData(): LiveData<Post> = data
+    fun isLoading(): LiveData<Boolean> = loading
+    fun isError(): LiveData<Boolean> = error
 
     fun loadData() {
         disposable = getPost.execute(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    loading.value = false
                     data.postValue(it)
                 }, {
-                    Timber.d(it)
+                    Timber.e(it)
+                    loading.value = false
+                    error.value = true
                 })
     }
 
     override fun onCleared() {
         disposable.dispose()
         super.onCleared()
+    }
+
+    fun initError(throwable: Throwable) {
+        Timber.e(throwable)
+        error.value = true
     }
 }
