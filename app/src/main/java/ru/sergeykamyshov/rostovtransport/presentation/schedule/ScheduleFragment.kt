@@ -10,11 +10,11 @@ import kotlinx.android.synthetic.main.fragment_schedule.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
-import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.presentation.schedule.city.CityScheduleActivity
 
 class ScheduleFragment : BaseFragment(), OnItemClickListener {
@@ -37,7 +37,7 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         schedule_recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         schedule_recycler.setHasFixedSize(true)
 
-        val call = (activity as MainActivity).restService.getDirections()
+        val call = App.restService.getDirections()
 
         call.enqueue(object : Callback<Directions> {
             override fun onResponse(call: Call<Directions>?, response: Response<Directions>?) {

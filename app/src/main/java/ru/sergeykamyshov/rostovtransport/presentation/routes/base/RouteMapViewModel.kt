@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.routes.RouteInfo
 
 class RouteMapViewModel(var type: String, var id: String) : ViewModel() {
 
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var data = MutableLiveData<RouteInfo>()
 
     fun getData(): LiveData<RouteInfo> {

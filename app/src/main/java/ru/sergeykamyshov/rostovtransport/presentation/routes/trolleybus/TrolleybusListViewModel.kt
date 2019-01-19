@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.base.BaseViewModel
 
 class TrolleybusListViewModel : BaseViewModel() {
 
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var data = MutableLiveData<List<Routes.Route>>()
 
     override fun getData(): LiveData<List<Routes.Route>> {

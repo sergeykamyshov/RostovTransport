@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit
 class TransportOnlineViewModel : ViewModel() {
 
     private val mUpdateInterval: Long = 5
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var mTransportList = MutableLiveData<List<Transport.Item>>()
-    val onlineRestService: OnlineRestService = App.createOnlineRestService()
+    val onlineRestService: OnlineRestService = App.onlineRestService
     private var mTransportOnline = MutableLiveData<List<TransportOnline>>()
     private var isRunning = true
 

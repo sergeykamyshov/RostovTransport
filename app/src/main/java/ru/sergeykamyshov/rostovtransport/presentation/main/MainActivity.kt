@@ -5,20 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
-import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
 import ru.sergeykamyshov.rostovtransport.presentation.about.AboutFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.presentation.complain.ComplainFragment
 import ru.sergeykamyshov.rostovtransport.presentation.help.HelpFragment
 import ru.sergeykamyshov.rostovtransport.presentation.news.list.NewsFragment
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var restService: RestService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +35,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        // Dagger
-        App.daggerComponent.inject(this)
 
         if (supportFragmentManager.findFragmentById(R.id.flContainer) != null) {
             // Восстанавливаем фрагмент после поворота экрана

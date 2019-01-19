@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.about.About
 
 class AboutViewModel : ViewModel() {
 
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var data = MutableLiveData<About>()
 
     init {

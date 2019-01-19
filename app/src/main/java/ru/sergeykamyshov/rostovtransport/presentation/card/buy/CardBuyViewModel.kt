@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
 
 class CardBuyViewModel : ViewModel() {
 
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var data = MutableLiveData<List<CardBuy.Address>>()
 
     fun getData(): LiveData<List<CardBuy.Address>> {

@@ -14,7 +14,7 @@ import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
 
 class NewsViewModel : ViewModel() {
 
-    val restService: NewsRestService = App.createNewsRestService()
+    val restService: NewsRestService = App.newsRestService
     private var data = MutableLiveData<List<Post>>()
 
     fun getData(): LiveData<List<Post>> {

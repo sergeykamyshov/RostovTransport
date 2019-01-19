@@ -7,8 +7,6 @@ import com.google.gson.GsonBuilder
 import io.fabric.sdk.android.Fabric
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.sergeykamyshov.rostovtransport.dagger.AppComponent
-import ru.sergeykamyshov.rostovtransport.dagger.DaggerAppComponent
 import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
 import ru.sergeykamyshov.rostovtransport.data.network.OnlineRestService
 import ru.sergeykamyshov.rostovtransport.data.network.RestService
@@ -25,20 +23,10 @@ class App : Application() {
         lateinit var retrofit: Retrofit
         lateinit var retrofitNews: Retrofit
         lateinit var retrofitOnline: Retrofit
-        lateinit var daggerComponent: AppComponent
+        lateinit var restService: RestService
+        lateinit var newsRestService: NewsRestService
+        lateinit var onlineRestService: OnlineRestService
         lateinit var firebaseAnalytics: FirebaseAnalytics
-
-        fun createRestService(): RestService {
-            return retrofit.create(RestService::class.java)
-        }
-
-        fun createNewsRestService(): NewsRestService {
-            return retrofitNews.create(NewsRestService::class.java)
-        }
-
-        fun createOnlineRestService(): OnlineRestService {
-            return retrofitOnline.create(OnlineRestService::class.java)
-        }
     }
 
     override fun onCreate() {
@@ -54,17 +42,17 @@ class App : Application() {
                 .baseUrl(BITBUCKET_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
+        restService = retrofit.create(RestService::class.java)
         retrofitNews = Retrofit.Builder()
                 .baseUrl(NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
+        newsRestService = retrofitNews.create(NewsRestService::class.java)
         retrofitOnline = Retrofit.Builder()
                 .baseUrl(ONLINE_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-
-        // Dagger
-        daggerComponent = DaggerAppComponent.create()
+        onlineRestService = retrofitOnline.create(OnlineRestService::class.java)
 
         // FirebaseAnalytics
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)

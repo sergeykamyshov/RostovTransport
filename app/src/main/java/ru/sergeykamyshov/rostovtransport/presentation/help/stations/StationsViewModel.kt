@@ -13,7 +13,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseViewModel
 
 class StationsViewModel : BaseViewModel() {
 
-    val restService: RestService = App.createRestService()
+    val restService: RestService = App.restService
     private var data = MutableLiveData<List<Help.Contact>>()
 
     override fun getData(): LiveData<List<Help.Contact>> {
