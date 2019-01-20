@@ -1,13 +1,13 @@
 package ru.sergeykamyshov.rostovtransport
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import io.fabric.sdk.android.Fabric
 import ru.sergeykamyshov.rostovtransport.di.Provider
 import timber.log.Timber
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
