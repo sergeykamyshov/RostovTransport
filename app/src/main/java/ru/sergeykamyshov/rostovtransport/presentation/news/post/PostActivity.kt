@@ -57,6 +57,7 @@ class PostActivity : AppCompatActivity() {
     private fun observeError(viewModel: PostViewModel) {
         viewModel.isError().observe(this, Observer { error ->
             if (error) {
+                img_placeholder.show()
                 Snackbar.make(
                         vContainer,
                         getString(R.string.error_news_post_loading),

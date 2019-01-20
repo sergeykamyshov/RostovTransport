@@ -100,5 +100,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             />
+
+        <ImageView
+            android:id="@+id/img_placeholder"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:srcCompat="@drawable/img_placeholder_content"
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
