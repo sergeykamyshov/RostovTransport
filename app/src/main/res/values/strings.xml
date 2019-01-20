@@ -114,4 +114,5 @@
 
     <!--Ошибки-->
     <string name="error_loading">Ошибка при загрузке</string>
+    <string name="error_no_email_client">Приложение для почты не найдено</string>
 </resources>
