@@ -19,10 +19,6 @@ class PostViewModel(private var id: String) : ViewModel() {
 
     private lateinit var disposable: Disposable
 
-    init {
-        loadData()
-    }
-
     fun getData(): LiveData<Post> = data
     fun isLoading(): LiveData<Boolean> = loading
     fun isError(): LiveData<Boolean> = error

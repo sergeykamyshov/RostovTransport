@@ -17,11 +17,11 @@ import java.util.*
 
 class NewsAdapter(
         var context: FragmentActivity?,
-        var items: List<Post>,
         var listener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private val layoutInflater = context?.layoutInflater
+    private var items: List<Post> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
@@ -33,7 +33,7 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val post = items.get(position)
+        val post = items[position]
         if (post.thumbnail?.isNotEmpty()!!) {
             Picasso.get()
                     .load(post.thumbnail)

@@ -29,11 +29,11 @@ class PostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val contentView = DataBindingUtil.setContentView<ActivityPostBinding>(
+        val binding = DataBindingUtil.setContentView<ActivityPostBinding>(
                 this,
                 R.layout.activity_post
         )
-        contentView.setLifecycleOwner(this)
+        binding.setLifecycleOwner(this)
 
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -41,11 +41,13 @@ class PostActivity : AppCompatActivity() {
         val id = intent.getStringExtra(POST_ID_EXTRA)
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id))
                 .get(PostViewModel::class.java)
-        contentView.viewModel = viewModel
+        binding.viewModel = viewModel
 
+        observeData(viewModel)
         observeLoading(viewModel)
         observeError(viewModel)
-        observeData(viewModel)
+
+        viewModel.loadData()
     }
 
     private fun observeLoading(viewModel: PostViewModel) {
@@ -60,7 +62,7 @@ class PostActivity : AppCompatActivity() {
                 img_placeholder.show()
                 Snackbar.make(
                         vContainer,
-                        getString(R.string.error_news_post_loading),
+                        getString(R.string.error_loading),
                         Snackbar.LENGTH_LONG
                 ).setAction(
                         getString(R.string.common_action_repeat)
@@ -72,6 +74,8 @@ class PostActivity : AppCompatActivity() {
 
     private fun observeData(viewModel: PostViewModel) {
         viewModel.getData().observe(this, Observer {
+            img_placeholder.hide()
+
             url = it?.url.toString()
 
             Picasso.get().load(it?.thumbnailMedium)

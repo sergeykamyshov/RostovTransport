@@ -15,20 +15,25 @@ class NewsViewModel : ViewModel() {
 
     private val getRecentNews: GetRecentNews = App.provider.useCase.getRecentNews
     private var data = MutableLiveData<List<Post>>()
+    private var loading = MutableLiveData<Boolean>()
+    private var error = MutableLiveData<Boolean>()
     private lateinit var disposable: Disposable
 
-    fun getData(): LiveData<List<Post>> {
-        return data
-    }
+    fun getData(): LiveData<List<Post>> = data
+    fun isLoading(): LiveData<Boolean> = loading
+    fun isError(): LiveData<Boolean> = error
 
     fun loadData() {
         disposable = getRecentNews.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    loading.value = false
                     data.postValue(it)
                 }, {
                     Timber.d(it)
+                    loading.value = false
+                    error.value = true
                 })
     }
 
