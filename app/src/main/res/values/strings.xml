@@ -6,7 +6,8 @@
     <string name="fabric_crashlytics_api_key">Insert your API key here</string>
 
     <!--Общие-->
-    <string name="common_send">Отправить</string>
+    <string name="common_action_send">Отправить</string>
+    <string name="common_action_repeat">Повторить</string>
 
     <!--Заголовки-->
     <string name="title_news">Новости</string>
@@ -110,4 +111,8 @@
     <string name="about_important_title">Важно понимать!</string>
     <string name="about_contacts_title">Контакты</string>
     <string name="about_full_desc_title">Подробнее о проекте</string>
+
+    <!--Ошибки-->
+    <string name="error_loading">Ошибка при загрузке</string>
+    <string name="error_no_email_client">Приложение для почты не найдено</string>
 </resources>

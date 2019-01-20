@@ -15,8 +15,9 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map.CardDepositMapActivity
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
@@ -42,7 +43,7 @@ class CardDepositFragment : Fragment() {
                 addresses = it
                 adapter.updateData(it)
             }
-            view.card_deposit_progress.visibility = View.GONE
+            view.card_deposit_progress.hide()
         })
         viewModel.loadData()
 

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_schedule.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.schedule.Direction
+import ru.sergeykamyshov.rostovtransport.data.models.schedule.Direction
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 
 class ScheduleAdapter(

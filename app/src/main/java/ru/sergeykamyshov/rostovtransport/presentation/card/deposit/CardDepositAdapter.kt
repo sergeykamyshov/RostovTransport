@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 
 class CardDepositAdapter(
         var context: FragmentActivity?,

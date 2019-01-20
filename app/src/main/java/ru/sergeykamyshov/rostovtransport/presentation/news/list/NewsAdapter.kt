@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.news.News.Post
+import ru.sergeykamyshov.rostovtransport.domain.news.Post
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsAdapter(
         var context: FragmentActivity?,
-        var items: List<Post>,
         var listener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private val layoutInflater = context?.layoutInflater
+    private var items: List<Post> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
@@ -33,7 +33,7 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val post = items.get(position)
+        val post = items[position]
         if (post.thumbnail?.isNotEmpty()!!) {
             Picasso.get()
                     .load(post.thumbnail)
@@ -51,7 +51,7 @@ class NewsAdapter(
 
         // Внимание! В заголовках статей могут быть указаны html теги
         holder.newsTitle?.text = Html.fromHtml(post.title)
-        holder.newsAuthor?.text = post.author.name
+        holder.newsAuthor?.text = post.authorName
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
         holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)

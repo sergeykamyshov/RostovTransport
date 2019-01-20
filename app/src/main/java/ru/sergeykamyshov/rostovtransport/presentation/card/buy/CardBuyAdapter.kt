@@ -7,7 +7,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
 
 class CardBuyAdapter(
         var context: FragmentActivity?,
@@ -26,7 +27,7 @@ class CardBuyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.desc.text = item.desc
-        if (item.note.isEmpty()) holder.note.visibility = View.GONE else holder.note.text = item.note
+        if (item.note.isEmpty()) holder.note.hide() else holder.note.text = item.note
     }
 
     fun updateData(data: List<CardBuy.Address>) {

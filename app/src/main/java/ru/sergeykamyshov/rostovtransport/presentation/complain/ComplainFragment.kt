@@ -39,8 +39,8 @@ class ComplainFragment : BaseFragment(), Contract.View {
         presenter = ComplainPresenter()
         presenter.attachView(this)
 
-        view.btn_generate_complain.setOnClickListener {
-            initSendingComplain()
+        view.btn_send_complain.setOnClickListener {
+            presenter.sendComplaint()
         }
 
         // Настраиваем выбор времени
@@ -103,10 +103,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
                 violations[position].checked = true
             }
         }
-    }
-
-    private fun initSendingComplain() {
-        presenter.sendComplaint()
     }
 
     override fun getTransportTypeTitle(): String {
@@ -187,10 +183,17 @@ class ComplainFragment : BaseFragment(), Contract.View {
                 .putCustomAttribute("transport_type", getTransportTypeString())
                 .putCustomAttribute("route_number", getRouteString().toLowerCase())
         )
-        activity?.sendEmail(
+        val result = activity?.sendEmail(
                 getString(R.string.complain_email),
                 getString(R.string.complain_email_subject),
                 text)
+        if (result != null && !result) {
+            Toast.makeText(
+                    activity,
+                    getString(R.string.error_no_email_client),
+                    Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     companion object {

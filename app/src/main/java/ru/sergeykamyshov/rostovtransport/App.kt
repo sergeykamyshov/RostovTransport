@@ -1,64 +1,33 @@
 package ru.sergeykamyshov.rostovtransport
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.gson.GsonBuilder
 import io.fabric.sdk.android.Fabric
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import ru.sergeykamyshov.rostovtransport.data.network.NewsRestService
-import ru.sergeykamyshov.rostovtransport.data.network.OnlineRestService
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
+import ru.sergeykamyshov.rostovtransport.di.Provider
 import timber.log.Timber
 
-class App : Application() {
-
-    val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/api/1.0/"
-    val NEWS_BASE_URL: String = "http://rostov-transport.info"
-    val ONLINE_BASE_URL: String = "http://bus.perseus.su"
-    val JSON_DATE_FORMAT: String = "dd.MM.yyyy"
-
-    companion object {
-        lateinit var retrofit: Retrofit
-        lateinit var retrofitNews: Retrofit
-        lateinit var retrofitOnline: Retrofit
-        lateinit var restService: RestService
-        lateinit var newsRestService: NewsRestService
-        lateinit var onlineRestService: OnlineRestService
-        lateinit var firebaseAnalytics: FirebaseAnalytics
-    }
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+
+        provider = Provider(this)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
 
-        // Retrofit
-        val gson = GsonBuilder().setDateFormat(JSON_DATE_FORMAT).create()
-        retrofit = Retrofit.Builder()
-                .baseUrl(BITBUCKET_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-        restService = retrofit.create(RestService::class.java)
-        retrofitNews = Retrofit.Builder()
-                .baseUrl(NEWS_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-        newsRestService = retrofitNews.create(NewsRestService::class.java)
-        retrofitOnline = Retrofit.Builder()
-                .baseUrl(ONLINE_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-        onlineRestService = retrofitOnline.create(OnlineRestService::class.java)
-
-        // FirebaseAnalytics
+        // Firebase Analytics
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
-        // Crashlytics
+        // Fabric Crashlytics
         Fabric.with(this, Crashlytics())
+    }
+
+    companion object {
+        lateinit var provider: Provider
+        lateinit var firebaseAnalytics: FirebaseAnalytics
     }
 
 }

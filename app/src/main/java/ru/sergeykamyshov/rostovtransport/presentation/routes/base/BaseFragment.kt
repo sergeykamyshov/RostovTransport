@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 
 abstract class BaseFragment : Fragment(), OnItemClickListener {
 
@@ -28,7 +29,7 @@ abstract class BaseFragment : Fragment(), OnItemClickListener {
         liveData.observe(this, Observer {
             if (it != null) {
                 adapter.updateData(it)
-                view.routes_progress.visibility = View.GONE
+                view.routes_progress.hide()
             }
         })
         viewModel.loadData()

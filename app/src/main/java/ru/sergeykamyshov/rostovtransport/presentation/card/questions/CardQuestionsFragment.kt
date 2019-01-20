@@ -11,7 +11,9 @@ import kotlinx.android.synthetic.main.card_questions_card_layout.view.*
 import kotlinx.android.synthetic.main.card_questions_first_card_layout.view.*
 import kotlinx.android.synthetic.main.fragment_card_questions.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardQuestions
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
+import ru.sergeykamyshov.rostovtransport.base.extentions.show
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 
@@ -29,8 +31,8 @@ class CardQuestionsFragment : Fragment() {
             if (it != null) {
                 createLayoutAndFillData(it)
 
-                card_questions_progress.visibility = View.GONE
-                ll_card_questions_content.visibility = View.VISIBLE
+                card_questions_progress.hide()
+                ll_card_questions_content.show()
             }
         })
         viewModel.loadData()

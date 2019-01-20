@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.info
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,12 +7,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.network.RestService
-import ru.sergeykamyshov.rostovtransport.data.network.model.card.CardInfo
+import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
+import ru.sergeykamyshov.rostovtransport.data.models.card.CardInfo
 
 class CardInfoViewModel : ViewModel() {
 
-    val restService: RestService = App.restService
+    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
     private var data = MutableLiveData<CardInfo>()
 
     fun getData(): LiveData<CardInfo> {
@@ -21,16 +20,14 @@ class CardInfoViewModel : ViewModel() {
     }
 
     fun loadData() {
-        val call = restService.getCardInfo()
+        val call = jsonDataApi.getCardInfo()
         call.enqueue(object : Callback<CardInfo> {
             override fun onResponse(call: Call<CardInfo>?, response: Response<CardInfo>?) {
                 val info = response?.body()
-                Log.i("CardInfoViewModel", "Last update: ${info?.lastUpdate}")
                 data.postValue(info)
             }
 
             override fun onFailure(call: Call<CardInfo>?, t: Throwable?) {
-                Log.i("CardInfoViewModel", "Failed to get card info: $t")
             }
         })
     }
