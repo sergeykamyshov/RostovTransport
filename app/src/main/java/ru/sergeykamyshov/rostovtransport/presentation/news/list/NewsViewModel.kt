@@ -31,7 +31,7 @@ class NewsViewModel : ViewModel() {
                     loading.value = false
                     data.postValue(it)
                 }, {
-                    Timber.d(it)
+                    Timber.e(it)
                     loading.value = false
                     error.value = true
                 })

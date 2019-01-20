@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes.base
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,12 +24,10 @@ class RouteMapViewModel(var type: String, var id: String) : ViewModel() {
         call.enqueue(object : Callback<RouteInfo> {
             override fun onResponse(call: Call<RouteInfo>?, response: Response<RouteInfo>?) {
                 val routeInfo = response?.body()
-                Log.i("RouteMapViewModel", "Last update ${routeInfo?.lastUpdate}")
                 data.postValue(routeInfo)
             }
 
             override fun onFailure(call: Call<RouteInfo>?, t: Throwable?) {
-                Log.i("RouteMapViewModel", "Failed")
             }
         })
     }

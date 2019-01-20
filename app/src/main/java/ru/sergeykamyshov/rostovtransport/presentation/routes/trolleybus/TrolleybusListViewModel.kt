@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes.trolleybus
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -25,12 +24,10 @@ class TrolleybusListViewModel : BaseViewModel() {
         call.enqueue(object : Callback<Routes> {
             override fun onResponse(call: Call<Routes>?, response: Response<Routes>?) {
                 val routes = response?.body()
-                Log.i("TrolleybusListViewModel", "Last update: ${routes?.lastUpdate}")
                 data.postValue(routes?.routes)
             }
 
             override fun onFailure(call: Call<Routes>?, t: Throwable?) {
-                Log.i("TrolleybusListViewModel", "Failed to get routes: $t")
             }
         })
     }

@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.online
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +8,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
-import ru.sergeykamyshov.rostovtransport.data.online.OnlineTransportApi
 import ru.sergeykamyshov.rostovtransport.data.models.online.Transport
 import ru.sergeykamyshov.rostovtransport.data.models.online.TransportOnline
+import ru.sergeykamyshov.rostovtransport.data.online.OnlineTransportApi
 import java.util.concurrent.TimeUnit
 
 class TransportOnlineViewModel : ViewModel() {
@@ -32,12 +31,10 @@ class TransportOnlineViewModel : ViewModel() {
         call.enqueue(object : Callback<Transport> {
             override fun onResponse(call: Call<Transport>?, response: Response<Transport>?) {
                 val transportList = response?.body()
-                Log.i("TransportOnlineVM", "Last update: ${transportList?.lastUpdate}")
                 mTransportList.postValue(transportList?.transport)
             }
 
             override fun onFailure(call: Call<Transport>?, t: Throwable?) {
-                Log.i("TransportOnlineVM", "Failed to get transport list: $t")
             }
         })
     }
@@ -64,12 +61,10 @@ class TransportOnlineViewModel : ViewModel() {
     inner class OnlineRestServiceCallback : Callback<List<TransportOnline>> {
         override fun onResponse(call: Call<List<TransportOnline>>?, response: Response<List<TransportOnline>>?) {
             val transportOnline = response?.body()
-            Log.i("TransportOnlineVM", "Number of transport online: ${transportOnline?.size}")
             mTransportOnline.postValue(transportOnline)
         }
 
         override fun onFailure(call: Call<List<TransportOnline>>?, t: Throwable?) {
-            Log.i("TransportOnlineVM", "Failed to get transport online: $t")
         }
     }
 

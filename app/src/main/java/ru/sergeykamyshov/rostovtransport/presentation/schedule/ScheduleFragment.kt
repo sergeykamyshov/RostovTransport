@@ -2,7 +2,6 @@ package ru.sergeykamyshov.rostovtransport.presentation.schedule
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.data.models.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
@@ -42,17 +42,15 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
 
         call.enqueue(object : Callback<Directions> {
             override fun onResponse(call: Call<Directions>?, response: Response<Directions>?) {
-                Log.i("ScheduleNetworkTest", "Responce ${response?.isSuccessful}")
                 val body = response?.body()
                 val directions = body?.directions
                 if (directions != null) {
                     adapter.updateData(directions)
-                    schedule_progress.visibility = View.GONE
+                    schedule_progress.hide()
                 }
             }
 
             override fun onFailure(call: Call<Directions>?, t: Throwable?) {
-                Log.i("ScheduleNetworkTest", "Failed $t")
             }
         })
 

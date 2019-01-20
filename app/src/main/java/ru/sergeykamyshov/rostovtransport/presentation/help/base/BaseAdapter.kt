@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
 import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
 import ru.sergeykamyshov.rostovtransport.data.models.help.Help
@@ -32,13 +33,13 @@ class BaseAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = items[position]
 
-        if (contact.name.isEmpty()) holder.name.visibility = View.GONE else holder.name.text = contact.name
-        if (contact.desc.isEmpty()) holder.desc.visibility = View.GONE else holder.desc.text = contact.desc
+        if (contact.name.isEmpty()) holder.name.hide() else holder.name.text = contact.name
+        if (contact.desc.isEmpty()) holder.desc.hide() else holder.desc.text = contact.desc
 
         // Подготавливаем адреса
         if (contact.address.isEmpty()) {
-            holder.address.visibility = View.GONE
-            holder.imgAddress.visibility = View.GONE
+            holder.address.hide()
+            holder.imgAddress.hide()
         } else {
             holder.address.text = contact.address
             holder.address.setOnClickListener {
@@ -49,7 +50,7 @@ class BaseAdapter(
         // Подготавливаем телефоны
         val phones = contact.phones
         if (phones.isEmpty()) {
-            holder.phonesLayout.visibility = View.GONE
+            holder.phonesLayout.hide()
         } else {
             holder.phonesLayout.removeAllViews()
 

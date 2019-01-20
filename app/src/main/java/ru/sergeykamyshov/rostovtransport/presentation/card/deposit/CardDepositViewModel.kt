@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.deposit
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,12 +24,10 @@ class CardDepositViewModel : ViewModel() {
         call.enqueue(object : Callback<CardDeposit> {
             override fun onResponse(call: Call<CardDeposit>?, response: Response<CardDeposit>?) {
                 val cardDeposit = response?.body()
-                Log.i("CardDepositViewModel", "Last update: ${cardDeposit?.lastUpdate}")
                 data.postValue(cardDeposit?.addresses)
             }
 
             override fun onFailure(call: Call<CardDeposit>?, t: Throwable?) {
-                Log.i("CardDepositViewModel", "Failed to get card deposit address: $t")
             }
         })
     }

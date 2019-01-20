@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help.stations
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -25,12 +24,10 @@ class StationsViewModel : BaseViewModel() {
         call.enqueue(object : Callback<Help> {
             override fun onResponse(call: Call<Help>?, response: Response<Help>?) {
                 val help = response?.body()
-                Log.i("StationsViewModel", "Last update: ${help?.lastUpdate}")
                 data.postValue(help?.contacts)
             }
 
             override fun onFailure(call: Call<Help>?, t: Throwable?) {
-                Log.i("StationsViewModel", "Failed to get routes: $t")
             }
         })
     }

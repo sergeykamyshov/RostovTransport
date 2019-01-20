@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.routes.shuttle
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -25,12 +24,10 @@ class ShuttleListViewModel : BaseViewModel() {
         call.enqueue(object : Callback<Routes> {
             override fun onResponse(call: Call<Routes>?, response: Response<Routes>?) {
                 val routes = response?.body()
-                Log.i("ShuttleListViewModel", "Last update: ${routes?.lastUpdate}")
                 data.postValue(routes?.routes)
             }
 
             override fun onFailure(call: Call<Routes>?, t: Throwable?) {
-                Log.i("ShuttleListViewModel", "Failed to get routes: $t")
             }
         })
     }

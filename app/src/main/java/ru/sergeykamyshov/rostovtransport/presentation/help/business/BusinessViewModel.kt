@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help.business
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -25,12 +24,10 @@ class BusinessViewModel : BaseViewModel() {
         call.enqueue(object : Callback<Help> {
             override fun onResponse(call: Call<Help>?, response: Response<Help>?) {
                 val help = response?.body()
-                Log.i("BusinessViewModel", "Last update: ${help?.lastUpdate}")
                 data.postValue(help?.contacts)
             }
 
             override fun onFailure(call: Call<Help>?, t: Throwable?) {
-                Log.i("BusinessViewModel", "Failed to get routes: $t")
             }
         })
     }

@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.questions
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,12 +25,10 @@ class CardQuestionsViewModel : ViewModel() {
         call.enqueue(object : Callback<CardQuestions> {
             override fun onResponse(call: Call<CardQuestions>?, response: Response<CardQuestions>?) {
                 val cardQuestions = response?.body()
-                Log.i("CardQuestionsViewModel", "Last update: ${cardQuestions?.lastUpdate}")
                 data.postValue(cardQuestions?.questions)
             }
 
             override fun onFailure(call: Call<CardQuestions>?, t: Throwable?) {
-                Log.i("CardQuestionsViewModel", "Failed to get card questions: $t")
             }
         })
     }

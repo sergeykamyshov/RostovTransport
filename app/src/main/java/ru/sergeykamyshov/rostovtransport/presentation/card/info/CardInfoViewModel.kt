@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.info
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,12 +24,10 @@ class CardInfoViewModel : ViewModel() {
         call.enqueue(object : Callback<CardInfo> {
             override fun onResponse(call: Call<CardInfo>?, response: Response<CardInfo>?) {
                 val info = response?.body()
-                Log.i("CardInfoViewModel", "Last update: ${info?.lastUpdate}")
                 data.postValue(info)
             }
 
             override fun onFailure(call: Call<CardInfo>?, t: Throwable?) {
-                Log.i("CardInfoViewModel", "Failed to get card info: $t")
             }
         })
     }

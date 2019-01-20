@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.about
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,7 +31,6 @@ class AboutViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<About>?, t: Throwable?) {
-                Log.i("AboutViewModel", "Failed to get about.json")
             }
         })
     }
