@@ -10,6 +10,13 @@ class FileUtils {
 
     companion object {
 
+        fun getJson(context: Context, file: String): String {
+            return context.assets
+                    .open(file)
+                    .bufferedReader()
+                    .readText()
+        }
+
         fun getMd5Hash(context: Context, file: String): String {
             Timber.d("File $file")
             var inputStream: InputStream? = null
