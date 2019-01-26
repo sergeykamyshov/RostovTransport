@@ -7,7 +7,7 @@ class Provider(context: Context) {
 
     private val network = Network()
     val api = ApiProvider(network)
-    private val dataSource = DataSourceProvider(api)
+    private val dataSource = DataSourceProvider(context, api)
     val useCase = UseCaseProvider(dataSource)
 
 }

@@ -21,6 +21,7 @@ import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
 import ru.sergeykamyshov.rostovtransport.base.extentions.show
+import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
 import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
 
 class PostActivity : AppCompatActivity() {
@@ -48,6 +49,11 @@ class PostActivity : AppCompatActivity() {
         observeError(viewModel)
 
         viewModel.loadData()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        FileUtils.getMd5Hash(this, "help_departments.json")
     }
 
     private fun observeLoading(viewModel: PostViewModel) {
