@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -25,6 +26,7 @@
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
         app:labelVisibilityMode="unlabeled"
+        app:layout_behavior="ru.sergeykamyshov.rostovtransport.presentation.main.BottomNavigationBehavior"
         app:menu="@menu/menu_navigation"
         />
 
