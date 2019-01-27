@@ -8,7 +8,6 @@ import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardInfo
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardQuestions
-import ru.sergeykamyshov.rostovtransport.data.models.help.Help
 import ru.sergeykamyshov.rostovtransport.data.models.online.Transport
 import ru.sergeykamyshov.rostovtransport.data.models.routes.RouteInfo
 import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
@@ -30,10 +29,6 @@ interface JsonDataApi {
     // Транспорт онлайн
     @GET("online/transport_list.json")
     fun getTransportList(): Call<Transport>
-
-    // Справка
-    @GET("help/{help}.json")
-    fun getHelpFor(@Path("help") help: String): Call<Help>
 
     // Транспортная карта
     @GET("card/card_info.json")

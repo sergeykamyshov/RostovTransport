@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.presentation.about.AboutFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.presentation.complain.ComplainFragment
 import ru.sergeykamyshov.rostovtransport.presentation.help.HelpFragment
@@ -27,8 +28,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item_help -> startFragment(HelpFragment.newInstance())
                 R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance())
                 R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
-//                R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
-                R.id.nav_item_about -> startFragment(ru.sergeykamyshov.rostovtransport.presentation.help2.HelpFragment.newInstance())
+                R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
 //                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
 //                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
 //                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())

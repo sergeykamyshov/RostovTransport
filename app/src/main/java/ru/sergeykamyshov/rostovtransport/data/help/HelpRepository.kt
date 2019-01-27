@@ -10,7 +10,6 @@ import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
 import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 import ru.sergeykamyshov.rostovtransport.domain.help.HelpDataSource
-import timber.log.Timber
 
 class HelpRepository(
         private val context: Context,
@@ -20,22 +19,31 @@ class HelpRepository(
 
     private val gson = Gson()
 
-    override fun getDepartments() = getContacts(DEPARTMENTS_PREF, DEPARTMENTS_FILE)
+    override fun getDepartments() = getContacts(
+            DEPARTMENTS_TYPE,
+            DEPARTMENTS_PREF,
+            DEPARTMENTS_FILE
+    )
 
-    override fun getStations() = getContacts(STATIONS_PREF, STATIONS_FILE)
+    override fun getStations() = getContacts(
+            STATIONS_TYPE,
+            STATIONS_PREF,
+            STATIONS_FILE
+    )
 
-    override fun getBusiness() = getContacts(BUSINESS_PREF, BUSINESS_FILE)
+    override fun getBusiness() = getContacts(
+            BUSINESS_TYPE,
+            BUSINESS_PREF,
+            BUSINESS_FILE
+    )
 
-    private fun getContacts(hashPref: String, file: String): Single<List<Contact>> {
-        Timber.d("Start getDepartments")
+    private fun getContacts(type: String, hashPref: String, file: String): Single<List<Contact>> {
         return compareHash(hashPref, file)
                 .flatMap { equals ->
                     if (equals) {
-                        Timber.d("Condition YES - getFromDb()")
-                        getFromDb()
+                        getFromDb(type)
                     } else {
-                        Timber.d("Condition NO - updateAndGetFromDb()")
-                        updateAndGetFromDb(file)
+                        updateAndGetFromDb(type, hashPref, file)
                     }
                 }.map { it.map { item -> item.toContact() } }
     }
@@ -45,7 +53,6 @@ class HelpRepository(
                 getSavedHash(hashPref),
                 getFileHash(file),
                 BiFunction<String, String, Boolean> { savedHash, fileHash ->
-                    Timber.d("Saved hash=$savedHash, fileHash=$fileHash")
                     savedHash == fileHash
                 }
         )
@@ -59,40 +66,35 @@ class HelpRepository(
         return Single.just(FileUtils.getMd5Hash(context, file))
     }
 
-    private fun getFromDb(): Single<List<ContactEntity>> {
-        Timber.i("Start getFromDb")
-        return helpContactDao.getAll()
+    private fun getFromDb(type: String): Single<List<ContactEntity>> {
+        return helpContactDao.getByType(type)
     }
 
-    private fun updateAndGetFromDb(file: String): Single<List<ContactEntity>> {
-        Timber.i("Start updateAndGetFromDb")
-        return clearTable()
-                .andThen(getContractsFromJson())
-                .flatMap { convertToEntities(it) }
-                .flatMapCompletable { saveEntitiesToDb(it) }
+    private fun updateAndGetFromDb(type: String, hashPref: String, file: String): Single<List<ContactEntity>> {
+        return removeFromTable(type)
+                .andThen(getContractsFromJson(file))
+                .flatMap { contacts -> convertToEntities(contacts, type) }
+                .flatMapCompletable { entities -> saveEntitiesToDb(entities) }
                 .andThen(getFileHash(file))
-                .flatMapCompletable { saveHashToPrefs(it) }
-                .andThen(getFromDb())
+                .flatMapCompletable { hash -> saveHashToPrefs(hashPref, hash) }
+                .andThen(getFromDb(type))
     }
 
-    private fun clearTable(): Completable {
-        Timber.d("Clear table")
-        return helpContactDao.clear()
+    private fun removeFromTable(type: String): Completable {
+        return helpContactDao.removeByType(type)
     }
 
-    private fun getContractsFromJson(): Single<List<Contact>> {
+    private fun getContractsFromJson(file: String): Single<List<Contact>> {
         return Single.fromCallable {
-            val json = FileUtils.getJson(context, "help_departments.json")
-            val list = gson.fromJson(json, Array<Contact>::class.java).toList()
-            Timber.i("Parsed departments. ${list.size} items")
-            list
+            val json = FileUtils.getJson(context, file)
+            gson.fromJson(json, Array<Contact>::class.java).toList()
         }
     }
 
-    private fun convertToEntities(contacts: List<Contact>): Single<List<ContactEntity>> {
-        Timber.i("Convert contacts into entities. ${contacts.size} items")
+    private fun convertToEntities(contacts: List<Contact>, type: String): Single<List<ContactEntity>> {
         val entities = contacts.map {
             ContactEntity().apply {
+                this.type = type
                 name = it.name
                 desc = it.desc
                 phones = it.phones
@@ -105,24 +107,27 @@ class HelpRepository(
     }
 
     private fun saveEntitiesToDb(entities: List<ContactEntity>): Completable {
-        Timber.i("Insert Entity objects to table. Entities size = ${entities.size}")
         return helpContactDao.add(entities)
     }
 
-    private fun saveHashToPrefs(hash: String): Completable {
+    private fun saveHashToPrefs(hashPref: String, hash: String): Completable {
         return Completable.fromAction {
-            Timber.i("Insert file hash $hash to prefs")
-            cachePrefs.edit().putString("helpDepartmentsHash", hash).apply()
+            cachePrefs.edit().putString(hashPref, hash).apply()
         }
     }
 
     companion object {
+        const val DEPARTMENTS_TYPE = "Departments"
+        const val STATIONS_TYPE = "Stations"
+        const val BUSINESS_TYPE = "Business"
+
         const val DEPARTMENTS_PREF = "${BuildConfig.APPLICATION_ID}.DEPARTMENTS_HASH"
         const val STATIONS_PREF = "${BuildConfig.APPLICATION_ID}.STATIONS_HASH"
         const val BUSINESS_PREF = "${BuildConfig.APPLICATION_ID}.BUSINESS_HASH"
+
         const val DEPARTMENTS_FILE = "help_departments.json"
-        const val STATIONS_FILE = "help_departments.json"
-        const val BUSINESS_FILE = "help_departments.json"
+        const val STATIONS_FILE = "help_stations.json"
+        const val BUSINESS_FILE = "help_business.json"
     }
 
 }

@@ -12,11 +12,11 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
 import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
-import ru.sergeykamyshov.rostovtransport.data.models.help.Help
+import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 
 class BaseAdapter(
         var context: FragmentActivity?,
-        var items: List<Help.Contact>
+        var items: List<Contact>
 ) : RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
 
     private val layoutInflater = context?.layoutInflater
@@ -68,7 +68,7 @@ class BaseAdapter(
         }
     }
 
-    fun updateData(data: List<Help.Contact>) {
+    fun updateData(data: List<Contact>) {
         items = data
         notifyDataSetChanged()
     }

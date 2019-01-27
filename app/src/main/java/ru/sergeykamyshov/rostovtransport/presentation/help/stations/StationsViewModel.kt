@@ -2,34 +2,33 @@ package ru.sergeykamyshov.rostovtransport.presentation.help.stations
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
-import ru.sergeykamyshov.rostovtransport.data.models.help.Help
+import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseViewModel
+import timber.log.Timber
 
 class StationsViewModel : BaseViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
-    private var data = MutableLiveData<List<Help.Contact>>()
+    private val getStations = App.provider.useCase.getStations
+    private val data = MutableLiveData<List<Contact>>()
 
-    override fun getData(): LiveData<List<Help.Contact>> {
+    override fun getData(): LiveData<List<Contact>> {
         return data
     }
 
     override fun loadData() {
-        val call = jsonDataApi.getHelpFor("stations")
-        call.enqueue(object : Callback<Help> {
-            override fun onResponse(call: Call<Help>?, response: Response<Help>?) {
-                val help = response?.body()
-                data.postValue(help?.contacts)
-            }
-
-            override fun onFailure(call: Call<Help>?, t: Throwable?) {
-            }
-        })
+        disposable = getStations.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ contacts ->
+                    if (contacts.isNotEmpty()) {
+                        data.postValue(contacts)
+                    }
+                }, {
+                    Timber.e(it)
+                })
     }
 
 }

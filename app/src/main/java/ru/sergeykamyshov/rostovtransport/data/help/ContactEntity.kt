@@ -8,6 +8,7 @@ import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 class ContactEntity {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
+    lateinit var type: String
     lateinit var name: String
     lateinit var desc: String
     lateinit var phones: List<String>
