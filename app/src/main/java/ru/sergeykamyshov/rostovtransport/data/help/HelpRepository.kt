@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
 import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 import ru.sergeykamyshov.rostovtransport.domain.help.HelpDataSource
@@ -19,24 +20,30 @@ class HelpRepository(
 
     private val gson = Gson()
 
-    override fun getDepartments(): Single<List<Contact>> {
+    override fun getDepartments() = getContacts(DEPARTMENTS_PREF, DEPARTMENTS_FILE)
+
+    override fun getStations() = getContacts(STATIONS_PREF, STATIONS_FILE)
+
+    override fun getBusiness() = getContacts(BUSINESS_PREF, BUSINESS_FILE)
+
+    private fun getContacts(hashPref: String, file: String): Single<List<Contact>> {
         Timber.d("Start getDepartments")
-        return compareHash()
+        return compareHash(hashPref, file)
                 .flatMap { equals ->
                     if (equals) {
                         Timber.d("Condition YES - getFromDb()")
                         getFromDb()
                     } else {
                         Timber.d("Condition NO - updateAndGetFromDb()")
-                        updateAndGetFromDb()
+                        updateAndGetFromDb(file)
                     }
                 }.map { it.map { item -> item.toContact() } }
     }
 
-    private fun compareHash(): Single<Boolean> {
+    private fun compareHash(hashPref: String, file: String): Single<Boolean> {
         return Single.zip(
-                getSavedHash(),
-                getFileHash(),
+                getSavedHash(hashPref),
+                getFileHash(file),
                 BiFunction<String, String, Boolean> { savedHash, fileHash ->
                     Timber.d("Saved hash=$savedHash, fileHash=$fileHash")
                     savedHash == fileHash
@@ -44,12 +51,12 @@ class HelpRepository(
         )
     }
 
-    private fun getSavedHash(): Single<String> {
-        return Single.just(cachePrefs.getString("helpDepartmentsHash", ""))
+    private fun getSavedHash(hashPref: String): Single<String> {
+        return Single.just(cachePrefs.getString(hashPref, ""))
     }
 
-    private fun getFileHash(): Single<String> {
-        return Single.just(FileUtils.getMd5Hash(context, "help_departments.json"))
+    private fun getFileHash(file: String): Single<String> {
+        return Single.just(FileUtils.getMd5Hash(context, file))
     }
 
     private fun getFromDb(): Single<List<ContactEntity>> {
@@ -57,13 +64,13 @@ class HelpRepository(
         return helpContactDao.getAll()
     }
 
-    private fun updateAndGetFromDb(): Single<List<ContactEntity>> {
+    private fun updateAndGetFromDb(file: String): Single<List<ContactEntity>> {
         Timber.i("Start updateAndGetFromDb")
         return clearTable()
                 .andThen(getContractsFromJson())
                 .flatMap { convertToEntities(it) }
                 .flatMapCompletable { saveEntitiesToDb(it) }
-                .andThen(getFileHash())
+                .andThen(getFileHash(file))
                 .flatMapCompletable { saveHashToPrefs(it) }
                 .andThen(getFromDb())
     }
@@ -107,6 +114,15 @@ class HelpRepository(
             Timber.i("Insert file hash $hash to prefs")
             cachePrefs.edit().putString("helpDepartmentsHash", hash).apply()
         }
+    }
+
+    companion object {
+        const val DEPARTMENTS_PREF = "${BuildConfig.APPLICATION_ID}.DEPARTMENTS_HASH"
+        const val STATIONS_PREF = "${BuildConfig.APPLICATION_ID}.STATIONS_HASH"
+        const val BUSINESS_PREF = "${BuildConfig.APPLICATION_ID}.BUSINESS_HASH"
+        const val DEPARTMENTS_FILE = "help_departments.json"
+        const val STATIONS_FILE = "help_departments.json"
+        const val BUSINESS_FILE = "help_departments.json"
     }
 
 }

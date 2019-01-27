@@ -5,7 +5,7 @@ import io.reactivex.Single
 interface HelpDataSource {
 
     fun getDepartments(): Single<List<Contact>>
-//    fun getStations(): Single<List<String>>
-//    fun getBusiness(): Single<List<String>>
+    fun getStations(): Single<List<Contact>>
+    fun getBusiness(): Single<List<Contact>>
 
 }
