@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.base.extentions.hide
-import ru.sergeykamyshov.rostovtransport.base.extentions.show
 import ru.sergeykamyshov.rostovtransport.databinding.FragmentNewsBinding
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
@@ -30,6 +28,10 @@ class NewsFragment : BaseFragment() {
         )
         val view = binding.root
 
+        viewState.loadingView = view.news_progress
+        viewState.dataView = view.news_recycler
+        viewState.errorView = view.tv_error
+
         setActionBarTitle(R.string.title_news)
 
         val recycler = view.news_recycler
@@ -44,29 +46,12 @@ class NewsFragment : BaseFragment() {
         recycler.setHasFixedSize(true)
 
         val viewModel = ViewModelProviders.of(activity as MainActivity).get(NewsViewModel::class.java)
+        viewState.uiState = viewModel.getUiState()
         viewModel.getData().observe(this, Observer {
-            view.img_placeholder.hide()
             adapter.updateData(it)
         })
-        observeLoading(view, viewModel)
-        observeError(view, viewModel)
-
         viewModel.loadData()
         return view
-    }
-
-    private fun observeLoading(view: View, viewModel: NewsViewModel) {
-        viewModel.isLoading().observe(this, Observer { loading ->
-            if (loading) view.news_progress.show() else view.news_progress.hide()
-        })
-    }
-
-    private fun observeError(view: View, viewModel: NewsViewModel) {
-        viewModel.isError().observe(this, Observer { error ->
-            if (error) {
-                view.img_placeholder.show()
-            }
-        })
     }
 
     companion object {
