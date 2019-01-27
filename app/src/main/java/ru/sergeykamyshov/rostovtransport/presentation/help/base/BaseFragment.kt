@@ -26,10 +26,8 @@ abstract class BaseFragment : Fragment() {
         val viewModel = getViewModel()
         val liveData = viewModel.getData()
         liveData.observe(this, Observer {
-            if (it != null) {
-                adapter.updateData(it)
-                view.help_progress.hide()
-            }
+            adapter.updateData(it)
+            view.help_progress.hide()
         })
         viewModel.loadData()
 

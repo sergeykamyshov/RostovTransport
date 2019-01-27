@@ -113,6 +113,6 @@
     <string name="about_full_desc_title">Подробнее о проекте</string>
 
     <!--Ошибки-->
-    <string name="error_loading">Ошибка при загрузке</string>
+    <string name="error_loading">Не удалось загрузить данные</string>
     <string name="error_no_email_client">Приложение для почты не найдено</string>
 </resources>

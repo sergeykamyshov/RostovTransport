@@ -7,33 +7,36 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
+import ru.sergeykamyshov.rostovtransport.base.states.*
 import ru.sergeykamyshov.rostovtransport.domain.news.GetRecentNews
 import ru.sergeykamyshov.rostovtransport.domain.news.Post
-import timber.log.Timber
 
 class NewsViewModel : ViewModel() {
 
     private val getRecentNews: GetRecentNews = App.provider.useCase.getRecentNews
+    private var uiState = MutableLiveData<UIState>(Loading)
     private var data = MutableLiveData<List<Post>>()
-    private var loading = MutableLiveData<Boolean>()
-    private var error = MutableLiveData<Boolean>()
     private lateinit var disposable: Disposable
 
     fun getData(): LiveData<List<Post>> = data
-    fun isLoading(): LiveData<Boolean> = loading
-    fun isError(): LiveData<Boolean> = error
+
+    fun getUiState(): LiveData<UIState> = uiState
 
     fun loadData() {
+        uiState.value = Loading
         disposable = getRecentNews.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    loading.value = false
-                    data.postValue(it)
+                .subscribe({ posts ->
+                    when (posts.isNotEmpty()) {
+                        true -> {
+                            data.postValue(posts)
+                            uiState.value = HasData
+                        }
+                        false -> uiState.value = NoData
+                    }
                 }, {
-                    Timber.e(it)
-                    loading.value = false
-                    error.value = true
+                    uiState.value = Error
                 })
     }
 
