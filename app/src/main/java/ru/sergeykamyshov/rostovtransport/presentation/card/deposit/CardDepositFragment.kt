@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map.CardDepositMapActivity
@@ -47,7 +48,7 @@ class CardDepositFragment : Fragment() {
         })
         viewModel.loadData()
 
-        view.layout_card_deposit_button_map.setOnClickListener {
+        view.layout_card_deposit_button_map.onClickDebounce {
             App.firebaseAnalytics.sendEvent(CARD_DEPOSIT_MAP_EVENT)
             Answers.getInstance().logCustom(CustomEvent(CARD_DEPOSIT_MAP_EVENT))
             startActivity(CardDepositMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))

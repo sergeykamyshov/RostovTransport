@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_schedule.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.data.models.schedule.Direction
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 
@@ -36,7 +37,7 @@ class ScheduleAdapter(
         val cityName: TextView = itemView.tv_city_name
 
         fun bind(mListener: OnItemClickListener) {
-            itemView.setOnClickListener {
+            itemView.onClickDebounce {
                 mListener.onItemClick(cityName.text as String)
             }
         }

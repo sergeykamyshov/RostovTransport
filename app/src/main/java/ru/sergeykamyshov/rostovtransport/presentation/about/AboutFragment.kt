@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_about.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
@@ -66,7 +67,7 @@ class AboutFragment : BaseFragment() {
                     contactLayout.img_contact_phone.hide()
                 } else {
                     contactLayout.tv_contact_phone.text = contact.phone
-                    contactLayout.tv_contact_phone.setOnClickListener {
+                    contactLayout.tv_contact_phone.onClickDebounce {
                         activity?.makeCall(contact.phone)
                     }
                 }
@@ -75,7 +76,7 @@ class AboutFragment : BaseFragment() {
                     contactLayout.img_contact_email.hide()
                 } else {
                     contactLayout.tv_contact_email.text = contact.email
-                    contactLayout.tv_contact_email.setOnClickListener {
+                    contactLayout.tv_contact_email.onClickDebounce {
                         activity?.sendEmail(contact.email)
                     }
                 }

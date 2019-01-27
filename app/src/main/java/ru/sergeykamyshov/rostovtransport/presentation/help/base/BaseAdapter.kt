@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.recycler_item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
 import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 
@@ -42,7 +43,7 @@ class BaseAdapter(
             holder.imgAddress.hide()
         } else {
             holder.address.text = contact.address
-            holder.address.setOnClickListener {
+            holder.address.onClickDebounce {
                 context?.openOnMap(contact.address)
             }
         }
@@ -59,7 +60,7 @@ class BaseAdapter(
                 val phoneNumber = phoneLayout?.findViewById<TextView>(R.id.tv_help_contact_phone)
                 phoneNumber?.text = phones[i]
 
-                phoneNumber?.setOnClickListener {
+                phoneNumber?.onClickDebounce {
                     context?.makeCall(phones[i])
                 }
 

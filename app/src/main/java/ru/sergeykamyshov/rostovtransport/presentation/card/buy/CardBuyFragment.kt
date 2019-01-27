@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.map.CardBuyMapActivity
@@ -47,7 +48,7 @@ class CardBuyFragment : Fragment() {
         })
         viewModel.loadData()
 
-        view.layout_card_buy_button_map.setOnClickListener {
+        view.layout_card_buy_button_map.onClickDebounce {
             App.firebaseAnalytics.sendEvent(CARD_BUY_MAP_EVENT)
             Answers.getInstance().logCustom(CustomEvent(CARD_BUY_MAP_EVENT))
             startActivity(CardBuyMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))

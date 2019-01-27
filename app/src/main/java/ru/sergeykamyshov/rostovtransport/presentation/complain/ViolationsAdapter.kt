@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_violation.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 
 class ViolationsAdapter(var data: List<ViolationItem>) : RecyclerView.Adapter<ViolationsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +41,7 @@ class ViolationsAdapter(var data: List<ViolationItem>) : RecyclerView.Adapter<Vi
         fun bind(item: ViolationItem) {
             itemView.cb_violation.text = item.name
             itemView.cb_violation.isChecked = item.checked
-            itemView.cb_violation.setOnClickListener {
+            itemView.cb_violation.onClickDebounce {
                 item.checked = itemView.cb_violation.isChecked
             }
         }

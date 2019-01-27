@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.domain.news.Post
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
@@ -87,7 +88,7 @@ class NewsAdapter(
         val newsId: TextView? = itemView.tv_news_id
 
         fun bind(listener: OnItemClickListener) {
-            itemView.setOnClickListener {
+            itemView.onClickDebounce {
                 listener.onItemClick(newsId?.text as String)
             }
         }

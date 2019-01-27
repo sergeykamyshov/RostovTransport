@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
@@ -39,7 +40,7 @@ class ComplainFragment : BaseFragment(), Contract.View {
         presenter = ComplainPresenter()
         presenter.attachView(this)
 
-        view.btn_send_complain.setOnClickListener {
+        view.btn_send_complain.onClickDebounce {
             presenter.sendComplaint()
         }
 
@@ -51,7 +52,7 @@ class ComplainFragment : BaseFragment(), Contract.View {
             calendar.set(Calendar.MINUTE, minute)
             view.edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
-        view.edt_time.setOnClickListener {
+        view.edt_time.onClickDebounce {
             dialog.show()
         }
 
