@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,12 +18,11 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
 import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
-import ru.sergeykamyshov.rostovtransport.presentation.base.ViewState
+import ru.sergeykamyshov.rostovtransport.presentation.base.ViewStateActivity
 
-class PostActivity : AppCompatActivity() {
+class PostActivity : ViewStateActivity() {
 
     private lateinit var url: String
-    protected var viewState: ViewState = ViewState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +44,6 @@ class PostActivity : AppCompatActivity() {
                 .get(PostViewModel::class.java)
         binding.viewModel = viewModel
         viewState.uiState = viewModel.getUiState()
-        viewState.init(this)
 
         observeData(viewModel)
 

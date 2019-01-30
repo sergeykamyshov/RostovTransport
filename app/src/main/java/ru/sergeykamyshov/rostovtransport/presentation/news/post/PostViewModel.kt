@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.post
 
-import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,10 +32,8 @@ class PostViewModel(private var id: String) : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ post ->
-                    Handler().postDelayed({
-                        uiState.value = HasData
-                        data.postValue(post)
-                    }, 2000L)
+                    uiState.value = HasData
+                    data.postValue(post)
                 }, { (::processError)(it) })
     }
 
