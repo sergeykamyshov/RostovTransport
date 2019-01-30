@@ -29,9 +29,9 @@
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/v_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 >
 
                 <ImageView
@@ -40,7 +40,6 @@
                     android:layout_height="200dp"
                     android:contentDescription="@string/about_team_photo"
                     android:scaleType="centerCrop"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +50,6 @@
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:background="@drawable/gradient_post"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +64,6 @@
                     android:layout_marginEnd="16dp"
                     android:textColor="@color/color_text"
                     android:textSize="22sp"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +80,6 @@
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/color_text"
                     android:textSize="16sp"
-                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,19 +91,17 @@
 
         <ProgressBar
             android:id="@+id/post_progress"
-            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             />
 
-        <ImageView
-            android:id="@+id/img_placeholder"
-            android:layout_width="200dp"
-            android:layout_height="300dp"
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            app:srcCompat="@drawable/img_placeholder_content"
+            android:text="@string/error_loading"
             />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

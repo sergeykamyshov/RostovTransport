@@ -11,22 +11,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
-import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
-import ru.sergeykamyshov.rostovtransport.base.extentions.show
-import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
 import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
+import ru.sergeykamyshov.rostovtransport.presentation.base.ViewState
 
 class PostActivity : AppCompatActivity() {
 
     private lateinit var url: String
+    protected var viewState: ViewState = ViewState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,86 +37,59 @@ class PostActivity : AppCompatActivity() {
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        viewState.loadingView = post_progress
+        viewState.dataView = v_post
+        viewState.errorView = tv_error
+
         val id = intent.getStringExtra(POST_ID_EXTRA)
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id))
                 .get(PostViewModel::class.java)
         binding.viewModel = viewModel
+        viewState.uiState = viewModel.getUiState()
+        viewState.init(this)
 
         observeData(viewModel)
-        observeLoading(viewModel)
-        observeError(viewModel)
 
         viewModel.loadData()
     }
 
-    override fun onStart() {
-        super.onStart()
-        FileUtils.getMd5Hash(this, "help_departments.json")
-    }
-
-    private fun observeLoading(viewModel: PostViewModel) {
-        viewModel.isLoading().observe(this, Observer { loading ->
-            if (loading) post_progress.show() else post_progress.hide()
-        })
-    }
-
-    private fun observeError(viewModel: PostViewModel) {
-        viewModel.isError().observe(this, Observer { error ->
-            if (error) {
-                img_placeholder.show()
-                Snackbar.make(
-                        vContainer,
-                        getString(R.string.error_loading),
-                        Snackbar.LENGTH_LONG
-                ).setAction(
-                        getString(R.string.common_action_repeat)
-                ) { viewModel.loadData() }
-                        .show()
-            }
-        })
-    }
-
     private fun observeData(viewModel: PostViewModel) {
         viewModel.getData().observe(this, Observer {
-            img_placeholder.hide()
+            url = it.url
 
-            url = it?.url.toString()
-
-            Picasso.get().load(it?.thumbnailMedium)
-                    .resize(300, 150)
-                    .centerCrop()
-                    .into(img_post_title)
-            img_post_title.show()
-            img_gradient_post_title.show()
-
-            // Убираем html теги из заголовка
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                tv_post_title.text = Html.fromHtml(it?.title, Html.FROM_HTML_MODE_LEGACY)
+            if (it.thumbnailMedium != null) {
+                Picasso.get().load(it.thumbnailMedium)
+                        .resize(300, 150)
+                        .centerCrop()
+                        .into(img_post_title)
             } else {
-                tv_post_title.text = Html.fromHtml(it?.title)
+                Picasso.get().load(R.drawable.img_thumbnail_news_item_4)
+                        .resize(300, 150)
+                        .centerCrop()
+                        .into(img_post_title)
             }
-            tv_post_title.show()
 
-            var content: String?
-            try {
+            val content = try {
                 // Убираем подписи к фотографиям
-                content = it?.content?.replace("<figcaption.+/(figcaption)*>".toRegex(), "")
+                var content = it.content.replace("<figcaption.+/(figcaption)*>".toRegex(), "")
                 // Убираем текст из скрипта рекламы
-                content = content?.replace("\\(adsbygoogle.+\\);".toRegex(), "")
+                content = content.replace("\\(adsbygoogle.+\\);".toRegex(), "")
                 // Убираем лишние переносы строк
-                content = content?.replace("<br />", "")
-                content = content?.replace("<p></p>", "")
+                content = content.replace("<br />", "")
+                content.replace("<p></p>", "")
             } catch (throwable: Throwable) {
                 viewModel.initError(throwable)
                 return@Observer
             }
 
+            // Убираем html теги
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_post_title.text = Html.fromHtml(it.title, Html.FROM_HTML_MODE_LEGACY)
                 tv_post_content.text = Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY, EmptyImageGetter(), null)
             } else {
+                tv_post_title.text = Html.fromHtml(it.title)
                 tv_post_content.text = Html.fromHtml(content, EmptyImageGetter(), null)
             }
-            tv_post_content.show()
         })
     }
 
