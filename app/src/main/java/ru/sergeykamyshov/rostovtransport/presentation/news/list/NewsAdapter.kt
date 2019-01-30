@@ -35,7 +35,7 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = items[position]
-        if (post.thumbnail?.isNotEmpty()!!) {
+        if (post.thumbnail != null) {
             Picasso.get()
                     .load(post.thumbnail)
                     .resize(150, 100)

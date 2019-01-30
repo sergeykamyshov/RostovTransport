@@ -1,6 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.data.news
 
 import com.google.gson.annotations.SerializedName
+import ru.sergeykamyshov.rostovtransport.domain.news.Post as DomainPost
 
 data class NewsResponse(
         @SerializedName("posts") val posts: List<Post>
@@ -17,10 +18,10 @@ data class Post(
         @SerializedName("content") val content: String,
         @SerializedName("date") val date: String,
         @SerializedName("author") val author: Author,
-        @SerializedName("thumbnail") val thumbnail: String? = "",
+        @SerializedName("thumbnail") val thumbnail: String?,
         @SerializedName("thumbnail_images") val thumbnailImages: ThumbnailImages?
 ) {
-    fun toPost() = ru.sergeykamyshov.rostovtransport.domain.news.Post(
+    fun toPost() = DomainPost(
             id,
             url,
             title,
