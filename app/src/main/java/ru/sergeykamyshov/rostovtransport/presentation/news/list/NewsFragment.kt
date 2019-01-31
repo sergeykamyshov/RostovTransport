@@ -28,10 +28,6 @@ class NewsFragment : BaseFragment() {
         )
         val view = binding.root
 
-        viewState.loadingView = view.news_progress
-        viewState.dataView = view.news_recycler
-        viewState.errorView = view.tv_error
-
         setActionBarTitle(R.string.title_news)
 
         val recycler = view.news_recycler
@@ -46,11 +42,16 @@ class NewsFragment : BaseFragment() {
         recycler.setHasFixedSize(true)
 
         val viewModel = ViewModelProviders.of(activity as MainActivity).get(NewsViewModel::class.java)
-        viewState.uiState = viewModel.getUiState()
+        initViewState(
+                this,
+                viewModel.getUiState(),
+                view.news_progress,
+                view.news_recycler,
+                errorView = view.tv_error
+        )
         viewModel.getData().observe(this, Observer {
             adapter.updateData(it)
         })
-        viewModel.loadData()
         return view
     }
 

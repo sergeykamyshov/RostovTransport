@@ -18,9 +18,14 @@ class NewsViewModel : ViewModel() {
     private var data = MutableLiveData<List<Post>>()
     private lateinit var disposable: Disposable
 
-    fun getData(): LiveData<List<Post>> = data
-
     fun getUiState(): LiveData<UIState> = uiState
+
+    fun getData(): LiveData<List<Post>> {
+        if (data.value == null) {
+            loadData()
+        }
+        return data
+    }
 
     fun loadData() {
         uiState.value = Loading
