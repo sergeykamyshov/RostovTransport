@@ -56,6 +56,8 @@ class NewsFragment : BaseFragment() {
     }
 
     companion object {
+        const val TAG = "NewsFragment"
+
         fun newInstance() = NewsFragment()
     }
 

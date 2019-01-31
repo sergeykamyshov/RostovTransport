@@ -198,6 +198,8 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     companion object {
+        const val TAG = "ComplainFragment"
+
         fun newInstance() = ComplainFragment()
     }
 

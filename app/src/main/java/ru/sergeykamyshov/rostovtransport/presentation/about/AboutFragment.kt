@@ -21,10 +21,6 @@ import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 class AboutFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = AboutFragment()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_about, container, false)
 
@@ -87,4 +83,11 @@ class AboutFragment : BaseFragment() {
         })
         return view
     }
+
+    companion object {
+        const val TAG = "AboutFragment"
+
+        fun newInstance() = AboutFragment()
+    }
+
 }

@@ -11,6 +11,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment
 import ru.sergeykamyshov.rostovtransport.presentation.complain.ComplainFragment
 import ru.sergeykamyshov.rostovtransport.presentation.help.HelpFragment
 import ru.sergeykamyshov.rostovtransport.presentation.news.list.NewsFragment
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         // Обрабатываем выбор пункта меню
         vBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_item_news -> startFragment(NewsFragment.newInstance())
-                R.id.nav_item_help -> startFragment(HelpFragment.newInstance())
-                R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance())
-                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance())
-                R.id.nav_item_about -> startFragment(AboutFragment.newInstance())
+                R.id.nav_item_news -> startFragment(NewsFragment.newInstance(), NewsFragment.TAG)
+                R.id.nav_item_help -> startFragment(HelpFragment.newInstance(), HelpFragment.TAG)
+                R.id.nav_item_transport_card -> startFragment(TransportCardFragment.newInstance(), TransportCardFragment.TAG)
+                R.id.nav_item_complain -> startFragment(ComplainFragment.newInstance(), ComplainFragment.TAG)
+                R.id.nav_item_about -> startFragment(AboutFragment.newInstance(), AboutFragment.TAG)
 //                R.id.nav_item_routes -> startFragment(RoutesFragment.newInstance())
 //                R.id.nav_item_schedule -> startFragment(ScheduleFragment.newInstance())
 //                R.id.nav_item_transport_online -> startFragment(TransportOnlineFragment.newInstance())
@@ -41,16 +42,27 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
         } else {
             // Экран по умолчанию - Новости
-            startFragment(NewsFragment.newInstance())
+            startFragment(NewsFragment.newInstance(), NewsFragment.TAG)
         }
 
     }
 
-    private fun startFragment(fragment: Fragment): Boolean {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.flContainer, fragment)
-                .commit()
-        return true
+    private fun startFragment(fragment: Fragment, tag: String) {
+        Timber.d("Try to find TAG = $tag")
+        val fragmentByTag = supportFragmentManager.findFragmentByTag(tag)
+        if (fragmentByTag != null) {
+            Timber.d("fragmentByTag != null. Show it")
+            supportFragmentManager
+                    .beginTransaction()
+                    .show(fragmentByTag)
+                    .commit()
+        } else {
+            Timber.d("fragmentByTag is null. Replace it")
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.flContainer, fragment, tag)
+                    .commit()
+        }
     }
 
     fun showAppBarLayout() {

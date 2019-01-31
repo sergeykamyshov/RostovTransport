@@ -1,5 +1,6 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help.business
 
+import androidx.lifecycle.ViewModelProviders
 import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.help.base.BaseViewModel
 
@@ -10,7 +11,7 @@ class BusinessListFragment : BaseFragment() {
     }
 
     override fun getViewModel(): BaseViewModel {
-        return BusinessViewModel()
+        return ViewModelProviders.of(this).get(BusinessViewModel::class.java)
     }
 
 }
