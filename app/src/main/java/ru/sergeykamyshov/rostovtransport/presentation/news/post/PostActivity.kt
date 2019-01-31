@@ -35,19 +35,20 @@ class PostActivity : ViewStateActivity() {
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewState.loadingView = post_progress
-        viewState.dataView = v_post
-        viewState.errorView = tv_error
-
         val id = intent.getStringExtra(POST_ID_EXTRA)
         val viewModel = ViewModelProviders.of(this, PostModelFactory(id))
                 .get(PostViewModel::class.java)
         binding.viewModel = viewModel
-        viewState.uiState = viewModel.getUiState()
+
+        initViewState(
+                this,
+                viewModel.getUiState(),
+                post_progress,
+                v_post,
+                errorView = tv_error
+        )
 
         observeData(viewModel)
-
-        viewModel.loadData()
     }
 
     private fun observeData(viewModel: PostViewModel) {

@@ -10,7 +10,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 open class BaseFragment : Fragment() {
 
-    protected var viewState: ViewState = ViewState()
+    private var viewState: ViewState = ViewState()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
