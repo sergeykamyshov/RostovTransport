@@ -9,17 +9,10 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import timber.log.Timber
 
 class HelpFragment : BaseFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Timber.d("HP. onCreate")
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("HP. onCreateView")
         val view = inflater.inflate(R.layout.fragment_help, container, false)
 
         setActionBarTitle(R.string.title_help)
@@ -38,16 +31,6 @@ class HelpFragment : BaseFragment() {
         }
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.d("HP. onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("HP. onDestroy")
     }
 
     companion object {

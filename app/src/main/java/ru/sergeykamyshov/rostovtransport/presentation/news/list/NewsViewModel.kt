@@ -14,8 +14,8 @@ import ru.sergeykamyshov.rostovtransport.domain.news.Post
 class NewsViewModel : ViewModel() {
 
     private val getRecentNews: GetRecentNews = App.provider.useCase.getRecentNews
-    private var uiState = MutableLiveData<UIState>(Loading)
-    private var data = MutableLiveData<List<Post>>()
+    private val uiState = MutableLiveData<UIState>(Loading)
+    private val data = MutableLiveData<List<Post>>()
     private lateinit var disposable: Disposable
 
     fun getUiState(): LiveData<UIState> = uiState

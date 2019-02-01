@@ -17,8 +17,8 @@ import timber.log.Timber
 class PostViewModel(private val id: String) : ViewModel() {
 
     private val getPost = App.provider.useCase.getPost
-    private var uiState = MutableLiveData<UIState>(Loading)
-    private var data = MutableLiveData<Post>()
+    private val uiState = MutableLiveData<UIState>(Loading)
+    private val data = MutableLiveData<Post>()
     private lateinit var disposable: Disposable
 
     fun getUiState(): LiveData<UIState> = uiState

@@ -112,7 +112,10 @@
     <string name="about_contacts_title">Контакты</string>
     <string name="about_full_desc_title">Подробнее о проекте</string>
 
+    <!--ViewState-->
+    <string name="state_no_data">Нет данных</string>
+    <string name="state_error_loading">Не удалось загрузить данные</string>
+
     <!--Ошибки-->
-    <string name="error_loading">Не удалось загрузить данные</string>
     <string name="error_no_email_client">Приложение для почты не найдено</string>
 </resources>

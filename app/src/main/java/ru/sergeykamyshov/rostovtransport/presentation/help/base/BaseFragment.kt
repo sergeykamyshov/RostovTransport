@@ -11,17 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
-import timber.log.Timber
+import ru.sergeykamyshov.rostovtransport.presentation.base.ViewState
 
 abstract class BaseFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Timber.d("onCreate")
-    }
+    private var viewState: ViewState = ViewState()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("onCreateView")
         val view = inflater.inflate(R.layout.fragment_list_help, container, false)
 
         val recycler = view.rv_help
@@ -31,22 +27,22 @@ abstract class BaseFragment : Fragment() {
         recycler.adapter = adapter
 
         val viewModel = getViewModel()
+
+        viewState.uiState = viewModel.getUiState()
+
+        viewState.loadingView = view.help_progress
+        viewState.dataView = view.rv_help
+        viewState.emptyView = view.tv_empty
+        viewState.errorView = view.tv_error
+
+        viewState.init(this)
+
         viewModel.getData().observe(this, Observer {
             adapter.updateData(it)
             view.help_progress.hide()
         })
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.d("onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("onDestroy")
     }
 
     abstract fun getViewModel(): BaseViewModel
