@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.base.states.*
@@ -16,7 +16,7 @@ class NewsViewModel : ViewModel() {
     private val getRecentNews: GetRecentNews = App.provider.useCase.getRecentNews
     private val uiState = MutableLiveData<UIState>(Loading)
     private val data = MutableLiveData<List<Post>>()
-    private lateinit var disposable: Disposable
+    private var disposables = CompositeDisposable()
 
     fun getUiState(): LiveData<UIState> = uiState
 
@@ -29,7 +29,7 @@ class NewsViewModel : ViewModel() {
 
     fun loadData() {
         uiState.value = Loading
-        disposable = getRecentNews.execute()
+        disposables.add(getRecentNews.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ posts ->
@@ -43,10 +43,11 @@ class NewsViewModel : ViewModel() {
                 }, {
                     uiState.value = Error
                 })
+        )
     }
 
     override fun onCleared() {
-        disposable.dispose()
+        disposables.clear()
         super.onCleared()
     }
 }

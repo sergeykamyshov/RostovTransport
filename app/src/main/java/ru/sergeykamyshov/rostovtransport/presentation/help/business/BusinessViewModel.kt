@@ -16,7 +16,7 @@ class BusinessViewModel : BaseViewModel() {
 
     override fun loadData() {
         uiState.value = Loading
-        disposable = getBusiness.execute()
+        disposables.add(getBusiness.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ contacts ->
@@ -30,6 +30,7 @@ class BusinessViewModel : BaseViewModel() {
                     Timber.e(it)
                     uiState.value = Error
                 })
+        )
     }
 
 }

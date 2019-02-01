@@ -16,7 +16,7 @@ class StationsViewModel : BaseViewModel() {
 
     override fun loadData() {
         uiState.value = Loading
-        disposable = getStations.execute()
+        disposables.add(getStations.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ contacts ->
@@ -30,6 +30,7 @@ class StationsViewModel : BaseViewModel() {
                     Timber.e(it)
                     uiState.value = Error
                 })
+        )
     }
 
 }

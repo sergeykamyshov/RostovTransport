@@ -16,7 +16,7 @@ class DepartmentsViewModel : BaseViewModel() {
 
     override fun loadData() {
         uiState.value = Loading
-        disposable = getDepartments.execute()
+        disposables.add(getDepartments.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ contacts ->
@@ -30,6 +30,7 @@ class DepartmentsViewModel : BaseViewModel() {
                     Timber.e(it)
                     uiState.value = Error
                 })
+        )
     }
 
 }

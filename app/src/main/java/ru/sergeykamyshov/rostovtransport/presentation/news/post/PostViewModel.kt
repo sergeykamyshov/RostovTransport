@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
 import ru.sergeykamyshov.rostovtransport.base.states.Error
@@ -19,7 +19,7 @@ class PostViewModel(private val id: String) : ViewModel() {
     private val getPost = App.provider.useCase.getPost
     private val uiState = MutableLiveData<UIState>(Loading)
     private val data = MutableLiveData<Post>()
-    private lateinit var disposable: Disposable
+    private var disposables = CompositeDisposable()
 
     fun getUiState(): LiveData<UIState> = uiState
 
@@ -32,7 +32,7 @@ class PostViewModel(private val id: String) : ViewModel() {
 
     fun loadData() {
         uiState.value = Loading
-        disposable = getPost.execute(id)
+        disposables.add(getPost.execute(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ post ->
@@ -41,10 +41,11 @@ class PostViewModel(private val id: String) : ViewModel() {
                 }, {
                     (::processError)(it)
                 })
+        )
     }
 
     override fun onCleared() {
-        disposable.dispose()
+        disposables.clear()
         super.onCleared()
     }
 
