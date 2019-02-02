@@ -38,13 +38,12 @@ class CardDepositFragment : Fragment() {
         recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         recycler.setHasFixedSize(true)
 
-        val viewModel = ViewModelProviders.of(activity as MainActivity).get(CardDepositViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this).get(CardDepositViewModel::class.java)
         viewModel.getData().observe(this, Observer {
             addresses = it
             adapter.update(it)
             view.card_deposit_progress.hide()
         })
-        viewModel.loadData()
 
         view.layout_card_deposit_button_map.onClickDebounce {
             App.firebaseAnalytics.sendEvent(CARD_DEPOSIT_MAP_EVENT)

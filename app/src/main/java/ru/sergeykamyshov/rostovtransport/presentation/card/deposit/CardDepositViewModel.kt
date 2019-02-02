@@ -3,14 +3,19 @@ package ru.sergeykamyshov.rostovtransport.presentation.card.deposit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
+import ru.sergeykamyshov.rostovtransport.domain.card.GetDepositAddresses
+import timber.log.Timber
 
 class CardDepositViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
+    private val getDepositAddresses: GetDepositAddresses = App.provider.useCase.getDepositAddresses
     private var data = MutableLiveData<List<DepositAddress>>()
+    private var disposables = CompositeDisposable()
 
     fun getData(): LiveData<List<DepositAddress>> {
         if (data.value == null) {
@@ -19,13 +24,21 @@ class CardDepositViewModel : ViewModel() {
         return data
     }
 
-    // TODO: impl load data from room
     fun loadData() {
-        val list = ArrayList<DepositAddress>()
-        for (i in 0..5) {
-            list.add(DepositAddress(1, "test desc", "test address", "test schdule", "47.226766, 39.726799"))
-        }
-        data.postValue(list)
+        disposables.add(getDepositAddresses.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Timber.d("Received ${it.size} items")
+                    data.postValue(it)
+                }, {
+                    Timber.d("Some error. $it")
+                }))
+    }
+
+    override fun onCleared() {
+        disposables.clear()
+        super.onCleared()
     }
 
 }
