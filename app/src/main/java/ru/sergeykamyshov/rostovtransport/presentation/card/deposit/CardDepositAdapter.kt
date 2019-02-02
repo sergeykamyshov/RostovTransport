@@ -35,9 +35,9 @@ class CardDepositAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var desc: TextView = itemView.tv_card_deposit_desc
-        var address: TextView = itemView.tv_card_deposit_address
-        var schedule: TextView = itemView.tv_card_deposit_schedule
+        val desc: TextView = itemView.tv_card_deposit_desc
+        val address: TextView = itemView.tv_card_deposit_address
+        val schedule: TextView = itemView.tv_card_deposit_schedule
     }
 
 }

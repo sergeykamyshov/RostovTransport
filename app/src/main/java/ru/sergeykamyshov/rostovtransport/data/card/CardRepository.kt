@@ -8,30 +8,93 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
+import ru.sergeykamyshov.rostovtransport.domain.card.BuyAddress
 import ru.sergeykamyshov.rostovtransport.domain.card.CardDataSource
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
-import timber.log.Timber
 
 class CardRepository(
         private val context: Context,
         private val cachePrefs: SharedPreferences,
+        private val buyAddressDao: BuyAddressDao,
         private val depositAddressDao: DepositAddressDao
 ) : CardDataSource {
 
     private val gson = Gson()
 
+    override fun getBuyAddresses(): Single<List<BuyAddress>> {
+        return getBuyAddresses(
+                BUY_ADDRESS_PREF,
+                BUY_ADDRESS_FILE
+        )
+    }
+
     override fun getDepositAddresses(): Single<List<DepositAddress>> {
-        Timber.d("Start")
-        return getDepositAddresses(DEPOSIT_ADDRESS_PREF, DEPOSIT_ADDRESS_FILE)
+        return getDepositAddresses(
+                DEPOSIT_ADDRESS_PREF,
+                DEPOSIT_ADDRESS_FILE
+        )
+    }
+
+    private fun getBuyAddresses(hashPref: String, file: String): Single<List<BuyAddress>> {
+        return compareHash(hashPref, file)
+                .flatMap { equals ->
+                    if (equals) {
+                        buyAddressDao.getAll()
+                    } else {
+                        buyAddressDao.clear()
+                                .andThen(Single.fromCallable {
+                                    val json = FileUtils.getJson(context, file)
+                                    gson.fromJson(json, Array<BuyAddress>::class.java).toList()
+                                })
+                                .map { addresses ->
+                                    addresses.map { item ->
+                                        BuyAddressEntity().apply {
+                                            type = item.type
+                                            desc = item.desc
+                                            note = item.note
+                                            locations = item.locations
+                                        }
+                                    }
+                                }
+                                .flatMapCompletable { entities ->
+                                    buyAddressDao.add(entities)
+                                }
+                                .andThen(getFileHash(file))
+                                .flatMapCompletable { hash -> saveHashToPrefs(hashPref, hash) }
+                                .andThen(buyAddressDao.getAll())
+                    }
+                }
+                .map { it.map { item -> item.toBuyAddress() } }
     }
 
     private fun getDepositAddresses(hashPref: String, file: String): Single<List<DepositAddress>> {
         return compareHash(hashPref, file)
                 .flatMap { equals ->
                     if (equals) {
-                        getFromDb()
+                        depositAddressDao.getAll()
                     } else {
-                        updateAndGetFromDb(hashPref, file)
+                        depositAddressDao.clear()
+                                .andThen(Single.fromCallable {
+                                    val json = FileUtils.getJson(context, file)
+                                    gson.fromJson(json, Array<DepositAddress>::class.java).toList()
+                                })
+                                .map { addresses ->
+                                    addresses.map { item ->
+                                        DepositAddressEntity().apply {
+                                            type = item.type
+                                            desc = item.desc
+                                            address = item.address
+                                            schedule = item.schedule
+                                            location = item.location
+                                        }
+                                    }
+                                }
+                                .flatMapCompletable { entities ->
+                                    depositAddressDao.add(entities)
+                                }
+                                .andThen(getFileHash(file))
+                                .flatMapCompletable { hash -> saveHashToPrefs(hashPref, hash) }
+                                .andThen(depositAddressDao.getAll())
                     }
                 }
                 .map { it.map { item -> item.toDepositAddress() } }
@@ -42,7 +105,6 @@ class CardRepository(
                 getSavedHash(hashPref),
                 getFileHash(file),
                 BiFunction<String, String, Boolean> { savedHash, fileHash ->
-                    Timber.d("Hashes equals = ${savedHash == fileHash}")
                     savedHash == fileHash
                 }
         )
@@ -50,71 +112,25 @@ class CardRepository(
 
     private fun getSavedHash(hashPref: String): Single<String> {
         val hash = cachePrefs.getString(hashPref, "")
-        Timber.d("Saved hash = $hash")
         return Single.just(hash)
     }
 
     private fun getFileHash(file: String): Single<String> {
         val md5Hash = FileUtils.getMd5Hash(context, file)
-        Timber.d("File hash = $md5Hash")
         return Single.just(md5Hash)
     }
 
-    private fun getFromDb(): Single<List<DepositAddressEntity>> {
-        return depositAddressDao.getAll()
-    }
-
-    private fun updateAndGetFromDb(hashPref: String, file: String): Single<List<DepositAddressEntity>> {
-        return clearTable()
-                .andThen(getFromJson(file))
-                .flatMap { addresses -> convertToEntities(addresses) }
-                .flatMapCompletable { entities -> saveEntitiesToDb(entities) }
-                .andThen(getFileHash(file))
-                .flatMapCompletable { hash -> saveHashToPrefs(hashPref, hash) }
-                .andThen(getFromDb())
-    }
-
-    private fun clearTable(): Completable {
-        Timber.d("Clear table")
-        return depositAddressDao.clear()
-    }
-
-    private fun getFromJson(file: String): Single<List<DepositAddress>> {
-        Timber.d("Get from json")
-        return Single.fromCallable {
-            val json = FileUtils.getJson(context, file)
-            gson.fromJson(json, Array<DepositAddress>::class.java).toList()
-        }
-    }
-
-    private fun convertToEntities(addresses: List<DepositAddress>): Single<List<DepositAddressEntity>> {
-        Timber.d("Convert entities. Size ${addresses.size}")
-        val entities = addresses.map {
-            DepositAddressEntity().apply {
-                type = it.type
-                desc = it.desc
-                address = it.address
-                schedule = it.schedule
-                location = it.location
-            }
-        }
-        return Single.just(entities)
-    }
-
-    private fun saveEntitiesToDb(entities: List<DepositAddressEntity>): Completable {
-        Timber.d("Save to db. Size ${entities.size}")
-        return depositAddressDao.add(entities)
-    }
-
     private fun saveHashToPrefs(hashPref: String, hash: String): Completable {
-        Timber.d("Save hash $hash")
         return Completable.fromAction {
             cachePrefs.edit().putString(hashPref, hash).apply()
         }
     }
 
     companion object {
+        const val BUY_ADDRESS_PREF = "${BuildConfig.APPLICATION_ID}.BUY_ADDRESS_HASH"
         const val DEPOSIT_ADDRESS_PREF = "${BuildConfig.APPLICATION_ID}.DEPOSIT_ADDRESS_HASH"
+
+        const val BUY_ADDRESS_FILE = "card_buy.json"
         const val DEPOSIT_ADDRESS_FILE = "card_deposit.json"
     }
 

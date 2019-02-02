@@ -7,15 +7,15 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 @Dao
-interface DepositAddressDao {
+interface BuyAddressDao {
 
-    @Query("SELECT * FROM card_deposit_address")
-    fun getAll(): Single<List<DepositAddressEntity>>
+    @Query("SELECT * FROM card_buy_address")
+    fun getAll(): Single<List<BuyAddressEntity>>
 
     @Insert
-    fun add(entities: List<DepositAddressEntity>): Completable
+    fun add(entities: List<BuyAddressEntity>): Completable
 
-    @Query("DELETE FROM card_deposit_address")
+    @Query("DELETE FROM card_buy_address")
     fun clear(): Completable
 
 }

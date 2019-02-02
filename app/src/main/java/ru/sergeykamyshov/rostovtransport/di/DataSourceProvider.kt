@@ -18,6 +18,11 @@ class DataSourceProvider(
 
     val help = HelpRepository(context, cachePrefs, db.helpContactDao())
 
-    val card = CardRepository(context, cachePrefs, db.depositAddressDao())
+    val card = CardRepository(
+            context,
+            cachePrefs,
+            db.buyAddressDao(),
+            db.depositAddressDao()
+    )
 
 }

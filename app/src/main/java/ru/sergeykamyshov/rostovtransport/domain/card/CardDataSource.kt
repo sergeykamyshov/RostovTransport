@@ -6,4 +6,6 @@ interface CardDataSource {
 
     fun getDepositAddresses(): Single<List<DepositAddress>>
 
+    fun getBuyAddresses(): Single<List<BuyAddress>>
+
 }

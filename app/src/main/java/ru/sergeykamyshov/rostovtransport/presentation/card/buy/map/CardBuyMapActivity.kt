@@ -15,11 +15,11 @@ import com.google.gson.Gson
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.Const
-import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.domain.card.BuyAddress
 
 class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var addresses: List<CardBuy.Address>
+    private lateinit var addresses: List<BuyAddress>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val json = intent.getStringExtra(ADDRESSES_EXTRA)
-        addresses = Gson().fromJson(json, Array<CardBuy.Address>::class.java).toList()
+        addresses = Gson().fromJson(json, Array<BuyAddress>::class.java).toList()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
         mapFragment.getMapAsync(this)
