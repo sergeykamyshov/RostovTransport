@@ -8,7 +8,7 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.CardBuyFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.CardDepositFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.info.CardInfoFragment
-import ru.sergeykamyshov.rostovtransport.presentation.card.questions.CardQuestionsFragment
+import ru.sergeykamyshov.rostovtransport.presentation.card.questions.QuestionsFragment
 
 /**
  * Адаптер экрана "Транспортная карта" для формирования вкладок
@@ -23,7 +23,7 @@ class TransportCardTabsAdapter(
             0 -> return CardInfoFragment.newInstance()
             1 -> return CardBuyFragment.newInstance()
             2 -> return CardDepositFragment.newInstance()
-            3 -> return CardQuestionsFragment.newInstance()
+            3 -> return QuestionsFragment.newInstance()
         }
         return CardInfoFragment.newInstance()
     }
