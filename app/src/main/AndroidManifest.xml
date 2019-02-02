@@ -43,7 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.base.BaseActivity" />
+        <activity android:name=".presentation.base.StateActivity" />
         <activity
             android:name=".presentation.schedule.city.CityScheduleActivity"
             android:label="@string/title_schedule"

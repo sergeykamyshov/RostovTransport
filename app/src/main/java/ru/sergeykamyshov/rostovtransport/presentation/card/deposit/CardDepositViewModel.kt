@@ -7,15 +7,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
+import ru.sergeykamyshov.rostovtransport.base.states.*
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 import ru.sergeykamyshov.rostovtransport.domain.card.GetDepositAddresses
-import timber.log.Timber
 
 class CardDepositViewModel : ViewModel() {
 
     private val getDepositAddresses: GetDepositAddresses = App.provider.useCase.getDepositAddresses
     private var data = MutableLiveData<List<DepositAddress>>()
+    private var uiState = MutableLiveData<UIState>(Loading)
     private var disposables = CompositeDisposable()
+
+    fun getUiState(): LiveData<UIState> = uiState
 
     fun getData(): LiveData<List<DepositAddress>> {
         if (data.value == null) {
@@ -25,14 +28,19 @@ class CardDepositViewModel : ViewModel() {
     }
 
     fun loadData() {
+        uiState.value = Loading
         disposables.add(getDepositAddresses.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    Timber.d("Received ${it.size} items")
-                    data.postValue(it)
+                    if (it.isNotEmpty()) {
+                        uiState.value = HasData
+                        data.postValue(it)
+                    } else {
+                        uiState.value = NoData
+                    }
                 }, {
-                    Timber.d("Some error. $it")
+                    uiState.value = Error
                 }))
     }
 
