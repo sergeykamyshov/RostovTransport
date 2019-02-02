@@ -7,18 +7,17 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 
 class CardDepositAdapter(
-        var context: FragmentActivity?,
-        var items: List<CardDeposit.Address>
+        private val context: FragmentActivity
 ) : RecyclerView.Adapter<CardDepositAdapter.ViewHolder>() {
 
-    private val layoutInflater = context?.layoutInflater
+    private val layoutInflater = context.layoutInflater
+    private var items: List<DepositAddress> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = layoutInflater?.inflate(R.layout.recycler_item_card_deposit, parent, false)
-        return ViewHolder(view!!)
+        return ViewHolder(layoutInflater.inflate(R.layout.recycler_item_card_deposit, parent, false))
     }
 
     override fun getItemCount() = items.size
@@ -30,8 +29,8 @@ class CardDepositAdapter(
         holder.schedule.text = address.schedule
     }
 
-    fun updateData(data: List<CardDeposit.Address>) {
-        items = data
+    fun update(items: List<DepositAddress>) {
+        this.items = items
         notifyDataSetChanged()
     }
 

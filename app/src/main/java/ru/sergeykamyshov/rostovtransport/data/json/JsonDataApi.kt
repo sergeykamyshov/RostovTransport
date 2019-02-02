@@ -5,7 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import ru.sergeykamyshov.rostovtransport.data.models.about.About
 import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
-import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
 import ru.sergeykamyshov.rostovtransport.data.models.online.Transport
 import ru.sergeykamyshov.rostovtransport.data.models.routes.RouteInfo
 import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
@@ -31,9 +30,6 @@ interface JsonDataApi {
     // Транспортная карта
     @GET("card/card_buy.json")
     fun getCardBuy(): Call<CardBuy>
-
-    @GET("card/card_deposit.json")
-    fun getCardDeposit(): Call<CardDeposit>
 
     // О проекте
     @GET("about/about.json")

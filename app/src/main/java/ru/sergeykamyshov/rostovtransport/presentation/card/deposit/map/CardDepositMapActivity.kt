@@ -16,11 +16,11 @@ import com.google.gson.Gson
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.Const
-import ru.sergeykamyshov.rostovtransport.data.models.card.CardDeposit
+import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 
 class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var addresses: List<CardDeposit.Address>
+    private lateinit var addresses: List<DepositAddress>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val json = intent.getStringExtra(ADDRESSES_EXTRA)
-        addresses = Gson().fromJson(json, Array<CardDeposit.Address>::class.java).toList()
+        addresses = Gson().fromJson(json, Array<DepositAddress>::class.java).toList()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -47,7 +47,7 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
                     .title(it.desc)
                     .snippet(it.address)
                     .icon(BitmapDescriptorFactory.defaultMarker(
-                            if (Const.CARD_TYPE_YELLOW == it.type) BitmapDescriptorFactory.HUE_ORANGE
+                            if (it.type == 1) BitmapDescriptorFactory.HUE_ORANGE
                             else BitmapDescriptorFactory.HUE_RED)))
         }
         googleMap?.uiSettings?.isZoomControlsEnabled = true
