@@ -9,13 +9,13 @@ import io.reactivex.Single
 @Dao
 interface HelpContactDao {
 
-    @Query("SELECT * FROM helpContact WHERE type = :type")
+    @Query("SELECT * FROM help_contact WHERE type = :type")
     fun getByType(type: String): Single<List<ContactEntity>>
 
     @Insert
     fun add(entities: List<ContactEntity>): Completable
 
-    @Query("DELETE FROM helpContact WHERE type = :type")
+    @Query("DELETE FROM help_contact WHERE type = :type")
     fun removeByType(type: String): Completable
 
 }

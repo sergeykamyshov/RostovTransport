@@ -1,22 +1,21 @@
-package ru.sergeykamyshov.rostovtransport.data.help
+package ru.sergeykamyshov.rostovtransport.data.card
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Completable
 import io.reactivex.Single
-import ru.sergeykamyshov.rostovtransport.data.card.DepositAddressEntity
 
 @Dao
 interface DepositAddressDao {
 
-    @Query("SELECT * FROM depositAddress")
+    @Query("SELECT * FROM deposit_address")
     fun getAll(): Single<List<DepositAddressEntity>>
 
     @Insert
     fun add(entities: List<DepositAddressEntity>): Completable
 
-    @Query("DELETE FROM helpContact")
+    @Query("DELETE FROM deposit_address")
     fun clear(): Completable
 
 }

@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import ru.sergeykamyshov.rostovtransport.data.card.DepositAddressEntity
 import ru.sergeykamyshov.rostovtransport.data.database.StringListConverter
 import ru.sergeykamyshov.rostovtransport.data.help.ContactEntity
-import ru.sergeykamyshov.rostovtransport.data.help.DepositAddressDao
+import ru.sergeykamyshov.rostovtransport.data.card.DepositAddressDao
 import ru.sergeykamyshov.rostovtransport.data.help.HelpContactDao
 
 @Database(entities = [ContactEntity::class, DepositAddressEntity::class], version = 1)

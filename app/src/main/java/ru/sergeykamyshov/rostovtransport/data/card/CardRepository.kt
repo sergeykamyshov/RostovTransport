@@ -8,7 +8,6 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.base.utils.FileUtils
-import ru.sergeykamyshov.rostovtransport.data.help.DepositAddressDao
 import ru.sergeykamyshov.rostovtransport.domain.card.CardDataSource
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 import timber.log.Timber

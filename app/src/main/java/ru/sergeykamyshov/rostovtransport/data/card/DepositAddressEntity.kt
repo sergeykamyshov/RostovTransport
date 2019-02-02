@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 
-@Entity(tableName = "depositAddress")
+@Entity(tableName = "deposit_address")
 class DepositAddressEntity {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
