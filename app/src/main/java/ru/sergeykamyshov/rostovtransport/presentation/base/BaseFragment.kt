@@ -10,7 +10,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 open class BaseFragment : Fragment() {
 
-    private var viewState: ViewState = ViewState()
+    private lateinit var viewState: ViewState
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -30,6 +30,8 @@ open class BaseFragment : Fragment() {
             emptyView: View? = null,
             errorView: View? = null
     ) {
+        viewState = ViewState()
+
         viewState.uiState = uiState
 
         viewState.loadingView = loadingView

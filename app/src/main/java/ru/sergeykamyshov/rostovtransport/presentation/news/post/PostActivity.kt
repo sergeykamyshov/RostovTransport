@@ -18,9 +18,9 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
 import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
-import ru.sergeykamyshov.rostovtransport.presentation.base.ViewStateActivity
+import ru.sergeykamyshov.rostovtransport.presentation.base.BaseActivity
 
-class PostActivity : ViewStateActivity() {
+class PostActivity : BaseActivity() {
 
     private lateinit var url: String
 

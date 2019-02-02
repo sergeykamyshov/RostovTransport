@@ -6,9 +6,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import ru.sergeykamyshov.rostovtransport.base.states.UIState
 
-open class ViewStateActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
-    private var viewState: ViewState = ViewState()
+    private lateinit var viewState: ViewState
 
     fun initViewState(
             lifecycleOwner: LifecycleOwner,
@@ -18,6 +18,8 @@ open class ViewStateActivity : AppCompatActivity() {
             emptyView: View? = null,
             errorView: View? = null
     ) {
+        viewState = ViewState()
+
         viewState.uiState = uiState
 
         viewState.loadingView = loadingView
