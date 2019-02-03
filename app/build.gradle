@@ -51,16 +51,17 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.1.0-alpha03'
     kapt "com.android.databinding:compiler:3.1.4"
 
     // Architecture Components
-    def archVersion = "2.1.0-alpha01"
+    def archVersion = "2.1.0-alpha02"
     implementation "androidx.lifecycle:lifecycle-runtime:$archVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archVersion"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$archVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archVersion"
 
+    // Room
     def roomVersion = "2.1.0-alpha04"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"
@@ -90,7 +91,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Firebase Analytics
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
 
     // Fabric Crashlytics
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
