@@ -109,6 +109,10 @@
     <string name="complain_title_place">Место совершения нарушения <font color="#4CAF50">*</font></string>
     <string name="complain_title_violations">Виды нарушений <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Комментарий</string>
+    <string name="complain_bottom_desc">
+        После нажатия кнопки будет сформировано предзаполненное письмо, где в качестве получателя указан наш email.\n\n
+        Мы подготовим все документы и передадим вашу жалобу в департамент транспорта
+    </string>
 
     <string name="complain_transport_type_bus">Автобус</string>
     <string name="complain_transport_type_shuttlebus">Маршрутка</string>
@@ -120,6 +124,8 @@
     <string name="complain_hint_enter_time">Укажите время</string>
     <string name="complain_hint_enter_place">Укажите место</string>
     <string name="complain_hint_enter_comment">Ваш комментарий</string>
+
+    <string name="complain_sign">Отправлено из мобильного приложения Ростов-Транспорт</string>
 
     <string name="complain_error_check_fill">Заполните обязательные поля</string>
     <string name="complain_error_email_client_not_found">Почтовый клиент не найден</string>
@@ -141,7 +147,7 @@
     </string-array>
 
     <string name="complain_email">mail@rostov-transport.info</string>
-    <string name="complain_email_subject">Complaint</string>
+    <string name="complain_email_subject">Жалоба на общественный транспорт</string>
 
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>

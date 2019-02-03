@@ -75,6 +75,8 @@ class ComplainPresenter : Contract.Presenter {
         val comment = view?.getCommentString()
         comment?.let { if (it.isNotBlank()) text += "${view?.getCommentTitle()}: \n$it\n" }
 
+        text += "\n--\n${view?.getSignString()}\n"
+
         return text
     }
 }
