@@ -1,0 +1,26 @@
+[
+  {
+    "position": "Редакция",
+    "name": "",
+    "email": "mail@rostov-transport.info",
+    "phone": "+7 (989) 634-04-88"
+  },
+  {
+    "position": "Руководитель проекта и главный редактор",
+    "name": "Игорь Васильевич Негодаев",
+    "email": "head@rostov-transport.info",
+    "phone": "+7 (989) 634-04-88"
+  },
+  {
+    "position": "Зам. руководителя проекта, обозреватель и редактор",
+    "name": "Максим Александрович Рассказов",
+    "email": "rasskazov@rostov-transport.info",
+    "phone": ""
+  },
+  {
+    "position": "Зам. руководителя проекта, обозреватель и редактор",
+    "name": "Диана Александровна Орлова",
+    "email": "orlova@rostov-transport.info",
+    "phone": ""
+  }
+]

@@ -26,6 +26,7 @@ interface JsonDataApi {
     @GET("online/transport_list.json")
     fun getTransportList(): Call<Transport>
 
+    // TODO: delete
     // О проекте
     @GET("about/about.json")
     fun getAbout(): Call<About>

@@ -48,11 +48,11 @@
                 <View
                     android:id="@+id/img_gradient_post_title"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:background="@drawable/gradient_post"
+                    android:layout_height="150dp"
+                    android:background="@drawable/gradient_vertical_white"
+                    app:layout_constraintBottom_toBottomOf="@id/img_post_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     />
 
                 <TextView

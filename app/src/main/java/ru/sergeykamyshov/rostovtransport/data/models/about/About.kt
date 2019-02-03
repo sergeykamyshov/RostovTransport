@@ -3,6 +3,7 @@ package ru.sergeykamyshov.rostovtransport.data.models.about
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+// TODO: delete
 class About {
 
     @SerializedName("lastUpdate")

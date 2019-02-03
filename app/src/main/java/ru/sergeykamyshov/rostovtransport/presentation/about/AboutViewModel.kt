@@ -13,21 +13,20 @@ import ru.sergeykamyshov.rostovtransport.data.models.about.About
 class AboutViewModel : ViewModel() {
 
     val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
-    private var data = MutableLiveData<About>()
-
-    init {
-        loadData()
-    }
+    private var contacts = MutableLiveData<About>()
 
     fun getData(): LiveData<About> {
-        return data
+        if (contacts.value == null) {
+            loadContacts()
+        }
+        return contacts
     }
 
-    fun loadData() {
+    fun loadContacts() {
         val call = jsonDataApi.getAbout()
         call.enqueue(object : Callback<About> {
             override fun onResponse(call: Call<About>?, response: Response<About>?) {
-                data.postValue(response?.body())
+                contacts.postValue(response?.body())
             }
 
             override fun onFailure(call: Call<About>?, t: Throwable?) {
