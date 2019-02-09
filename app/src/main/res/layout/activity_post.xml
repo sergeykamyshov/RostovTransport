@@ -49,7 +49,7 @@
                     android:id="@+id/img_gradient_post_title"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
-                    android:background="@drawable/gradient_vertical_white"
+                    android:background="@drawable/gradient_vertical_white_material"
                     app:layout_constraintBottom_toBottomOf="@id/img_post_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -19,7 +19,7 @@
             android:layout_height="200dp"
             android:contentDescription="@string/about_team_photo"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_about_project_background"
+            android:src="@drawable/img_about_project_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
