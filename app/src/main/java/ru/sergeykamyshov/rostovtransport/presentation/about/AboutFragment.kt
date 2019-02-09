@@ -4,20 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.about_card_layout.*
-import kotlinx.android.synthetic.main.about_contact_item.view.*
-import kotlinx.android.synthetic.main.about_contacts_card_layout.*
-import kotlinx.android.synthetic.main.about_top_card_layout.view.*
-import kotlinx.android.synthetic.main.fragment_about.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_about.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.base.extentions.hide
-import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
-import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
-import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 class AboutFragment : BaseFragment() {
 
@@ -25,6 +15,15 @@ class AboutFragment : BaseFragment() {
         val view = inflater.inflate(R.layout.fragment_about, container, false)
 
         setActionBarTitle(R.string.title_about)
+
+        view.rv_cards.layoutManager = LinearLayoutManager(context)
+        val adapter = CardsAdapter(context!!)
+        adapter.items = listOf(
+                CardItem.HeaderCard,
+                CardItem.TextCard,
+                CardItem.ContactsCard
+        )
+        view.rv_cards.adapter = adapter
 
 //        val viewModel = ViewModelProviders.of(activity as MainActivity).get(AboutViewModel::class.java)
 //        val liveData = viewModel.getData()
