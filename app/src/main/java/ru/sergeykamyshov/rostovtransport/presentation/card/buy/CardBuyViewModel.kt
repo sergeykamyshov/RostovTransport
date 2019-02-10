@@ -3,33 +3,50 @@ package ru.sergeykamyshov.rostovtransport.presentation.card.buy
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import ru.sergeykamyshov.rostovtransport.App
-import ru.sergeykamyshov.rostovtransport.data.json.JsonDataApi
-import ru.sergeykamyshov.rostovtransport.data.models.card.CardBuy
+import ru.sergeykamyshov.rostovtransport.base.states.*
+import ru.sergeykamyshov.rostovtransport.domain.card.BuyAddress
+import ru.sergeykamyshov.rostovtransport.domain.card.GetBuyAddresses
 
 class CardBuyViewModel : ViewModel() {
 
-    val jsonDataApi: JsonDataApi = App.provider.api.jsonDataApi
-    private var data = MutableLiveData<List<CardBuy.Address>>()
+    private val getBuyAddresses: GetBuyAddresses = App.provider.useCase.getBuyAddresses
+    private val data = MutableLiveData<List<BuyAddress>>()
+    private var uiState = MutableLiveData<UIState>(Loading)
+    private val disposables = CompositeDisposable()
 
-    fun getData(): LiveData<List<CardBuy.Address>> {
+    fun getUiState(): LiveData<UIState> = uiState
+
+    fun getData(): LiveData<List<BuyAddress>> {
+        if (data.value == null) {
+            loadData()
+        }
         return data
     }
 
     fun loadData() {
-        val call = jsonDataApi.getCardBuy()
-        call.enqueue(object : Callback<CardBuy> {
-            override fun onResponse(call: Call<CardBuy>?, response: Response<CardBuy>?) {
-                val cardBuy = response?.body()
-                data.postValue(cardBuy?.addresses)
-            }
-
-            override fun onFailure(call: Call<CardBuy>?, t: Throwable?) {
-            }
-        })
+        uiState.value = Loading
+        disposables.add(getBuyAddresses.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ addresses ->
+                    if (addresses.isNotEmpty()) {
+                        uiState.value = HasData
+                        data.postValue(addresses)
+                    } else {
+                        uiState.value = NoData
+                    }
+                }, {
+                    uiState.value = Error
+                })
+        )
     }
 
+    override fun onCleared() {
+        disposables.clear()
+        super.onCleared()
+    }
 }

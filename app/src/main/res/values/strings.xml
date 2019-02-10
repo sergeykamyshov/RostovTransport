@@ -109,6 +109,7 @@
     <string name="complain_title_place">Место совершения нарушения <font color="#4CAF50">*</font></string>
     <string name="complain_title_violations">Виды нарушений <font color="#4CAF50">*</font></string>
     <string name="complain_title_comment">Комментарий</string>
+    <string name="complain_bottom_desc">После нажатия кнопки будет сформировано предзаполненное письмо, где в качестве получателя указан наш email. Мы подготовим все документы и передадим вашу жалобу в департамент транспорта</string>
 
     <string name="complain_transport_type_bus">Автобус</string>
     <string name="complain_transport_type_shuttlebus">Маршрутка</string>
@@ -120,6 +121,8 @@
     <string name="complain_hint_enter_time">Укажите время</string>
     <string name="complain_hint_enter_place">Укажите место</string>
     <string name="complain_hint_enter_comment">Ваш комментарий</string>
+
+    <string name="complain_sign">Отправлено из мобильного приложения Ростов-Транспорт</string>
 
     <string name="complain_error_check_fill">Заполните обязательные поля</string>
     <string name="complain_error_email_client_not_found">Почтовый клиент не найден</string>
@@ -141,14 +144,21 @@
     </string-array>
 
     <string name="complain_email">mail@rostov-transport.info</string>
-    <string name="complain_email_subject">Complaint</string>
+    <string name="complain_email_subject">Жалоба на общественный транспорт</string>
 
     <!--Экран "О проекте"-->
     <string name="about_team_photo">Фотография команды проекта</string>
-    <string name="about_short_desc_title">Кратко о проекте</string>
-    <string name="about_important_title">Важно понимать!</string>
+    <string name="about_header_title">Коротко о проекте</string>
+    <string name="about_header_content">
+        «Ростов-Транспорт» — это информационно-аналитическое справочное издание, предоставляющее читателям транспортную информацию, новости, схемы маршрутов движения, данные по местоположению транспорта онлайн, статьи, транспортную аналитику и возможность передать жалобу или предложение в соответствующие инстанции.\n\n
+        Также «Ростов-Транспорт» — разработчик многих общественных инициатив в области транспорта и дорожного комплекса.
+    </string>
+    <string name="about_card_title">Обращаем внимание</string>
+    <string name="about_card_content">
+        Ростов-Транспорт — это НЕ Департамент транспорта Ростова-на-Дону, НЕ Министерство транспорта Ростовской области, НЕ ГИБДД Ростовской области, НЕ справочная автовокзалов/вокзалов/аэропортов, НЕ Департамент автодорог Ростова-на-Дону, НЕ перевозчик по каким-либо направлениям или маршрутам, НЕ оператор системы безналичной оплаты проезда.\n\n
+        Мы НЕ располагаем парком автобусов, НЕ сдаем их в аренду, НЕ перевозим грузы, НЕ строим и НЕ ремонтируем дороги.
+    </string>
     <string name="about_contacts_title">Контакты</string>
-    <string name="about_full_desc_title">Подробнее о проекте</string>
 
     <!--ViewState-->
     <string name="state_no_data">Нет данных</string>

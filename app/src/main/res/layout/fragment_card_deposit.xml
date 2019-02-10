@@ -2,25 +2,47 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_card_deposit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/recycler_item_card_deposit"
+        />
 
     <ProgressBar
-        android:id="@+id/card_deposit_progress"
+        android:id="@+id/deposit_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/state_no_data"
+        />
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/state_error_loading"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_card_deposit_button_map"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        >
 
         <View
             android:layout_width="match_parent"
@@ -28,7 +50,8 @@
             android:background="@color/color_accent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <ImageView
             android:layout_width="match_parent"
@@ -36,7 +59,8 @@
             android:contentDescription="@string/card_buy_open_map_background"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/img_card_buy_button_map_background"/>
+            app:srcCompat="@drawable/img_card_buy_button_map_background"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +71,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

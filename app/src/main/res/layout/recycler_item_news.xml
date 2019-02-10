@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <ImageView
         android:id="@+id/img_news_thumbnail"
@@ -14,25 +15,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/img_thumbnail_news_item_1"/>
+        app:srcCompat="@drawable/img_thumbnail_news_item_1"
+        />
 
     <View
         android:id="@+id/v_item_news_gradient"
         android:layout_width="170dp"
         android:layout_height="120dp"
-        android:background="@drawable/gradient_news_item"
+        android:background="@drawable/gradient_horizontal_news"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/img_news_thumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tv_post_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
         android:ellipsize="end"
         android:maxLines="3"
         android:textColor="@android:color/black"
@@ -40,40 +42,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="В маршрутках начали устанавливать терминалы безналичной оплаты"/>
+        tools:text="В маршрутках начали устанавливать терминалы безналичной оплаты"
+        />
 
     <TextView
         android:id="@+id/tv_news_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="12.06.2018"/>
+        tools:text="12.06.2018"
+        />
 
     <TextView
         android:id="@+id/tv_news_author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_news_date"
-        tools:text="Алексей Иванов"/>
+        tools:text="Алексей Иванов"
+        />
 
     <TextView
         android:id="@+id/tv_news_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="123"/>
+        tools:text="123"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

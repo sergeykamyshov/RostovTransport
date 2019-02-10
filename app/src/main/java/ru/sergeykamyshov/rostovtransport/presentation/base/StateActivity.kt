@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import ru.sergeykamyshov.rostovtransport.base.states.UIState
 
-open class BaseActivity : AppCompatActivity() {
+open class StateActivity : AppCompatActivity() {
 
     private lateinit var viewState: ViewState
 

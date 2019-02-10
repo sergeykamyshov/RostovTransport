@@ -13,22 +13,23 @@
         >
 
         <ImageView
+            android:id="@+id/img_top"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_card_questions_400x267"
+            app:srcCompat="@drawable/img_card_questions_header"
             />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:background="@drawable/gradient_about"
+            android:layout_height="150dp"
+            android:background="@drawable/gradient_vertical_white"
+            app:layout_constraintBottom_toBottomOf="@id/img_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView

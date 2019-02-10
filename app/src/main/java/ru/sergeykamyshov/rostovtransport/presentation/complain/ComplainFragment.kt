@@ -168,6 +168,10 @@ class ComplainFragment : BaseFragment(), Contract.View {
         return edt_comment.text.toString()
     }
 
+    override fun getSignString(): String {
+        return getString(R.string.complain_sign)
+    }
+
     override fun showCheckErrorToast() {
         Toast.makeText(activity, getString(R.string.complain_error_check_fill), Toast.LENGTH_LONG).show()
     }

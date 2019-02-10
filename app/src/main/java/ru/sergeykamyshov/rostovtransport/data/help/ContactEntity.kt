@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 
-@Entity(tableName = "helpContact")
+@Entity(tableName = "help_contact")
 class ContactEntity {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

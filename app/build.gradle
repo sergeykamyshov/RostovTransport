@@ -47,20 +47,21 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
 
     // Android X
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.1.0-alpha03'
     kapt "com.android.databinding:compiler:3.1.4"
 
     // Architecture Components
-    def archVersion = "2.1.0-alpha01"
+    def archVersion = "2.1.0-alpha02"
     implementation "androidx.lifecycle:lifecycle-runtime:$archVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archVersion"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$archVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archVersion"
 
+    // Room
     def roomVersion = "2.1.0-alpha04"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"
@@ -70,7 +71,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Google Maps
-    implementation "com.google.android.gms:play-services-maps:16.0.0"
+    implementation "com.google.android.gms:play-services-maps:16.1.0"
 
     // Retrofit 2
     def retrofitVersion = "2.5.0"
@@ -83,6 +84,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
     implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
 
+    // Adapter Delegates
+    implementation "com.hannesdorfmann:adapterdelegates4:4.0.0"
+
     // Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
 
@@ -90,8 +94,8 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Firebase Analytics
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
 
     // Fabric Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 }

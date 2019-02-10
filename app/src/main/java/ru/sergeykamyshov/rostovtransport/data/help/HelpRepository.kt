@@ -73,7 +73,7 @@ class HelpRepository(
     private fun updateAndGetFromDb(type: String, hashPref: String, file: String): Single<List<ContactEntity>> {
         return removeFromTable(type)
                 .andThen(getContractsFromJson(file))
-                .flatMap { contacts -> convertToEntities(contacts, type) }
+                .map { contacts -> convertToEntities(contacts, type) }
                 .flatMapCompletable { entities -> saveEntitiesToDb(entities) }
                 .andThen(getFileHash(file))
                 .flatMapCompletable { hash -> saveHashToPrefs(hashPref, hash) }
@@ -91,8 +91,8 @@ class HelpRepository(
         }
     }
 
-    private fun convertToEntities(contacts: List<Contact>, type: String): Single<List<ContactEntity>> {
-        val entities = contacts.map {
+    private fun convertToEntities(contacts: List<Contact>, type: String): List<ContactEntity> {
+        return contacts.map {
             ContactEntity().apply {
                 this.type = type
                 name = it.name
@@ -103,7 +103,6 @@ class HelpRepository(
                 emails = it.emails
             }
         }
-        return Single.just(entities)
     }
 
     private fun saveEntitiesToDb(entities: List<ContactEntity>): Completable {

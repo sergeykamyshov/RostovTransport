@@ -52,6 +52,12 @@ class NewsFragment : BaseFragment() {
         viewModel.getData().observe(this, Observer {
             adapter.updateData(it)
         })
+
+        view.swipeRefresh.setOnRefreshListener {
+            view.swipeRefresh.isRefreshing = false
+            viewModel.loadData()
+        }
+
         return view
     }
 
