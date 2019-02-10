@@ -3,7 +3,6 @@ package ru.sergeykamyshov.rostovtransport.data.json
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import ru.sergeykamyshov.rostovtransport.data.models.about.About
 import ru.sergeykamyshov.rostovtransport.data.models.online.Transport
 import ru.sergeykamyshov.rostovtransport.data.models.routes.RouteInfo
 import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
@@ -25,10 +24,5 @@ interface JsonDataApi {
     // Транспорт онлайн
     @GET("online/transport_list.json")
     fun getTransportList(): Call<Transport>
-
-    // TODO: delete
-    // О проекте
-    @GET("about/about.json")
-    fun getAbout(): Call<About>
 
 }

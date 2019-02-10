@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
@@ -23,12 +24,11 @@ class ContactsCardDelegate(private val context: Context) : AdapterDelegate<List<
     }
 
     override fun onBindViewHolder(items: List<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: List<Any>) {
-//        val item = items[position] as CardItem.ContactsCard
         val viewHolder = holder as ViewHolder
-
         with(viewHolder) {
             rvContacts.layoutManager = LinearLayoutManager(context)
-            rvContacts.adapter = ContactsAdapter(context, listOf("One", "Two", "Three", "Four", "Five"))
+            rvContacts.adapter = ContactsAdapter(context)
+            rvContacts.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 

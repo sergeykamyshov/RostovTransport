@@ -8,11 +8,15 @@ class CardsAdapter(
 ) : ListDelegationAdapter<List<Any>>() {
 
     init {
+        items = listOf(
+                CardItem.HeaderCard,
+                CardItem.TextCard,
+                CardItem.ContactsCard
+        )
         delegatesManager
                 .addDelegate(HeaderCardDelegate(context))
                 .addDelegate(TextCardDelegate(context))
                 .addDelegate(ContactsCardDelegate(context))
     }
-
 
 }

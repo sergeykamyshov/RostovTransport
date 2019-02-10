@@ -18,68 +18,8 @@ class AboutFragment : BaseFragment() {
 
         view.rv_cards.layoutManager = LinearLayoutManager(context)
         val adapter = CardsAdapter(context!!)
-        adapter.items = listOf(
-                CardItem.HeaderCard,
-                CardItem.TextCard,
-                CardItem.ContactsCard
-        )
         view.rv_cards.adapter = adapter
 
-//        val viewModel = ViewModelProviders.of(activity as MainActivity).get(AboutViewModel::class.java)
-//        val liveData = viewModel.getData()
-//        liveData.observe(this, Observer {
-//            // Добавляем карточки
-//            val cards = it?.cards
-//            for (i in cards?.indices!!) {
-//                // Первая карточка имеет разметку с картинкой
-//                if (i == 0) {
-//                    val topCard = inflater.inflate(R.layout.about_top_card_layout, about_main_layout, true)
-//                    val card = cards[0]
-//                    topCard.tv_about_top_card_title.text = card.title
-//                    topCard.tv_about_top_card_content.text = card.content
-//                    continue
-//                }
-//                inflater.inflate(R.layout.about_card_layout, about_main_layout, true)
-//                val card = cards.get(i)
-//                tv_about_card_title.text = card.title
-//                tv_about_card_content.text = card.content
-//            }
-//
-//            // Добавляем карточку со списком контактов
-//            inflater.inflate(R.layout.about_contacts_card_layout, about_main_layout, true)
-//            for (contact in it.contacts) {
-//                val contactLayout = inflater.inflate(R.layout.about_contact_item, about_main_layout, false)
-//                if (contact.position.isEmpty()) {
-//                    contactLayout.tv_contact_position.hide()
-//                    contactLayout.img_contact_position.hide()
-//                } else contactLayout.tv_contact_position.text = contact.position
-//                if (contact.name.isEmpty()) {
-//                    contactLayout.tv_contact_name.hide()
-//                    contactLayout.img_contact_name.hide()
-//                } else contactLayout.tv_contact_name.text = contact.name
-//                if (contact.phone.isEmpty()) {
-//                    contactLayout.tv_contact_phone.hide()
-//                    contactLayout.img_contact_phone.hide()
-//                } else {
-//                    contactLayout.tv_contact_phone.text = contact.phone
-//                    contactLayout.tv_contact_phone.onClickDebounce {
-//                        activity?.makeCall(contact.phone)
-//                    }
-//                }
-//                if (contact.email.isEmpty()) {
-//                    contactLayout.tv_contact_email.hide()
-//                    contactLayout.img_contact_email.hide()
-//                } else {
-//                    contactLayout.tv_contact_email.text = contact.email
-//                    contactLayout.tv_contact_email.onClickDebounce {
-//                        activity?.sendEmail(contact.email)
-//                    }
-//                }
-//
-//                ll_about_contacts_layout.addView(contactLayout)
-//            }
-//            about_progress.hide()
-//        })
         return view
     }
 
