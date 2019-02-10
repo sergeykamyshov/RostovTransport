@@ -61,6 +61,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        if (R.id.nav_item_news != vBottomNavigation.selectedItemId) {
+            vBottomNavigation.selectedItemId = R.id.nav_item_news
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     fun showAppBarLayout() {
         main_app_bar.setExpanded(true)
     }
