@@ -8,5 +8,6 @@ class Post(
         val date: String,
         val authorName: String,
         val thumbnail: String?,
-        val thumbnailMedium: String?
+        val thumbnailMedium: String?,
+        val thumbnailMediumLarge: String?
 )

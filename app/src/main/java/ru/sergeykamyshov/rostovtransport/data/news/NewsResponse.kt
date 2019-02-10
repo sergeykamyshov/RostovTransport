@@ -29,7 +29,8 @@ data class Post(
             date,
             author.name,
             thumbnail,
-            thumbnailImages?.medium?.url
+            thumbnailImages?.medium?.url,
+            thumbnailImages?.mediumLarge?.url
     )
 }
 
@@ -38,9 +39,10 @@ data class Author(
 )
 
 data class ThumbnailImages(
-        @SerializedName("medium") val medium: Medium?
+        @SerializedName("medium") val medium: ThumbnailImage?,
+        @SerializedName("medium_large") val mediumLarge: ThumbnailImage?
 )
 
-data class Medium(
+data class ThumbnailImage(
         @SerializedName("url") val url: String?
 )

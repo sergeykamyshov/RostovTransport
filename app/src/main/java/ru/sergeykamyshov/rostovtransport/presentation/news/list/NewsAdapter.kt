@@ -21,6 +21,8 @@ class NewsAdapter(
         var listener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
+    private val TARGET_IMG_WIDTH = 300
+    private val TARGET_IMG_HEIGHT = 150
     private val layoutInflater = context?.layoutInflater
     private var items: List<Post> = emptyList()
 
@@ -37,15 +39,15 @@ class NewsAdapter(
         val post = items[position]
         if (post.thumbnail != null) {
             Picasso.get()
-                    .load(post.thumbnail)
-                    .resize(150, 100)
+                    .load(post.thumbnailMedium)
+                    .resize(TARGET_IMG_WIDTH, TARGET_IMG_HEIGHT)
                     .centerCrop()
                     .into(holder.newsThumbnail)
         } else {
             // Если картинку невозможно загрузить из интернета, то устанавливаем картинку по-умолчанию
             Picasso.get()
                     .load(getDefaultThumbnail(position))
-                    .resize(150, 100)
+                    .resize(TARGET_IMG_WIDTH, TARGET_IMG_HEIGHT)
                     .centerCrop()
                     .into(holder.newsThumbnail)
         }

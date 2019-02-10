@@ -22,6 +22,8 @@ import ru.sergeykamyshov.rostovtransport.presentation.base.StateActivity
 
 class PostActivity : StateActivity() {
 
+    private val TARGET_IMG_WIDTH = 600
+    private val TARGET_IMG_HEIGHT = 300
     private lateinit var url: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +38,8 @@ class PostActivity : StateActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val id = intent.getStringExtra(POST_ID_EXTRA)
-        val viewModel = ViewModelProviders.of(this, PostModelFactory(id))
+        val viewModel = ViewModelProviders
+                .of(this, PostModelFactory(id))
                 .get(PostViewModel::class.java)
         binding.viewModel = viewModel
 
@@ -56,13 +59,13 @@ class PostActivity : StateActivity() {
             url = it.url
 
             if (it.thumbnailMedium != null) {
-                Picasso.get().load(it.thumbnailMedium)
-                        .resize(300, 150)
+                Picasso.get().load(it.thumbnailMediumLarge)
+                        .resize(TARGET_IMG_WIDTH, TARGET_IMG_HEIGHT)
                         .centerCrop()
                         .into(img_post_title)
             } else {
                 Picasso.get().load(R.drawable.img_thumbnail_news_item_4)
-                        .resize(300, 150)
+                        .resize(TARGET_IMG_WIDTH, TARGET_IMG_HEIGHT)
                         .centerCrop()
                         .into(img_post_title)
             }
