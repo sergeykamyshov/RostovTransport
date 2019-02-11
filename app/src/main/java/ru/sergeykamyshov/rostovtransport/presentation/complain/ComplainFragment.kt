@@ -14,6 +14,7 @@ import com.crashlytics.android.answers.CustomEvent
 import kotlinx.android.synthetic.main.fragment_complain.*
 import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.App
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
@@ -177,17 +178,19 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     override fun sendComplaintViaEmail(text: String) {
-        App.firebaseAnalytics.sendEvent(
-                SEND_COMPLAIN_EVENT,
-                mapOf(
-                        "transport_type" to getTransportTypeString(),
-                        "route_number" to getRouteString().toLowerCase()
-                )
-        )
-        Answers.getInstance().logCustom(CustomEvent(SEND_COMPLAIN_EVENT)
-                .putCustomAttribute("transport_type", getTransportTypeString())
-                .putCustomAttribute("route_number", getRouteString().toLowerCase())
-        )
+        if (!BuildConfig.DEBUG) {
+            App.firebaseAnalytics.sendEvent(
+                    SEND_COMPLAIN_EVENT,
+                    mapOf(
+                            "transport_type" to getTransportTypeString(),
+                            "route_number" to getRouteString().toLowerCase()
+                    )
+            )
+            Answers.getInstance().logCustom(CustomEvent(SEND_COMPLAIN_EVENT)
+                    .putCustomAttribute("transport_type", getTransportTypeString())
+                    .putCustomAttribute("route_number", getRouteString().toLowerCase())
+            )
+        }
         val result = activity?.sendEmail(
                 getString(R.string.complain_email),
                 getString(R.string.complain_email_subject),

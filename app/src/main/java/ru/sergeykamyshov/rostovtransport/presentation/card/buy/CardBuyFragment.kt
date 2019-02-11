@@ -13,6 +13,7 @@ import com.crashlytics.android.answers.CustomEvent
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.App
+import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEvent
@@ -52,8 +53,10 @@ class CardBuyFragment : StateFragment() {
         })
 
         view.layout_card_buy_button_map.onClickDebounce {
-            App.firebaseAnalytics.sendEvent(CARD_BUY_MAP_EVENT)
-            Answers.getInstance().logCustom(CustomEvent(CARD_BUY_MAP_EVENT))
+            if (!BuildConfig.DEBUG) {
+                App.firebaseAnalytics.sendEvent(CARD_BUY_MAP_EVENT)
+                Answers.getInstance().logCustom(CustomEvent(CARD_BUY_MAP_EVENT))
+            }
             startActivity(CardBuyMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))
         }
 
