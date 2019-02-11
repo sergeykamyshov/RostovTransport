@@ -68,16 +68,13 @@ class NewsAdapter(
     }
 
     private fun getDefaultThumbnail(position: Int): Int {
-        if (position % 5 == 0) {
-            return R.drawable.img_thumbnail_news_item_5
-        } else if (position % 4 == 0) {
-            return R.drawable.img_thumbnail_news_item_4
-        } else if (position % 3 == 0) {
-            return R.drawable.img_thumbnail_news_item_3
-        } else if (position % 2 == 0) {
-            return R.drawable.img_thumbnail_news_item_2
+        return when {
+            position % 5 == 0 -> R.drawable.img_thumbnail_news_item_5
+            position % 4 == 0 -> R.drawable.img_thumbnail_news_item_4
+            position % 3 == 0 -> R.drawable.img_thumbnail_news_item_3
+            position % 2 == 0 -> R.drawable.img_thumbnail_news_item_2
+            else -> R.drawable.img_thumbnail_news_item_1
         }
-        return R.drawable.img_thumbnail_news_item_1
     }
 
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
