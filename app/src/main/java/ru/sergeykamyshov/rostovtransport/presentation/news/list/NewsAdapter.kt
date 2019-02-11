@@ -54,7 +54,6 @@ class NewsAdapter(
 
         // Внимание! В заголовках статей могут быть указаны html теги
         holder.newsTitle?.text = Html.fromHtml(post.title)
-        holder.newsAuthor?.text = post.authorName
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
         holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
@@ -84,7 +83,6 @@ class NewsAdapter(
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val newsThumbnail: ImageView? = itemView.img_news_thumbnail
         val newsTitle: TextView? = itemView.tv_post_title
-        val newsAuthor: TextView? = itemView.tv_news_author
         val newsDate: TextView? = itemView.tv_news_date
         // Скрытое поле
         val newsId: TextView? = itemView.tv_news_id
