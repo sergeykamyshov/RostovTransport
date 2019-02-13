@@ -91,7 +91,6 @@
     </string-array>
 
     <string name="card_buy_open_map_text">Посмотреть на карте</string>
-    <string name="card_buy_open_map_background">Изображение Google Карты на заднем фоне</string>
 
     <!--Пожаловаться-->
     <string name="complain_title_how_to">Как подать жалобу?</string>
@@ -100,7 +99,6 @@
         2. Приложение сформирует полностью заполненное письмо. Нажмите "Отправить email".\n\n
         3. После получения письма мы подготовим все документы и перенаправим жалобу в департамент транспорта.
     </string>
-    <string name="complain_img_desc">Заполнение формы для жалобы</string>
 
     <string name="complain_title_transport_type">Вид транспорта <font color="#4CAF50">*</font></string>
     <string name="complain_title_route">Номер маршрута <font color="#4CAF50">*</font></string>
@@ -147,7 +145,6 @@
     <string name="complain_email_subject">Жалоба на общественный транспорт</string>
 
     <!--Экран "О проекте"-->
-    <string name="about_team_photo">Фотография команды проекта</string>
     <string name="about_header_title">Коротко о проекте</string>
     <string name="about_header_content">
         «Ростов-Транспорт» — это информационно-аналитическое справочное издание, предоставляющее читателям транспортную информацию, новости, схемы маршрутов движения, данные по местоположению транспорта онлайн, статьи, транспортную аналитику и возможность передать жалобу или предложение в соответствующие инстанции.\n\n
@@ -166,4 +163,16 @@
 
     <!--Ошибки-->
     <string name="error_no_email_client">Приложение для почты не найдено</string>
+
+    <!--ContentDescription-->
+    <string name="cd_icon_building">Значок здания</string>
+    <string name="cd_icon_user">Значок пользователя</string>
+    <string name="cd_icon_telephone">Значок телефонной трубки</string>
+    <string name="cd_icon_envelope">Значок конверта</string>
+    <string name="cd_icon_map">Значок карты</string>
+    <string name="cd_img_map_background">Скриншот Google Карты с улицей Пушкинская</string>
+    <string name="cd_img_card_terminal">Прикладывание транспортной карты к зеленому терминалу</string>
+    <string name="cd_img_hands_question">Поднятые руки вверх для дополнительных вопросов</string>
+    <string name="cd_img_fill_complain">Заполнение правой рукой формы для жалоб</string>
+    <string name="cd_img_team_photo">Фотография команды проекта из четырех человек</string>
 </resources>

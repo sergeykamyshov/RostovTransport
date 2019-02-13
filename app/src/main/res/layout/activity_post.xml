@@ -38,7 +38,6 @@
                     android:id="@+id/img_post_title"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:contentDescription="@string/about_team_photo"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

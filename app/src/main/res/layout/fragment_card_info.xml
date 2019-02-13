@@ -15,6 +15,7 @@
             android:id="@+id/img_card_info"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:contentDescription="@string/cd_img_card_terminal"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

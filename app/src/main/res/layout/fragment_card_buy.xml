@@ -56,7 +56,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:contentDescription="@string/card_buy_open_map_background"
+            android:contentDescription="@string/cd_img_map_background"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/img_card_buy_button_map_background"
