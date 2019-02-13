@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
+import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.presentation.base.ViewState
 
 abstract class BaseFragment : Fragment() {
@@ -19,6 +20,8 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list_help, container, false)
+
+        AnalyticsUtils.logContentViewEvent(getContentType())
 
         val recycler = view.rv_help
         recycler.layoutManager = LinearLayoutManager(activity)
@@ -46,5 +49,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun getViewModel(): BaseViewModel
+
+    abstract fun getContentType(): String
 
 }
