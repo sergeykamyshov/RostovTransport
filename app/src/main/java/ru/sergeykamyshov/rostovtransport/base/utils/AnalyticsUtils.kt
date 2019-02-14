@@ -11,23 +11,30 @@ object AnalyticsUtils {
     private const val CONTENT_VIEW_EVENT = "content_view"
     private const val CONTENT_VIEW_TYPE = "content_type"
 
-    fun logContentViewEvent(contentType: String, params: Map<String, String> = emptyMap()) {
+    fun logContentViewEvent(contentType: String) {
         if (BuildConfig.DEBUG) {
             return
         }
-
         val bundle = Bundle()
         bundle.putString(CONTENT_VIEW_TYPE, contentType)
         val contentViewEvent = CustomEvent(CONTENT_VIEW_EVENT)
         contentViewEvent.putCustomAttribute(CONTENT_VIEW_TYPE, contentType)
-
-        for ((key, value) in params) {
-            contentViewEvent.putCustomAttribute(key, value)
-            bundle.putString(key, value)
-        }
-
         App.firebaseAnalytics.logEvent(CONTENT_VIEW_EVENT, bundle)
         Answers.getInstance().logCustom(contentViewEvent)
+    }
+
+    fun logCustomEvent(event: String, params: Map<String, String> = emptyMap()) {
+        if (BuildConfig.DEBUG) {
+            return
+        }
+        val bundle = Bundle()
+        val customEvent = CustomEvent(event)
+        for ((key, value) in params) {
+            customEvent.putCustomAttribute(key, value)
+            bundle.putString(key, value)
+        }
+        App.firebaseAnalytics.logEvent(event, bundle)
+        Answers.getInstance().logCustom(customEvent)
     }
 
 }
