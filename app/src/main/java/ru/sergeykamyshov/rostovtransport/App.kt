@@ -16,13 +16,12 @@ class App : MultiDexApplication() {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        } else {
+            // Firebase Analytics
+            firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+            // Fabric Crashlytics
+            Fabric.with(this, Crashlytics())
         }
-
-        // Firebase Analytics
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
-        // Fabric Crashlytics
-        Fabric.with(this, Crashlytics())
     }
 
     companion object {
