@@ -12,7 +12,6 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 import ru.sergeykamyshov.rostovtransport.presentation.base.StateFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map.CardDepositMapActivity
@@ -24,8 +23,6 @@ class CardDepositFragment : StateFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_card_deposit, container, false)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         val recycler = view.rv_card_deposit
         recycler.layoutManager = LinearLayoutManager(activity)
@@ -56,8 +53,6 @@ class CardDepositFragment : StateFragment() {
     }
 
     companion object {
-        private const val CONTENT_VIEW_TYPE = "card_deposit_list"
-
         fun newInstance() = CardDepositFragment()
     }
 

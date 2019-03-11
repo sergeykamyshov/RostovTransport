@@ -17,13 +17,11 @@ import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
 import ru.sergeykamyshov.rostovtransport.presentation.base.StateActivity
 
 class PostActivity : StateActivity() {
 
-    private val CONTENT_VIEW_TYPE = "news_post"
     private val TARGET_IMG_WIDTH = 600
     private val TARGET_IMG_HEIGHT = 300
     private lateinit var url: String
@@ -38,8 +36,6 @@ class PostActivity : StateActivity() {
 
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         val id = intent.getStringExtra(POST_ID_EXTRA)
         val viewModel = ViewModelProviders

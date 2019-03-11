@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -23,8 +22,6 @@ import kotlin.collections.ArrayList
 
 class ComplainFragment : BaseFragment(), Contract.View {
 
-    private val CONTENT_VIEW_TYPE = "complain"
-    private val SEND_COMPLAIN_EVENT = "send_complaint"
     private val violationsCheckedPositions = "violations_checked_positions"
 
     private lateinit var presenter: Contract.Presenter
@@ -34,8 +31,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
         val view = inflater.inflate(R.layout.fragment_complain, container, false)
 
         setActionBarTitle(R.string.title_complain)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         presenter = ComplainPresenter()
         presenter.attachView(this)
@@ -177,13 +172,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     override fun sendComplaintViaEmail(text: String) {
-        AnalyticsUtils.logCustomEvent(
-                SEND_COMPLAIN_EVENT,
-                mapOf(
-                        "transport_type" to getTransportTypeString(),
-                        "route_number" to getRouteString().toLowerCase()
-                )
-        )
         val result = activity?.sendEmail(
                 getString(R.string.complain_email),
                 getString(R.string.complain_email_subject),

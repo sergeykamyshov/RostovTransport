@@ -8,15 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_card_questions.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 
 
 class QuestionsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_card_questions, container, false)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         view.rv_questions.layoutManager = LinearLayoutManager(activity)
         val adapter = QuestionsAdapter(activity!!)
@@ -37,8 +34,6 @@ class QuestionsFragment : Fragment() {
     }
 
     companion object {
-        private const val CONTENT_VIEW_TYPE = "card_questions"
-
         fun newInstance() = QuestionsFragment()
     }
 

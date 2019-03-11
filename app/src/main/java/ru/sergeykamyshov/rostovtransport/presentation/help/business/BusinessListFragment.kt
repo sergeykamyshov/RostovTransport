@@ -14,6 +14,4 @@ class BusinessListFragment : BaseFragment() {
         return ViewModelProviders.of(this).get(BusinessViewModel::class.java)
     }
 
-    override fun getContentType() = "help_business"
-
 }

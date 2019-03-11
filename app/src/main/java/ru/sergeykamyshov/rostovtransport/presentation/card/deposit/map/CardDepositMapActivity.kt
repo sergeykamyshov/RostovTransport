@@ -16,7 +16,6 @@ import com.google.gson.Gson
 import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.Const
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 
 class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -28,8 +27,6 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.fragment_card_map)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         val json = intent.getStringExtra(ADDRESSES_EXTRA)
         addresses = Gson().fromJson(json, Array<DepositAddress>::class.java).toList()
@@ -68,7 +65,6 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         const val ADDRESSES_EXTRA = "${BuildConfig.APPLICATION_ID}.CardDepositMapActivity.ADDRESSES"
-        private const val CONTENT_VIEW_TYPE = "card_deposit_map"
 
         fun getIntent(context: Context, addresses: String): Intent {
             val intent = Intent(context, CardDepositMapActivity::class.java)

@@ -12,7 +12,6 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.domain.card.BuyAddress
 import ru.sergeykamyshov.rostovtransport.presentation.base.StateFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.map.CardBuyMapActivity
@@ -24,8 +23,6 @@ class CardBuyFragment : StateFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_card_buy, container, false)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         val recycler = view.rv_card_buy
         recycler.layoutManager = LinearLayoutManager(activity)
@@ -56,8 +53,6 @@ class CardBuyFragment : StateFragment() {
     }
 
     companion object {
-        private const val CONTENT_VIEW_TYPE = "card_buy_list"
-
         fun newInstance() = CardBuyFragment()
     }
 

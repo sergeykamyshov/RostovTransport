@@ -14,6 +14,4 @@ class DepartmentsListFragment : BaseFragment() {
         return ViewModelProviders.of(this).get(DepartmentsViewModel::class.java)
     }
 
-    override fun getContentType() = "help_departments"
-
 }

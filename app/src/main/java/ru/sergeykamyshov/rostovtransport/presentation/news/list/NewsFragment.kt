@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.base.utils.AnalyticsUtils
 import ru.sergeykamyshov.rostovtransport.databinding.FragmentNewsBinding
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
@@ -19,8 +18,6 @@ import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.presentation.news.post.PostActivity
 
 class NewsFragment : BaseFragment() {
-
-    private val CONTENT_VIEW_TYPE = "news_list"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentNewsBinding>(
@@ -32,8 +29,6 @@ class NewsFragment : BaseFragment() {
         val view = binding.root
 
         setActionBarTitle(R.string.title_news)
-
-        AnalyticsUtils.logContentViewEvent(CONTENT_VIEW_TYPE)
 
         val recycler = view.news_recycler
         recycler.layoutManager = LinearLayoutManager(activity)
