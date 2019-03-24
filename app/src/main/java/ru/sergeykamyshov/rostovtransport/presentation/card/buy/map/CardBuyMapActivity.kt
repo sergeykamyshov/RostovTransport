@@ -37,20 +37,31 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap?) {
         addresses.forEach addressLoop@{ address ->
             val locations = address.locations
-            if (locations.isEmpty()) return@addressLoop
+            if (locations.isEmpty()) {
+                return@addressLoop
+            }
 
             locations.forEach locationLoop@{ location ->
-                val coordinates = location.trim().replace(" ", "").split(",")
-                if (coordinates.size != 2) return@locationLoop
-                googleMap?.addMarker(MarkerOptions()
-                        .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
-                        .title(address.desc))
+                val coordinates = location
+                        .trim()
+                        .replace(" ", "")
+                        .split(",")
+                if (coordinates.size != 2) {
+                    return@locationLoop
+                }
+                googleMap?.addMarker(
+                        MarkerOptions()
+                                .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
+                                .title(address.desc)
+                )
             }
         }
 
         googleMap?.uiSettings?.isZoomControlsEnabled = true
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                LatLng(Const.RND_LATITUDE, Const.RND_LONGITUDE), 12F))
+        googleMap?.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                        LatLng(Const.RND_LATITUDE, Const.RND_LONGITUDE), 12F)
+        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
