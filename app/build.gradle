@@ -60,19 +60,22 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
 
     // Android X
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
+    implementation 'com.google.android.material:material:1.1.0-alpha05'
     kapt "com.android.databinding:compiler:3.1.4"
 
     // Architecture Components
-    def archVersion = "2.1.0-alpha03"
+    def archVersion = "2.1.0-alpha04"
     implementation "androidx.lifecycle:lifecycle-runtime:$archVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archVersion"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$archVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archVersion"
+
+    // Navigation Component
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
 
     // Room
     def roomVersion = "2.1.0-alpha06"

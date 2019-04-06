@@ -2,17 +2,15 @@ package ru.sergeykamyshov.rostovtransport.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 import ru.sergeykamyshov.rostovtransport.R
-import ru.sergeykamyshov.rostovtransport.presentation.about.AboutFragment
-import ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment
-import ru.sergeykamyshov.rostovtransport.presentation.complain.ComplainFragment
-import ru.sergeykamyshov.rostovtransport.presentation.help.HelpFragment
-import ru.sergeykamyshov.rostovtransport.presentation.news.list.NewsFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,43 +19,21 @@ class MainActivity : AppCompatActivity() {
         // Настраивает Toolbar
         setSupportActionBar(main_toolbar)
 
+        navController = Navigation.findNavController(this, R.id.navHostFragment)
+
         // Обрабатываем выбор пункта меню
         vBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_item_news -> showFragment(NewsFragment.newInstance(), NewsFragment.TAG)
-                R.id.nav_item_help -> showFragment(HelpFragment.newInstance(), HelpFragment.TAG)
-                R.id.nav_item_transport_card -> showFragment(TransportCardFragment.newInstance(), TransportCardFragment.TAG)
-                R.id.nav_item_complain -> showFragment(ComplainFragment.newInstance(), ComplainFragment.TAG)
-                R.id.nav_item_about -> showFragment(AboutFragment.newInstance(), AboutFragment.TAG)
+                R.id.nav_item_news -> navController.navigate(R.id.newsFragment)
+                R.id.nav_item_help -> navController.navigate(R.id.helpFragment)
+                R.id.nav_item_transport_card -> navController.navigate(R.id.transportCardFragment)
+                R.id.nav_item_complain -> navController.navigate(R.id.complainFragment)
+                R.id.nav_item_about -> navController.navigate(R.id.aboutFragment)
 //                R.id.nav_item_routes -> showFragment(RoutesFragment.newInstance())
 //                R.id.nav_item_schedule -> showFragment(ScheduleFragment.newInstance())
 //                R.id.nav_item_transport_online -> showFragment(TransportOnlineFragment.newInstance())
             }
             true
-        }
-
-        if (supportFragmentManager.findFragmentById(R.id.flContainer) != null) {
-            // Восстанавливаем фрагмент после поворота экрана
-            supportFragmentManager.popBackStack()
-        } else {
-            // Экран по умолчанию - Новости
-            showFragment(NewsFragment.newInstance(), NewsFragment.TAG)
-        }
-
-    }
-
-    private fun showFragment(fragment: Fragment, tag: String) {
-        val fragmentByTag = supportFragmentManager.findFragmentByTag(tag)
-        if (fragmentByTag != null) {
-            supportFragmentManager
-                    .beginTransaction()
-                    .show(fragmentByTag)
-                    .commit()
-        } else {
-            supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.flContainer, fragment, tag)
-                    .commit()
         }
     }
 
@@ -72,4 +48,5 @@ class MainActivity : AppCompatActivity() {
     fun showAppBarLayout() {
         main_app_bar.setExpanded(true)
     }
+
 }

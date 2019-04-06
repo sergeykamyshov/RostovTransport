@@ -2,19 +2,20 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/vRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <include layout="@layout/toolbar_layout" />
 
-    <FrameLayout
-        android:id="@+id/flContainer"
+    <fragment
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:navGraph="@navigation/main_graph"
         />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

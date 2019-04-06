@@ -8,11 +8,11 @@ open class BaseFragment : StateFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // Показываем AppBarLayout при создании нового фрагмента (даже если на предыдущем он был скрыт)
-        (activity as MainActivity).showAppBarLayout()
+        (activity as? MainActivity)?.showAppBarLayout()
     }
 
     fun setActionBarTitle(resId: Int) {
-        (activity as MainActivity).supportActionBar?.title = activity?.resources?.getString(resId)
+        (activity as? MainActivity)?.supportActionBar?.title = activity?.resources?.getString(resId)
     }
 
 }
