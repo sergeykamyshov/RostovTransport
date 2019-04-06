@@ -1,11 +1,12 @@
 package ru.sergeykamyshov.rostovtransport.presentation.help.base
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -16,11 +17,11 @@ import ru.sergeykamyshov.rostovtransport.base.extentions.openOnMap
 import ru.sergeykamyshov.rostovtransport.domain.help.Contact
 
 class BaseAdapter(
-        var context: FragmentActivity?,
-        var items: List<Contact>
+        private var context: Context,
+        private var items: List<Contact>
 ) : RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
 
-    private val layoutInflater = context?.layoutInflater
+    private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = layoutInflater?.inflate(R.layout.recycler_item_help, parent, false)

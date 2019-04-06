@@ -1,34 +1,44 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.list
 
+import android.content.Context
 import android.text.Html
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.domain.news.Post
-import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsAdapter(
-        var context: FragmentActivity?,
-        var listener: OnItemClickListener
+        private var context: Context,
+        private var callback: Callback
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private val TARGET_IMG_WIDTH = 300
     private val TARGET_IMG_HEIGHT = 150
-    private val layoutInflater = context?.layoutInflater
+    private val layoutInflater = LayoutInflater.from(context)
     private var items: List<Post> = emptyList()
 
+    interface Callback {
+        fun onPostClick(id: Long)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = layoutInflater?.inflate(R.layout.recycler_item_news, parent, false)
-        return ViewHolder(view!!)
+        val holder = ViewHolder(layoutInflater.inflate(R.layout.recycler_item_news, parent, false))
+
+        holder.itemView.onClickDebounce {
+            val post = items[holder.adapterPosition]
+            callback.onPostClick(post.id)
+        }
+
+        return holder
     }
 
     override fun getItemCount(): Int {
@@ -53,13 +63,11 @@ class NewsAdapter(
         }
 
         // Внимание! В заголовках статей могут быть указаны html теги
-        holder.newsTitle?.text = Html.fromHtml(post.title)
+        holder.newsTitle.text = Html.fromHtml(post.title)
+        // TODO: SK 06-Apr-19 Format data when create object
         // Приводим дату к формат "dd.MM.yyyy"
         val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(post.date)
-        holder.newsDate?.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
-        holder.newsId?.text = post.id
-
-        holder.bind(listener)
+        holder.newsDate.text = SimpleDateFormat("dd.MM.yyyy", Locale.US).format(date)
     }
 
     fun updateData(data: List<Post>) {
@@ -78,17 +86,9 @@ class NewsAdapter(
     }
 
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        val newsThumbnail: ImageView? = itemView.img_news_thumbnail
-        val newsTitle: TextView? = itemView.tv_post_title
-        val newsDate: TextView? = itemView.tv_news_date
-        // Скрытое поле
-        val newsId: TextView? = itemView.tv_news_id
-
-        fun bind(listener: OnItemClickListener) {
-            itemView.onClickDebounce {
-                listener.onItemClick(newsId?.text as String)
-            }
-        }
+        val newsThumbnail: ImageView = itemView.img_news_thumbnail
+        val newsTitle: TextView = itemView.tv_post_title
+        val newsDate: TextView = itemView.tv_news_date
     }
 
 }

@@ -1,19 +1,20 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.deposit
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_item_card_deposit.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.domain.card.DepositAddress
 
 class CardDepositAdapter(
-        private val context: FragmentActivity
+        private val context: Context
 ) : RecyclerView.Adapter<CardDepositAdapter.ViewHolder>() {
 
-    private val layoutInflater = context.layoutInflater
+    private val layoutInflater = LayoutInflater.from(context)
     private var items: List<DepositAddress> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

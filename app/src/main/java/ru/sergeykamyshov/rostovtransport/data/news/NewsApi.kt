@@ -10,6 +10,6 @@ interface NewsApi {
     fun getRecentNews(): Single<NewsResponse>
 
     @GET("/?json=get_post")
-    fun getPost(@Query("post_id") id: String): Single<PostResponse>
+    fun getPost(@Query("post_id") id: Long): Single<PostResponse>
 
 }

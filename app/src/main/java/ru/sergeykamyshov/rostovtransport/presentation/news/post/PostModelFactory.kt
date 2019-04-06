@@ -3,7 +3,7 @@ package ru.sergeykamyshov.rostovtransport.presentation.news.post
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class PostModelFactory(var id: String) : ViewModelProvider.NewInstanceFactory() {
+class PostModelFactory(var id: Long) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass == PostViewModel::class.java) {

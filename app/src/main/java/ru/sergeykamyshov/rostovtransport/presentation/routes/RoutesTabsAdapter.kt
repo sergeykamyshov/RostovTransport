@@ -14,8 +14,8 @@ import ru.sergeykamyshov.rostovtransport.presentation.routes.trolleybus.Trolleyb
  * Адаптер экрана "Маршруты" для формирования вкладок
  */
 class RoutesTabsAdapter(
-        var context: Context?,
-        fm: FragmentManager
+        private val context: Context,
+        private val fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {

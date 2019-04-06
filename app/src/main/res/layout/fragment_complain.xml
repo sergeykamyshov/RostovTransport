@@ -262,7 +262,7 @@
             android:ems="10"
             android:hint="@string/complain_hint_enter_comment"
             android:inputType="textCapSentences|textMultiLine"
-            android:maxLines="3"
+            android:maxLines="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_comment_title"

@@ -5,6 +5,6 @@ import io.reactivex.Single
 interface NewsDataSource {
 
     fun getRecentNews(): Single<List<Post>>
-    fun getPost(id: String): Single<Post>
+    fun getPost(id: Long): Single<Post>
 
 }

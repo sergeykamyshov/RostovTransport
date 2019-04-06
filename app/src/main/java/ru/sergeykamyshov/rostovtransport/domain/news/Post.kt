@@ -1,7 +1,7 @@
 package ru.sergeykamyshov.rostovtransport.domain.news
 
 class Post(
-        val id: String,
+        val id: Long,
         val url: String,
         val title: String,
         val content: String,

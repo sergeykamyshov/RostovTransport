@@ -1,21 +1,22 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.questions
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_questions_card_layout.view.*
 import kotlinx.android.synthetic.main.card_questions_first_card_layout.view.*
 import ru.sergeykamyshov.rostovtransport.R
 
 class QuestionsAdapter(
-        var context: FragmentActivity
+        private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val MAIN_TYPE = 1
     private val DEFAULT_TYPE = 2
-    private val layoutInflater = context.layoutInflater
+    private val layoutInflater = LayoutInflater.from(context)
     private var items: List<QuestionAnswer> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

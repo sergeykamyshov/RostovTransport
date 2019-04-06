@@ -12,7 +12,7 @@ data class PostResponse(
 )
 
 data class Post(
-        @SerializedName("id") val id: String,
+        @SerializedName("id") val id: Long,
         @SerializedName("url") val url: String,
         @SerializedName("title") val title: String,
         @SerializedName("content") val content: String,

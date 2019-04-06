@@ -1,6 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.schedule
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,10 +13,8 @@ import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.data.models.schedule.Directions
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
-import ru.sergeykamyshov.rostovtransport.presentation.schedule.city.CityScheduleActivity
 
-class ScheduleFragment : BaseFragment(), OnItemClickListener {
+class ScheduleFragment : BaseFragment() {
 
     val jsonDataApi = App.provider.api.jsonDataApi
     lateinit var adapter: ScheduleAdapter
@@ -32,10 +29,10 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         setActionBarTitle(R.string.title_schedule)
         setHasOptionsMenu(true)
 
-        schedule_recycler.layoutManager = LinearLayoutManager(activity)
-        adapter = ScheduleAdapter(activity, ArrayList(), this)
+        schedule_recycler.layoutManager = LinearLayoutManager(requireContext())
+        adapter = ScheduleAdapter(requireContext(), ArrayList())
         schedule_recycler.adapter = adapter
-        schedule_recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        schedule_recycler.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         schedule_recycler.setHasFixedSize(true)
 
         val call = jsonDataApi.getDirections()
@@ -62,10 +59,10 @@ class ScheduleFragment : BaseFragment(), OnItemClickListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onItemClick(cityName: String) {
-        val intent = Intent(activity, CityScheduleActivity::class.java)
-        intent.putExtra(CityScheduleActivity.city, cityName)
-        startActivity(intent)
-    }
+//    override fun onItemClick(cityName: String) {
+//        val intent = Intent(activity, CityScheduleActivity::class.java)
+//        intent.putExtra(CityScheduleActivity.city, cityName)
+//        startActivity(intent)
+//    }
 
 }

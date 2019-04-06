@@ -13,11 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_news.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
-import ru.sergeykamyshov.rostovtransport.presentation.base.OnItemClickListener
 import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 import ru.sergeykamyshov.rostovtransport.presentation.news.post.PostActivity
 
-class NewsFragment : BaseFragment() {
+class NewsFragment : BaseFragment(), NewsAdapter.Callback {
 
     private lateinit var navController: NavController
     private lateinit var adapter: NewsAdapter
@@ -53,18 +52,18 @@ class NewsFragment : BaseFragment() {
         }
     }
 
-    private fun setupRecycler() {
-        news_recycler.layoutManager = LinearLayoutManager(activity)
-        adapter = NewsAdapter(activity, object : OnItemClickListener {
-            override fun onItemClick(value: String) {
-                navController.navigate(R.id.postActivity, Bundle().also {
-                    it.putString(PostActivity.POST_ID_EXTRA, value)
-                })
-            }
+    override fun onPostClick(id: Long) {
+        navController.navigate(R.id.postActivity, Bundle().also {
+            it.putLong(PostActivity.POST_ID_EXTRA, id)
         })
-        news_recycler.adapter = adapter
-        news_recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+    }
+
+    private fun setupRecycler() {
+        news_recycler.layoutManager = LinearLayoutManager(requireContext())
         news_recycler.setHasFixedSize(true)
+        news_recycler.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        adapter = NewsAdapter(requireContext(), this)
+        news_recycler.adapter = adapter
     }
 
     companion object {

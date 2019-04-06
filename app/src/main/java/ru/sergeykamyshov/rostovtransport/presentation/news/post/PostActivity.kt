@@ -1,13 +1,10 @@
 package ru.sergeykamyshov.rostovtransport.presentation.news.post
 
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.squareup.picasso.Picasso
@@ -17,7 +14,6 @@ import ru.sergeykamyshov.rostovtransport.BuildConfig
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.EmptyImageGetter
 import ru.sergeykamyshov.rostovtransport.base.extentions.openInBrowser
-import ru.sergeykamyshov.rostovtransport.databinding.ActivityPostBinding
 import ru.sergeykamyshov.rostovtransport.presentation.base.StateActivity
 
 class PostActivity : StateActivity() {
@@ -28,20 +24,15 @@ class PostActivity : StateActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityPostBinding>(
-                this,
-                R.layout.activity_post
-        )
-        binding.lifecycleOwner = this
+        setContentView(R.layout.activity_post)
 
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val id = intent.getStringExtra(POST_ID_EXTRA)
+        val id = intent.getLongExtra(POST_ID_EXTRA, 0L)
         val viewModel = ViewModelProviders
                 .of(this, PostModelFactory(id))
                 .get(PostViewModel::class.java)
-        binding.viewModel = viewModel
 
         initViewState(
                 this,
@@ -83,7 +74,7 @@ class PostActivity : StateActivity() {
                 return@Observer
             }
 
-            // Убираем html теги
+            // Убираеем html тги
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 tv_post_title.text = Html.fromHtml(it.title, Html.FROM_HTML_MODE_LEGACY)
                 tv_post_content.text = Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY, EmptyImageGetter(), null)
@@ -109,12 +100,6 @@ class PostActivity : StateActivity() {
 
     companion object {
         const val POST_ID_EXTRA = "${BuildConfig.APPLICATION_ID}.PostActivity.POST_ID"
-
-        fun getIntent(context: Context, postId: String): Intent {
-            val intent = Intent(context, PostActivity::class.java)
-            intent.putExtra(PostActivity.POST_ID_EXTRA, postId)
-            return intent
-        }
     }
 
 }

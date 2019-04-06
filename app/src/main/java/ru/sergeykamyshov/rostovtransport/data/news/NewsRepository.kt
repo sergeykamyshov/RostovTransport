@@ -11,7 +11,7 @@ class NewsRepository(private val newsApi: NewsApi) : NewsDataSource {
                 .map { it.posts.map { item -> item.toPost() } }
     }
 
-    override fun getPost(id: String): Single<Post> {
+    override fun getPost(id: Long): Single<Post> {
         return newsApi.getPost(id)
                 .map { it.post.toPost() }
     }

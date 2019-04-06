@@ -1,7 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.buy.map
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -73,12 +71,6 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         const val ADDRESSES_EXTRA = "${BuildConfig.APPLICATION_ID}.CardBuyMapActivity.ADDRESSES"
-
-        fun getIntent(context: Context, addresses: String): Intent {
-            val intent = Intent(context, CardBuyMapActivity::class.java)
-            intent.putExtra(ADDRESSES_EXTRA, addresses)
-            return intent
-        }
     }
 
 }

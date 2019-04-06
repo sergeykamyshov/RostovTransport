@@ -1,7 +1,5 @@
 package ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -121,12 +119,6 @@ class CardDepositMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         const val ADDRESSES_EXTRA = "${BuildConfig.APPLICATION_ID}.CardDepositMapActivity.ADDRESSES"
-
-        fun getIntent(context: Context, addresses: String): Intent {
-            val intent = Intent(context, CardDepositMapActivity::class.java)
-            intent.putExtra(ADDRESSES_EXTRA, addresses)
-            return intent
-        }
     }
 
 }

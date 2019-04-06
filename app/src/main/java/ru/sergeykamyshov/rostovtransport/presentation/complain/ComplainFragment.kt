@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_complain.*
-import kotlinx.android.synthetic.main.fragment_complain.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
@@ -28,41 +27,43 @@ class ComplainFragment : BaseFragment(), Contract.View {
     private lateinit var adapter: ViolationsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_complain, container, false)
+        return inflater.inflate(R.layout.fragment_complain, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setActionBarTitle(R.string.title_complain)
 
         presenter = ComplainPresenter()
         presenter.attachView(this)
 
-        view.btn_send_complain.onClickDebounce {
+        btn_send_complain.onClickDebounce {
             presenter.sendComplaint()
         }
 
         // Настраиваем выбор времени
         val calendar = Calendar.getInstance()
-        view.edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
-        val dialog = TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { v, hourOfDay, minute ->
+        edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+        val dialog = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { v, hourOfDay, minute ->
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
             calendar.set(Calendar.MINUTE, minute)
-            view.edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+            edt_time.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
-        view.edt_time.onClickDebounce {
+        edt_time.onClickDebounce {
             dialog.show()
         }
 
         // Настраиваем RecyclerView
-        view.recycler_offences.layoutManager = LinearLayoutManager(activity)
-        view.recycler_offences.setHasFixedSize(true)
-        view.recycler_offences.isNestedScrollingEnabled = false
+        recycler_offences.layoutManager = LinearLayoutManager(requireContext())
+        recycler_offences.setHasFixedSize(true)
+        recycler_offences.isNestedScrollingEnabled = false
 
         // Подготавливаем данные для адаптера
         val violations = getViolations()
         fillViolations(violations, savedInstanceState)
         adapter = ViolationsAdapter(violations)
-        view.recycler_offences.adapter = adapter
-
-        return view
+        recycler_offences.adapter = adapter
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -168,7 +169,7 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     override fun showCheckErrorToast() {
-        Toast.makeText(activity, getString(R.string.complain_error_check_fill), Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), getString(R.string.complain_error_check_fill), Toast.LENGTH_LONG).show()
     }
 
     override fun sendComplaintViaEmail(text: String) {
@@ -186,8 +187,6 @@ class ComplainFragment : BaseFragment(), Contract.View {
     }
 
     companion object {
-        const val TAG = "ComplainFragment"
-
         fun newInstance() = ComplainFragment()
     }
 

@@ -12,8 +12,8 @@ import ru.sergeykamyshov.rostovtransport.presentation.help.stations.StationsList
  * Адаптер экрана "Справка" для формирования вкладок
  */
 class HelpTabsAdapter(
-        var context: Context?,
-        fm: FragmentManager
+        private val context: Context,
+        private val fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): androidx.fragment.app.Fragment {

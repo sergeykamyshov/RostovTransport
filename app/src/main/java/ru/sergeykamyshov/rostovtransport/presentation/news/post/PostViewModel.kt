@@ -14,7 +14,7 @@ import ru.sergeykamyshov.rostovtransport.base.states.UIState
 import ru.sergeykamyshov.rostovtransport.domain.news.Post
 import timber.log.Timber
 
-class PostViewModel(private val id: String) : ViewModel() {
+class PostViewModel(private val id: Long) : ViewModel() {
 
     private val getPost = App.provider.useCase.getPost
     private val uiState = MutableLiveData<UIState>(Loading)

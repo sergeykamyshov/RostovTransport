@@ -14,8 +14,8 @@ import ru.sergeykamyshov.rostovtransport.presentation.card.questions.QuestionsFr
  * Адаптер экрана "Транспортная карта" для формирования вкладок
  */
 class TransportCardTabsAdapter(
-        var context: Context?,
-        fm: FragmentManager
+        private val context: Context,
+        private val fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {

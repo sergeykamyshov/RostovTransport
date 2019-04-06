@@ -6,50 +6,62 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_card_buy.view.*
+import kotlinx.android.synthetic.main.fragment_card_buy.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.domain.card.BuyAddress
 import ru.sergeykamyshov.rostovtransport.presentation.base.StateFragment
 import ru.sergeykamyshov.rostovtransport.presentation.card.buy.map.CardBuyMapActivity
-import ru.sergeykamyshov.rostovtransport.presentation.main.MainActivity
 
 class CardBuyFragment : StateFragment() {
 
     private var addresses: List<BuyAddress> = emptyList()
+    private lateinit var adapter: CardBuyAdapter
+    private lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_card_buy, container, false)
+        return inflater.inflate(R.layout.fragment_card_buy, container, false)
+    }
 
-        val recycler = view.rv_card_buy
-        recycler.layoutManager = LinearLayoutManager(activity)
-        val adapter = CardBuyAdapter(activity!!)
-        recycler.adapter = adapter
-        recycler.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        recycler.setHasFixedSize(true)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        navController = NavHostFragment.findNavController(this)
+
+        setupRecycler()
 
         val viewModel = ViewModelProviders.of(this).get(CardBuyViewModel::class.java)
         initViewState(
                 this,
                 viewModel.getUiState(),
-                view.buy_progress,
-                view.rv_card_buy,
-                view.tv_empty,
-                view.tv_error
+                buy_progress,
+                rv_card_buy,
+                tv_empty,
+                tv_error
         )
         viewModel.getData().observe(this, Observer {
             addresses = it
             adapter.update(it)
         })
 
-        view.layout_card_buy_button_map.onClickDebounce {
-            startActivity(CardBuyMapActivity.getIntent(activity as MainActivity, Gson().toJson(addresses)))
+        layout_card_buy_button_map.onClickDebounce {
+            navController.navigate(R.id.cardBuyMapActivity, Bundle().also {
+                it.putString(CardBuyMapActivity.ADDRESSES_EXTRA, Gson().toJson(addresses))
+            })
         }
+    }
 
-        return view
+    private fun setupRecycler() {
+        rv_card_buy.layoutManager = LinearLayoutManager(requireContext())
+        rv_card_buy.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        rv_card_buy.setHasFixedSize(true)
+        adapter = CardBuyAdapter(requireContext())
+        rv_card_buy.adapter = adapter
     }
 
     companion object {

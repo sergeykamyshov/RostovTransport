@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_card_questions.view.*
+import kotlinx.android.synthetic.main.fragment_card_questions.*
 import ru.sergeykamyshov.rostovtransport.R
-
 
 class QuestionsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_card_questions, container, false)
+    private lateinit var adapter: QuestionsAdapter
 
-        view.rv_questions.layoutManager = LinearLayoutManager(activity)
-        val adapter = QuestionsAdapter(activity!!)
-        view.rv_questions.adapter = adapter
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_card_questions, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecycler()
 
         val questions = activity?.resources?.getStringArray(R.array.card_questions)?.toList()
         val answers = activity?.resources?.getStringArray(R.array.card_answers)?.toList()
@@ -29,8 +32,12 @@ class QuestionsFragment : Fragment() {
             }
             adapter.update(items)
         }
+    }
 
-        return view
+    private fun setupRecycler() {
+        rv_questions.layoutManager = LinearLayoutManager(requireContext())
+        adapter = QuestionsAdapter(requireContext())
+        rv_questions.adapter = adapter
     }
 
     companion object {

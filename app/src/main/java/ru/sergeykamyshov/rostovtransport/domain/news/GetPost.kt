@@ -4,7 +4,7 @@ import io.reactivex.Single
 
 class GetPost(private val newsDataSource: NewsDataSource) {
 
-    fun execute(id: String): Single<Post> {
+    fun execute(id: Long): Single<Post> {
         return newsDataSource.getPost(id)
     }
 

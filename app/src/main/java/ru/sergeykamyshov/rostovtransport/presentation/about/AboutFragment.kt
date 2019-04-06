@@ -5,27 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_about.view.*
+import kotlinx.android.synthetic.main.fragment_about.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 
 class AboutFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_about, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setActionBarTitle(R.string.title_about)
 
-        view.rv_cards.layoutManager = LinearLayoutManager(context)
-        val adapter = CardsAdapter(context!!)
-        view.rv_cards.adapter = adapter
-
-        return view
+        rv_cards.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = CardsAdapter(requireContext())
+        rv_cards.adapter = adapter
     }
 
     companion object {
-        const val TAG = "AboutFragment"
-
         fun newInstance() = AboutFragment()
     }
 
