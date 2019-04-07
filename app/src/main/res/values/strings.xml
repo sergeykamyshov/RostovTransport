@@ -11,6 +11,7 @@
 
     <!--Заголовки-->
     <string name="title_news">Новости</string>
+    <string name="title_transport">Транспорт</string>
     <string name="title_routes">Маршруты</string>
     <string name="title_schedule">Расписание</string>
     <string name="title_transport_online">Транспорт Онлайн</string>
@@ -25,6 +26,7 @@
     <string name="navigation_drawer_open">Открыть</string>
     <string name="navigation_drawer_close">Закрыть</string>
     <string name="nav_item_news">@string/title_news</string>
+    <string name="nav_item_transport">@string/title_transport</string>
     <string name="nav_item_routes">@string/title_routes</string>
     <string name="nav_item_schedule">@string/title_schedule</string>
     <string name="nav_item_transport_online">@string/title_transport_online</string>
@@ -102,8 +104,10 @@
         3. После получения письма мы подготовим все документы и перенаправим жалобу в департамент транспорта.
     </string>
 
+    <!--TODO: SK 07-Apr-2019 Clear strings.xml-->
     <!--Меню-->
     <string name="menu_rate_app">Оцените приложение</string>
+    <string name="menu_mail_dev">Написать разработчику</string>
 
     <string name="complain_title_transport_type">Вид транспорта <font color="#4CAF50">*</font></string>
     <string name="complain_title_route">Номер маршрута <font color="#4CAF50">*</font></string>

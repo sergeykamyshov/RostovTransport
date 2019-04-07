@@ -10,15 +10,25 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 
 class SimpleOptionDelegate(
-        private val context: Context
+        private val context: Context,
+        private val callback: MenuAdapter.Callback,
+        private val adapter: MenuAdapter
 ) : AdapterDelegate<List<MenuOption>>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return SimpleOptionViewHolder(layoutInflater.inflate(R.layout.item_menu_option, parent, false))
+        val viewHolder = SimpleOptionViewHolder(layoutInflater.inflate(R.layout.item_menu_option, parent, false))
+
+        viewHolder.itemView.onClickDebounce {
+            val simpleOption = adapter.items[viewHolder.adapterPosition] as SimpleOption
+            callback.onOptionClick(simpleOption.type)
+        }
+
+        return viewHolder
     }
 
     override fun isForViewType(items: List<MenuOption>, position: Int): Boolean {

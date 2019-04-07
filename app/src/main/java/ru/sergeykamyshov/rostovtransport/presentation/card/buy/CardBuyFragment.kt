@@ -50,9 +50,11 @@ class CardBuyFragment : StateFragment() {
         })
 
         layout_card_buy_button_map.onClickDebounce {
-            navController.navigate(R.id.cardBuyMapActivity, Bundle().also {
-                it.putString(CardBuyMapActivity.ADDRESSES_EXTRA, Gson().toJson(addresses))
-            })
+            navController.navigate(
+                    R.id.action_transportCardFragment_to_cardBuyMapActivity,
+                    Bundle().also {
+                        it.putString(CardBuyMapActivity.ADDRESSES_EXTRA, Gson().toJson(addresses))
+                    })
         }
     }
 

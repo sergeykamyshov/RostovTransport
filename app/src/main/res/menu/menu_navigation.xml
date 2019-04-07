@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--TODO: SK 07-Apr-2019 Find fit icons-->
     <item
         android:id="@+id/newsFragment"
         android:icon="@drawable/ic_nav_news_24px"
         android:title="@string/nav_item_news"
         />
     <item
-        android:id="@+id/helpFragment"
-        android:icon="@drawable/ic_nav_help_24px"
-        android:title="@string/nav_item_help"
-        />
-    <item
-        android:id="@+id/transportCardFragment"
-        android:icon="@drawable/ic_nav_transport_card_24px"
-        android:title="@string/nav_item_transport_card"
+        android:id="@+id/transportFragment"
+        android:icon="@drawable/ic_bus_black_24dp"
+        android:title="@string/nav_item_transport"
         />
     <item
         android:id="@+id/complainFragment"
         android:icon="@drawable/ic_nav_complain_24px"
         android:title="@string/nav_item_complain"
         />
-    <!--<item-->
-        <!--android:id="@+id/aboutFragment"-->
-        <!--android:icon="@drawable/ic_nav_about_project_24px"-->
-        <!--android:title="@string/nav_item_about"-->
-        <!--/>-->
     <item
-        android:id="@+id/menuFragment"
+        android:id="@+id/menuGraph"
         android:icon="@drawable/ic_nav_about_project_24px"
         android:title="@string/nav_item_menu"
         />
-    <!--<item-->
-    <!--android:id="@+id/nav_item_routes"-->
-    <!--android:icon="@drawable/ic_nav_routes_24px"-->
-    <!--android:title="@string/nav_item_routes"/>-->
-    <!--<item-->
-    <!--android:id="@+id/nav_item_schedule"-->
-    <!--android:icon="@drawable/ic_nav_schedule_24px"-->
-    <!--android:title="@string/nav_item_schedule"/>-->
-    <!--<item-->
-    <!--android:id="@+id/nav_item_transport_online"-->
-    <!--android:icon="@drawable/ic_nav_transport_online_24px"-->
-    <!--android:title="@string/nav_item_transport_online"/>-->
 </menu>

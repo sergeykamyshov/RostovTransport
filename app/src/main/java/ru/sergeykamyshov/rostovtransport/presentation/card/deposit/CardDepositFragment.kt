@@ -50,9 +50,11 @@ class CardDepositFragment : StateFragment() {
         })
 
         layout_card_deposit_button_map.onClickDebounce {
-            navController.navigate(R.id.cardDepositMapActivity, Bundle().also {
-                it.putString(CardDepositMapActivity.ADDRESSES_EXTRA, Gson().toJson(addresses))
-            })
+            navController.navigate(
+                    R.id.action_transportCardFragment_to_cardDepositMapActivity,
+                    Bundle().also {
+                        it.putString(CardDepositMapActivity.ADDRESSES_EXTRA, Gson().toJson(addresses))
+                    })
         }
     }
 

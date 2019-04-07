@@ -26,14 +26,6 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottom_navigation, navController)
     }
 
-    override fun onBackPressed() {
-        if (R.id.newsFragment != bottom_navigation.selectedItemId) {
-            bottom_navigation.selectedItemId = R.id.newsFragment
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     fun showAppBarLayout() {
         main_app_bar.setExpanded(true)
     }

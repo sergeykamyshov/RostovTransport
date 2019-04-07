@@ -53,9 +53,11 @@ class NewsFragment : BaseFragment(), NewsAdapter.Callback {
     }
 
     override fun onPostClick(id: Long) {
-        navController.navigate(R.id.postActivity, Bundle().also {
-            it.putLong(PostActivity.POST_ID_EXTRA, id)
-        })
+        navController.navigate(
+                R.id.action_newsFragment_to_postActivity,
+                Bundle().also {
+                    it.putLong(PostActivity.POST_ID_EXTRA, id)
+                })
     }
 
     private fun setupRecycler() {
