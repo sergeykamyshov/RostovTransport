@@ -26,6 +26,7 @@ class AboutFragment : BaseFragment() {
     }
 
     companion object {
+        // TODO: SK 07-Apr-19 Check and remove unused method in every fragment
         fun newInstance() = AboutFragment()
     }
 

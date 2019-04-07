@@ -18,6 +18,7 @@
     <string name="title_transport_card">Транспортная Карта</string>
     <string name="title_complain">Пожаловаться</string>
     <string name="title_about">О Проекте</string>
+    <string name="title_menu">Меню</string>
 
     <!--Выдвижная панель навигации-->
     <string name="logo_subtitle">Весь транспорт Южной столицы</string>
@@ -31,6 +32,7 @@
     <string name="nav_item_transport_card">@string/title_transport_card</string>
     <string name="nav_item_complain">@string/title_complain</string>
     <string name="nav_item_about">@string/title_about</string>
+    <string name="nav_item_menu">@string/title_menu</string>
 
     <!--Новости-->
     <string name="news_post_menu_action_open_in_browser">Открыть в браузере</string>
@@ -99,6 +101,9 @@
         2. Приложение сформирует полностью заполненное письмо. Нажмите "Отправить email".\n\n
         3. После получения письма мы подготовим все документы и перенаправим жалобу в департамент транспорта.
     </string>
+
+    <!--Меню-->
+    <string name="menu_rate_app">Оцените приложение</string>
 
     <string name="complain_title_transport_type">Вид транспорта <font color="#4CAF50">*</font></string>
     <string name="complain_title_route">Номер маршрута <font color="#4CAF50">*</font></string>

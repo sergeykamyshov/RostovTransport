@@ -47,4 +47,9 @@
         android:name="ru.sergeykamyshov.rostovtransport.presentation.card.deposit.map.CardDepositMapActivity"
         android:label="CardDepositMapActivity"
         />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="ru.sergeykamyshov.rostovtransport.presentation.menu.MenuFragment"
+        android:label="MenuFragment"
+        />
 </navigation>

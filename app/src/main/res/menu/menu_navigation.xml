@@ -20,10 +20,15 @@
         android:icon="@drawable/ic_nav_complain_24px"
         android:title="@string/nav_item_complain"
         />
+    <!--<item-->
+        <!--android:id="@+id/aboutFragment"-->
+        <!--android:icon="@drawable/ic_nav_about_project_24px"-->
+        <!--android:title="@string/nav_item_about"-->
+        <!--/>-->
     <item
-        android:id="@+id/aboutFragment"
+        android:id="@+id/menuFragment"
         android:icon="@drawable/ic_nav_about_project_24px"
-        android:title="@string/nav_item_about"
+        android:title="@string/nav_item_menu"
         />
     <!--<item-->
     <!--android:id="@+id/nav_item_routes"-->
