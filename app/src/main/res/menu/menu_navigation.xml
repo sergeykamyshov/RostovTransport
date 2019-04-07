@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_item_news"
+        android:id="@+id/newsFragment"
         android:icon="@drawable/ic_nav_news_24px"
         android:title="@string/nav_item_news"
         />
     <item
-        android:id="@+id/nav_item_help"
+        android:id="@+id/helpFragment"
         android:icon="@drawable/ic_nav_help_24px"
         android:title="@string/nav_item_help"
         />
     <item
-        android:id="@+id/nav_item_transport_card"
+        android:id="@+id/transportCardFragment"
         android:icon="@drawable/ic_nav_transport_card_24px"
         android:title="@string/nav_item_transport_card"
         />
     <item
-        android:id="@+id/nav_item_complain"
+        android:id="@+id/complainFragment"
         android:icon="@drawable/ic_nav_complain_24px"
         android:title="@string/nav_item_complain"
         />
     <item
-        android:id="@+id/nav_item_about"
+        android:id="@+id/aboutFragment"
         android:icon="@drawable/ic_nav_about_project_24px"
         android:title="@string/nav_item_about"
         />

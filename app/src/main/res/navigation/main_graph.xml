@@ -23,6 +23,11 @@
         android:label="HelpFragment"
         />
     <fragment
+        android:id="@+id/transportCardFragment"
+        android:name="ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment"
+        android:label="TransportCardFragment"
+        />
+    <fragment
         android:id="@+id/complainFragment"
         android:name="ru.sergeykamyshov.rostovtransport.presentation.complain.ComplainFragment"
         android:label="ComplainFragment"
@@ -31,11 +36,6 @@
         android:id="@+id/aboutFragment"
         android:name="ru.sergeykamyshov.rostovtransport.presentation.about.AboutFragment"
         android:label="AboutFragment"
-        />
-    <fragment
-        android:id="@+id/transportCardFragment"
-        android:name="ru.sergeykamyshov.rostovtransport.presentation.card.TransportCardFragment"
-        android:label="TransportCardFragment"
         />
     <activity
         android:id="@+id/cardBuyMapActivity"

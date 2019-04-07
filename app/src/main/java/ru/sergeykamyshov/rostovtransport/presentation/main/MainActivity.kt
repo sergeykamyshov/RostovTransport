@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -19,27 +20,15 @@ class MainActivity : AppCompatActivity() {
         // Настраивает Toolbar
         setSupportActionBar(main_toolbar)
 
-        navController = Navigation.findNavController(this, R.id.navHostFragment)
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        // Обрабатываем выбор пункта меню
-        vBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_item_news -> navController.navigate(R.id.newsFragment)
-                R.id.nav_item_help -> navController.navigate(R.id.helpFragment)
-                R.id.nav_item_transport_card -> navController.navigate(R.id.transportCardFragment)
-                R.id.nav_item_complain -> navController.navigate(R.id.complainFragment)
-                R.id.nav_item_about -> navController.navigate(R.id.aboutFragment)
-//                R.id.nav_item_routes -> showFragment(RoutesFragment.newInstance())
-//                R.id.nav_item_schedule -> showFragment(ScheduleFragment.newInstance())
-//                R.id.nav_item_transport_online -> showFragment(TransportOnlineFragment.newInstance())
-            }
-            true
-        }
+        // Устанавливает обработку пунктов меню. ID у destination и menu item должны совпадать
+        NavigationUI.setupWithNavController(bottom_navigation, navController)
     }
 
     override fun onBackPressed() {
-        if (R.id.nav_item_news != vBottomNavigation.selectedItemId) {
-            vBottomNavigation.selectedItemId = R.id.nav_item_news
+        if (R.id.newsFragment != bottom_navigation.selectedItemId) {
+            bottom_navigation.selectedItemId = R.id.newsFragment
         } else {
             super.onBackPressed()
         }
