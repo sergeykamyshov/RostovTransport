@@ -1,5 +1,6 @@
 package ru.sergeykamyshov.rostovtransport.base.extentions
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -43,4 +44,19 @@ fun Context.resolveAndStartActivity(intent: Intent): Boolean {
         return true
     }
     return false
+}
+
+fun Context.openMarketURL(packageName: String? = this.packageName) {
+    packageName?.let {
+        try {
+            val uri = Uri.parse("market://details?id=$packageName")
+            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(goToMarket)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
+            ))
+        }
+    }
 }

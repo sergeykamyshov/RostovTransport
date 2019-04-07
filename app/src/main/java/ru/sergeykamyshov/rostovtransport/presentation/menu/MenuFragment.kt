@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_menu.*
 import ru.sergeykamyshov.rostovtransport.R
+import ru.sergeykamyshov.rostovtransport.base.extentions.openMarketURL
+import ru.sergeykamyshov.rostovtransport.base.extentions.sendEmail
 import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 
 class MenuFragment : BaseFragment(), MenuAdapter.Callback {
@@ -31,9 +32,9 @@ class MenuFragment : BaseFragment(), MenuAdapter.Callback {
         setupRecycler()
 
         adapter.items = listOf(
-                SimpleOption(OptionType.HELP, R.drawable.ic_nav_help_24px, R.string.nav_item_help),
-                SimpleOption(OptionType.CARD, R.drawable.ic_nav_transport_card_24px, R.string.nav_item_transport_card),
-                SimpleOption(OptionType.ABOUT, R.drawable.ic_nav_about_project_24px, R.string.nav_item_about),
+                SimpleOption(OptionType.HELP, R.drawable.ic_nav_help_24dp, R.string.nav_item_help),
+                SimpleOption(OptionType.CARD, R.drawable.ic_card_24dp, R.string.nav_item_transport_card),
+                SimpleOption(OptionType.ABOUT, R.drawable.ic_people_black_24dp, R.string.nav_item_about),
                 SimpleOption(OptionType.RATE, R.drawable.ic_star_border_black_24dp, R.string.menu_rate_app),
                 SimpleOption(OptionType.DEVELOPER, R.drawable.ic_mail_outline_black_24dp, R.string.menu_mail_dev)
         )
@@ -44,8 +45,8 @@ class MenuFragment : BaseFragment(), MenuAdapter.Callback {
             OptionType.HELP -> navController.navigate(R.id.action_menuFragment_to_helpFragment)
             OptionType.CARD -> navController.navigate(R.id.action_menuFragment_to_transportCardFragment)
             OptionType.ABOUT -> navController.navigate(R.id.action_menuFragment_to_aboutFragment)
-            OptionType.RATE -> Toast.makeText(requireContext(), "RATE", Toast.LENGTH_SHORT).show()
-            OptionType.DEVELOPER -> Toast.makeText(requireContext(), "DEVELOPER", Toast.LENGTH_SHORT).show()
+            OptionType.RATE -> activity?.openMarketURL()
+            OptionType.DEVELOPER -> activity?.sendEmail(getString(R.string.email_developer))
         }
     }
 

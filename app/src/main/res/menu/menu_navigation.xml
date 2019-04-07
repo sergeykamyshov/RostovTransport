@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--TODO: SK 07-Apr-2019 Find fit icons-->
     <item
         android:id="@+id/newsFragment"
-        android:icon="@drawable/ic_nav_news_24px"
+        android:icon="@drawable/ic_newspaper_black_24dp"
         android:title="@string/nav_item_news"
         />
     <item
@@ -13,12 +12,12 @@
         />
     <item
         android:id="@+id/complainFragment"
-        android:icon="@drawable/ic_nav_complain_24px"
+        android:icon="@drawable/ic_nav_complain_24dp"
         android:title="@string/nav_item_complain"
         />
     <item
         android:id="@+id/menuGraph"
-        android:icon="@drawable/ic_nav_about_project_24px"
+        android:icon="@drawable/ic_menu_black_24dp"
         android:title="@string/nav_item_menu"
         />
 </menu>

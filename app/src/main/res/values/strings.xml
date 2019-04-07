@@ -21,10 +21,7 @@
     <string name="title_about">О Проекте</string>
     <string name="title_menu">Меню</string>
 
-    <!--Выдвижная панель навигации-->
-    <string name="logo_subtitle">Весь транспорт Южной столицы</string>
-    <string name="navigation_drawer_open">Открыть</string>
-    <string name="navigation_drawer_close">Закрыть</string>
+    <!--Bottom Navigation View-->
     <string name="nav_item_news">@string/title_news</string>
     <string name="nav_item_transport">@string/title_transport</string>
     <string name="nav_item_routes">@string/title_routes</string>
@@ -106,8 +103,9 @@
 
     <!--TODO: SK 07-Apr-2019 Clear strings.xml-->
     <!--Меню-->
-    <string name="menu_rate_app">Оцените приложение</string>
+    <string name="menu_rate_app">Оценить приложение</string>
     <string name="menu_mail_dev">Написать разработчику</string>
+    <string name="email_developer">kamyshovsergey@yandex.ru</string>
 
     <string name="complain_title_transport_type">Вид транспорта <font color="#4CAF50">*</font></string>
     <string name="complain_title_route">Номер маршрута <font color="#4CAF50">*</font></string>

@@ -13,10 +13,6 @@
         <action
             android:id="@+id/action_newsFragment_to_postActivity"
             app:destination="@id/postActivity"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             />
     </fragment>
     <activity
@@ -42,30 +38,18 @@
             <action
                 android:id="@+id/action_menuFragment_to_aboutFragment"
                 app:destination="@id/aboutFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/aboutFragment"
                 app:popUpToInclusive="true"
                 />
             <action
                 android:id="@+id/action_menuFragment_to_transportCardFragment"
                 app:destination="@id/transportCardFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/transportCardFragment"
                 app:popUpToInclusive="true"
                 />
             <action
                 android:id="@+id/action_menuFragment_to_helpFragment"
                 app:destination="@id/helpFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/helpFragment"
                 app:popUpToInclusive="true"
                 />
@@ -83,20 +67,12 @@
             <action
                 android:id="@+id/action_transportCardFragment_to_cardBuyMapActivity"
                 app:destination="@id/cardBuyMapActivity"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/cardBuyMapActivity"
                 app:popUpToInclusive="true"
                 />
             <action
                 android:id="@+id/action_transportCardFragment_to_cardDepositMapActivity"
                 app:destination="@id/cardDepositMapActivity"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/cardDepositMapActivity"
                 app:popUpToInclusive="true"
                 />
