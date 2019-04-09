@@ -32,11 +32,11 @@ class MenuFragment : BaseFragment(), MenuAdapter.Callback {
         setupRecycler()
 
         adapter.items = listOf(
-                SimpleOption(OptionType.HELP, R.drawable.ic_nav_help_24dp, R.string.nav_item_help),
                 SimpleOption(OptionType.CARD, R.drawable.ic_card_24dp, R.string.nav_item_transport_card),
-                SimpleOption(OptionType.ABOUT, R.drawable.ic_people_black_24dp, R.string.nav_item_about),
                 SimpleOption(OptionType.RATE, R.drawable.ic_star_border_black_24dp, R.string.menu_rate_app),
-                SimpleOption(OptionType.DEVELOPER, R.drawable.ic_mail_outline_black_24dp, R.string.menu_mail_dev)
+                SimpleOption(OptionType.DEVELOPER, R.drawable.ic_mail_outline_black_24dp, R.string.menu_mail_dev),
+                SimpleOption(OptionType.HELP, R.drawable.ic_info_outline_black_24dp, R.string.nav_item_help),
+                SimpleOption(OptionType.ABOUT, R.drawable.ic_people_black_24dp, R.string.nav_item_about)
         )
     }
 

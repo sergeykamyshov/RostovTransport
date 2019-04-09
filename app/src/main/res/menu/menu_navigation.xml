@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/newsFragment"
-        android:icon="@drawable/ic_newspaper_black_24dp"
+        android:icon="@drawable/ic_megaphone_black_24dp"
         android:title="@string/nav_item_news"
         />
     <item
@@ -12,12 +12,12 @@
         />
     <item
         android:id="@+id/complainFragment"
-        android:icon="@drawable/ic_nav_complain_24dp"
+        android:icon="@drawable/ic_closed_envelope_black_24dp"
         android:title="@string/nav_item_complain"
         />
     <item
         android:id="@+id/menuGraph"
-        android:icon="@drawable/ic_menu_black_24dp"
+        android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/nav_item_menu"
         />
 </menu>
