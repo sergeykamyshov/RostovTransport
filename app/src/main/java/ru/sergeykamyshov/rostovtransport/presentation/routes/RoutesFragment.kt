@@ -17,7 +17,7 @@ class RoutesFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_routes, container, false)
+        val view = inflater.inflate(R.layout.fragment_routes_list, container, false)
 
         setActionBarTitle(R.string.title_routes)
 

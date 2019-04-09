@@ -6,7 +6,7 @@
         android:title="@string/nav_item_news"
         />
     <item
-        android:id="@+id/transportFragment"
+        android:id="@+id/routesListFragment"
         android:icon="@drawable/ic_bus_black_24dp"
         android:title="@string/nav_item_transport"
         />
