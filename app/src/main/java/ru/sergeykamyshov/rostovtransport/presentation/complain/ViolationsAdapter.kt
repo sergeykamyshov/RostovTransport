@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_item_violation.view.*
+import kotlinx.android.synthetic.main.item_violation.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 
 class ViolationsAdapter(var data: List<ViolationItem>) : RecyclerView.Adapter<ViolationsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_item_violation, parent, false)
+                .inflate(R.layout.item_violation, parent, false)
         return ViewHolder(view)
     }
 

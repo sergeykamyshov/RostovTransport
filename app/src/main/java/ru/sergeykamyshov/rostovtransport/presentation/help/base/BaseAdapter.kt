@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_item_help.view.*
+import kotlinx.android.synthetic.main.item_help.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.makeCall
@@ -24,7 +24,7 @@ class BaseAdapter(
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = layoutInflater?.inflate(R.layout.recycler_item_help, parent, false)
+        val view = layoutInflater?.inflate(R.layout.item_help, parent, false)
         return ViewHolder(view!!)
     }
 

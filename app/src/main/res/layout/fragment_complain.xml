@@ -235,7 +235,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_offence_title"
-            tools:listitem="@layout/recycler_item_violation"
+            tools:listitem="@layout/item_violation"
             />
 
         <TextView

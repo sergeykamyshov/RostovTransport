@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_item_about_contact.view.*
+import kotlinx.android.synthetic.main.item_about_contact.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.*
 import ru.sergeykamyshov.rostovtransport.domain.about.Contact
@@ -48,7 +48,7 @@ class ContactsAdapter(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(inflater.inflate(R.layout.recycler_item_about_contact, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_about_contact, parent, false))
     }
 
     override fun getItemCount() = items.size

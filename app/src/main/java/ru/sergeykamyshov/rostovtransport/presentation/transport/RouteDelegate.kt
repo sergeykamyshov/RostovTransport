@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
-import kotlinx.android.synthetic.main.recycler_item_route.view.*
+import kotlinx.android.synthetic.main.item_route.view.*
 import ru.sergeykamyshov.rostovtransport.R
 
 class RouteDelegate(
@@ -19,7 +19,7 @@ class RouteDelegate(
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup): RouteViewHolder {
-        return RouteViewHolder(layoutInflater.inflate(R.layout.recycler_item_route, parent, false))
+        return RouteViewHolder(layoutInflater.inflate(R.layout.item_route, parent, false))
     }
 
     override fun isForViewType(item: Any, items: MutableList<Any>, position: Int): Boolean {

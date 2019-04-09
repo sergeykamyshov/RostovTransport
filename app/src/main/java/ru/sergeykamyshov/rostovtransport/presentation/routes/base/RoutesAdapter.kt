@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_item_routes.view.*
+import kotlinx.android.synthetic.main.item_routes.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.data.models.routes.Routes
 
@@ -18,7 +18,7 @@ class RoutesAdapter(
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = layoutInflater.inflate(R.layout.recycler_item_routes, parent, false)
+        val view = layoutInflater.inflate(R.layout.item_routes, parent, false)
         return ViewHolder(view!!)
     }
 

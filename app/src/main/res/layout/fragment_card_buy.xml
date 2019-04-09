@@ -11,7 +11,7 @@
         android:id="@+id/rv_card_buy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/recycler_item_card_buy"
+        tools:listitem="@layout/item_card_buy"
         />
 
     <ProgressBar

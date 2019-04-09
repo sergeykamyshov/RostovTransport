@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_item_card_buy.view.*
+import kotlinx.android.synthetic.main.item_card_buy.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.hide
 import ru.sergeykamyshov.rostovtransport.base.extentions.show
@@ -20,7 +20,7 @@ class CardBuyAdapter(
     private var items: List<BuyAddress> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(layoutInflater.inflate(R.layout.recycler_item_card_buy, parent, false))
+        return ViewHolder(layoutInflater.inflate(R.layout.item_card_buy, parent, false))
     }
 
     override fun getItemCount() = items.size

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_item_news.view.*
+import kotlinx.android.synthetic.main.item_news.view.*
 import ru.sergeykamyshov.rostovtransport.R
 import ru.sergeykamyshov.rostovtransport.base.extentions.onClickDebounce
 import ru.sergeykamyshov.rostovtransport.domain.news.Post
@@ -31,7 +31,7 @@ class NewsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val holder = ViewHolder(layoutInflater.inflate(R.layout.recycler_item_news, parent, false))
+        val holder = ViewHolder(layoutInflater.inflate(R.layout.item_news, parent, false))
 
         holder.itemView.onClickDebounce {
             val post = items[holder.adapterPosition]
