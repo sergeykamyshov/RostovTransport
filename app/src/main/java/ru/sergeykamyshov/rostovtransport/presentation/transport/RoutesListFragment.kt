@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_routes_list.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -26,8 +27,17 @@ class RoutesListFragment : BaseFragment(), RoutesListAdapter.Callback {
         addTestData()
     }
 
-    override fun onRouteClick(route: Int) {
+    override fun onRouteClick(route: Route) {
         // TODO: SK 09-Apr-19 Impl click
+        Toast.makeText(requireContext(), "On Route Click", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onFavoriteClick(route: Route) {
+        Toast.makeText(requireContext(), "On Favorite Click", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNotFavoriteClick(route: Route) {
+        Toast.makeText(requireContext(), "On Not Favorite Click", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupRecycler() {

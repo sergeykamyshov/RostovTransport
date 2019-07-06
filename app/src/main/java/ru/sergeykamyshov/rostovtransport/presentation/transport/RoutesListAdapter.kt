@@ -9,7 +9,9 @@ class RoutesListAdapter(
 ) : ListDelegationAdapter<List<Any>>() {
 
     interface Callback {
-        fun onRouteClick(route: Int)
+        fun onRouteClick(route: Route)
+        fun onFavoriteClick(route: Route)
+        fun onNotFavoriteClick(route: Route)
     }
 
     init {
