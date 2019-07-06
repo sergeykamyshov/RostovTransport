@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.presentation.transport
+package ru.sergeykamyshov.rostovtransport.presentation.transport.list
 
 import android.os.Bundle
 import android.view.LayoutInflater

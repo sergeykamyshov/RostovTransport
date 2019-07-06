@@ -4,38 +4,18 @@ import com.google.gson.annotations.SerializedName
 import ru.sergeykamyshov.rostovtransport.domain.transport.Prev
 import ru.sergeykamyshov.rostovtransport.domain.transport.Transport
 
-class GetBusResponse {
-
-    @SerializedName("lon")
-    lateinit var lon: String
-
-    @SerializedName("lat")
-    lateinit var lat: String
-
-    @SerializedName("speed")
-    lateinit var speed: String
-
-    @SerializedName("time")
-    lateinit var time: String
-
-    @SerializedName("angle")
-    lateinit var angle: String
-
-    @SerializedName("name")
-    lateinit var name: String
-
-    @SerializedName("type")
-    lateinit var type: String
-
-    @SerializedName("num")
-    lateinit var num: String
-
-    @SerializedName("prev")
-    lateinit var prev: PrevResponse
-
-    @SerializedName("gray")
-    var gray: Boolean = false
-
+class GetBusResponse(
+        @SerializedName("lon") val lon: String,
+        @SerializedName("lat") val lat: String,
+        @SerializedName("speed") val speed: String,
+        @SerializedName("time") val time: String,
+        @SerializedName("angle") val angle: String,
+        @SerializedName("name") val name: String,
+        @SerializedName("type") val type: String,
+        @SerializedName("num") val num: String,
+        @SerializedName("prev") val prev: PrevResponse?,
+        @SerializedName("gray") val gray: Boolean
+) {
     fun toTransport() = Transport(
             toDouble(lon),
             toDouble(lat),
@@ -45,34 +25,25 @@ class GetBusResponse {
             name,
             type,
             num,
-            prev.toPrev()
+            prev?.toPrev(),
+            gray
     )
+}
 
-
-    class PrevResponse {
-        @SerializedName("lon")
-        lateinit var lon: String
-
-        @SerializedName("lat")
-        lateinit var lat: String
-
-        @SerializedName("speed")
-        lateinit var speed: String
-
-        @SerializedName("angle")
-        lateinit var angle: String
-
-        @SerializedName("time")
-        lateinit var time: String
-
-        fun toPrev() = Prev(
-                toDouble(lon),
-                toDouble(lat),
-                speed,
-                angle,
-                time
-        )
-    }
+class PrevResponse(
+        @SerializedName("lon") val lon: String,
+        @SerializedName("lat") val lat: String,
+        @SerializedName("speed") val speed: String,
+        @SerializedName("angle") val angle: String,
+        @SerializedName("time") val time: String
+) {
+    fun toPrev() = Prev(
+            toDouble(lon),
+            toDouble(lat),
+            speed,
+            angle,
+            time
+    )
 }
 
 fun toDouble(coordinate: String): Double {

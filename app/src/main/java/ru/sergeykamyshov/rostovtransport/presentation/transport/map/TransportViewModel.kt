@@ -26,7 +26,7 @@ class TransportViewModel : DisposableViewModel() {
                     data.postValue(it)
                 }, {
                     // TODO: add error dialog
-                    Timber.e("Error while loading transport route: $route")
+                    Timber.e(it, "Error while loading transport route: $route")
                 })
         disposables.add(disposable)
     }

@@ -95,7 +95,7 @@
     </navigation>
     <fragment
         android:id="@+id/routesListFragment"
-        android:name="ru.sergeykamyshov.rostovtransport.presentation.transport.RoutesListFragment"
+        android:name="ru.sergeykamyshov.rostovtransport.presentation.transport.list.RoutesListFragment"
         android:label="RoutesListFragment"
         >
         <action

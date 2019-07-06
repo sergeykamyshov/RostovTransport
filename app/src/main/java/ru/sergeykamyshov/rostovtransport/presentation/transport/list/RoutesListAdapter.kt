@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.presentation.transport
+package ru.sergeykamyshov.rostovtransport.presentation.transport.list
 
 import android.content.Context
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter

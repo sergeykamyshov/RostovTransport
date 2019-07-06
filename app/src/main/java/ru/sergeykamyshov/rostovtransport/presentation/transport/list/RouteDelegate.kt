@@ -1,4 +1,4 @@
-package ru.sergeykamyshov.rostovtransport.presentation.transport
+package ru.sergeykamyshov.rostovtransport.presentation.transport.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -41,7 +41,7 @@ class RouteDelegate(
 
     override fun onBindViewHolder(item: Route, holder: RouteViewHolder, payloads: MutableList<Any>) {
         holder.tvRoute.text = item.number
-        // TODO: Route need flag isFavotite
+        // TODO: Route needs flag isFavorite
     }
 
     class RouteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
