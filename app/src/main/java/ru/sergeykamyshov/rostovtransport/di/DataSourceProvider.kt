@@ -6,6 +6,7 @@ import ru.sergeykamyshov.rostovtransport.data.AppDatabase
 import ru.sergeykamyshov.rostovtransport.data.card.CardRepository
 import ru.sergeykamyshov.rostovtransport.data.help.HelpRepository
 import ru.sergeykamyshov.rostovtransport.data.news.NewsRepository
+import ru.sergeykamyshov.rostovtransport.data.transport.TransportRepository
 
 class DataSourceProvider(
         context: Context,
@@ -14,15 +15,25 @@ class DataSourceProvider(
         api: ApiProvider
 ) {
 
-    val news = NewsRepository(api.newsApi)
+    val news = NewsRepository(
+            api.newsApi
+    )
 
-    val help = HelpRepository(context, cachePrefs, db.helpContactDao())
+    val help = HelpRepository(
+            context,
+            cachePrefs,
+            db.helpContactDao()
+    )
 
     val card = CardRepository(
             context,
             cachePrefs,
             db.buyAddressDao(),
             db.depositAddressDao()
+    )
+
+    val transport = TransportRepository(
+            api.transportApi
     )
 
 }

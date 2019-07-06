@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_routes_list.*
 import ru.sergeykamyshov.rostovtransport.R
@@ -13,6 +15,7 @@ import ru.sergeykamyshov.rostovtransport.presentation.base.BaseFragment
 class RoutesListFragment : BaseFragment(), RoutesListAdapter.Callback {
 
     private lateinit var adapter: RoutesListAdapter
+    private lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_routes_list, container, false)
@@ -23,13 +26,14 @@ class RoutesListFragment : BaseFragment(), RoutesListAdapter.Callback {
 
         setActionBarTitle(R.string.title_transport)
 
+        navController = NavHostFragment.findNavController(this)
+
         setupRecycler()
         addTestData()
     }
 
     override fun onRouteClick(route: Route) {
-        // TODO: SK 09-Apr-19 Impl click
-        Toast.makeText(requireContext(), "On Route Click", Toast.LENGTH_SHORT).show()
+        navController.navigate(R.id.action_routesListFragment_to_transportMapActivity)
     }
 
     override fun onFavoriteClick(route: Route) {

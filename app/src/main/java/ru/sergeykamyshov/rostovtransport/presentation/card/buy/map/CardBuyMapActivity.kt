@@ -21,14 +21,14 @@ class CardBuyMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_card_map)
+        setContentView(R.layout.fragment_map)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val json = intent.getStringExtra(ADDRESSES_EXTRA)
         addresses = Gson().fromJson(json, Array<BuyAddress>::class.java).toList()
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_card) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 

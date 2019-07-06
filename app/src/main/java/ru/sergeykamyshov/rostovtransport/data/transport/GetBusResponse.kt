@@ -1,8 +1,10 @@
-package ru.sergeykamyshov.rostovtransport.data.models.online
+package ru.sergeykamyshov.rostovtransport.data.transport
 
 import com.google.gson.annotations.SerializedName
+import ru.sergeykamyshov.rostovtransport.domain.transport.Prev
+import ru.sergeykamyshov.rostovtransport.domain.transport.Transport
 
-class TransportOnline {
+class GetBusResponse {
 
     @SerializedName("lon")
     lateinit var lon: String
@@ -29,9 +31,25 @@ class TransportOnline {
     lateinit var num: String
 
     @SerializedName("prev")
-    lateinit var prev: Prev
+    lateinit var prev: PrevResponse
 
-    class Prev {
+    @SerializedName("gray")
+    var gray: Boolean = false
+
+    fun toTransport() = Transport(
+            toDouble(lon),
+            toDouble(lat),
+            speed,
+            time,
+            angle,
+            name,
+            type,
+            num,
+            prev.toPrev()
+    )
+
+
+    class PrevResponse {
         @SerializedName("lon")
         lateinit var lon: String
 
@@ -46,5 +64,18 @@ class TransportOnline {
 
         @SerializedName("time")
         lateinit var time: String
+
+        fun toPrev() = Prev(
+                toDouble(lon),
+                toDouble(lat),
+                speed,
+                angle,
+                time
+        )
     }
+}
+
+fun toDouble(coordinate: String): Double {
+    val lonOrLat = "${coordinate.substring(0, 2)}.${coordinate.substring(2)}"
+    return lonOrLat.toDouble()
 }

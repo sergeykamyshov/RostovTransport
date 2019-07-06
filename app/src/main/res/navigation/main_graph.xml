@@ -97,5 +97,15 @@
         android:id="@+id/routesListFragment"
         android:name="ru.sergeykamyshov.rostovtransport.presentation.transport.RoutesListFragment"
         android:label="RoutesListFragment"
+        >
+        <action
+            android:id="@+id/action_routesListFragment_to_transportMapActivity"
+            app:destination="@id/transportMapActivity"
+            />
+    </fragment>
+    <activity
+        android:id="@+id/transportMapActivity"
+        android:name="ru.sergeykamyshov.rostovtransport.presentation.transport.map.TransportMapActivity"
+        android:label="TransportMapActivity"
         />
 </navigation>

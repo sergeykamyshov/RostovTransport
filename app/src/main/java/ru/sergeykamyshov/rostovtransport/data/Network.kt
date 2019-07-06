@@ -7,14 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Network {
 
-    val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/api/1.0/"
-    val NEWS_BASE_URL: String = "http://rostov-transport.info"
-    val ONLINE_BASE_URL: String = "http://bus.perseus.su"
-    val DATE_FORMAT: String = "dd.MM.yyyy"
-
     var newsRetrofit: Retrofit
     var jsonDataRetrofit: Retrofit
-    var transportOnlineRetrofit: Retrofit
+    var transportRetrofit: Retrofit
 
     init {
         val gson = GsonBuilder().setDateFormat(DATE_FORMAT).create()
@@ -27,10 +22,18 @@ class Network {
                 .baseUrl(BITBUCKET_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-        transportOnlineRetrofit = Retrofit.Builder()
-                .baseUrl(ONLINE_BASE_URL)
+        transportRetrofit = Retrofit.Builder()
+                .baseUrl(TRANSPORT_BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
+    }
+
+    companion object {
+        const val BITBUCKET_BASE_URL: String = "https://bitbucket.org/sergeykamyshov/rostov-transport-data/raw/master/api/1.0/"
+        const val NEWS_BASE_URL: String = "http://rostov-transport.info"
+        const val TRANSPORT_BASE_URL: String = "http://bus.perseus.su"
+        const val DATE_FORMAT: String = "dd.MM.yyyy"
     }
 
 }

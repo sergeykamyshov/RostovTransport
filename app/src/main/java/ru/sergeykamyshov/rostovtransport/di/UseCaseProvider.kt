@@ -7,6 +7,7 @@ import ru.sergeykamyshov.rostovtransport.domain.help.GetDepartments
 import ru.sergeykamyshov.rostovtransport.domain.help.GetStations
 import ru.sergeykamyshov.rostovtransport.domain.news.GetPost
 import ru.sergeykamyshov.rostovtransport.domain.news.GetRecentNews
+import ru.sergeykamyshov.rostovtransport.domain.transport.GetTransport
 
 class UseCaseProvider(dataSource: DataSourceProvider) {
 
@@ -19,5 +20,7 @@ class UseCaseProvider(dataSource: DataSourceProvider) {
 
     val getDepositAddresses = GetDepositAddresses(dataSource.card)
     val getBuyAddresses = GetBuyAddresses(dataSource.card)
+
+    val getTransport = GetTransport(dataSource.transport)
 
 }

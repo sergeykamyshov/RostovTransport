@@ -14,11 +14,11 @@
     <string name="title_transport">Транспорт</string>
     <string name="title_routes">Маршруты</string>
     <string name="title_schedule">Расписание</string>
-    <string name="title_transport_online">Транспорт Онлайн</string>
+    <string name="title_transport_online">Транспорт онлайн</string>
     <string name="title_help">Справка</string>
-    <string name="title_transport_card">Транспортная Карта</string>
+    <string name="title_transport_card">Транспортная карта</string>
     <string name="title_complain">Пожаловаться</string>
-    <string name="title_about">О Проекте</string>
+    <string name="title_about">О проекте</string>
     <string name="title_menu">Меню</string>
 
     <!--Bottom Navigation View-->

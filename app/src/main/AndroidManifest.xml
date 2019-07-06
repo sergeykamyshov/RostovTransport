@@ -60,6 +60,10 @@
             android:name=".presentation.card.deposit.map.CardDepositMapActivity"
             android:label="@string/card_title_deposit"
             />
+        <activity
+            android:name=".presentation.transport.map.TransportMapActivity"
+            android:label="@string/title_transport_online"
+            />
     </application>
 
 </manifest>
